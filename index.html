@@ -5,7 +5,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Sonata AI - WikiSource</title>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Libre+Franklin:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
         tailwind.config = {
@@ -73,15 +73,15 @@
                         "gutter": "24px",
                         "stack-sm": "8px",
                         "sidebar-width": "176px",
-                        "content-max-width": "960px"
+                        "content-max-width": "1280px"
                     },
                     "fontFamily": {
-                        "body-md": ["Libre Franklin", "sans-serif"],
-                        "display-xl": ["Playfair Display", "serif"],
-                        "body-lg": ["Libre Franklin", "sans-serif"],
-                        "caption": ["Libre Franklin", "sans-serif"],
-                        "headline-lg": ["Playfair Display", "serif"],
-                        "headline-md": ["Playfair Display", "serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "display-xl": ["Lora", "serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "caption": ["Inter", "sans-serif"],
+                        "headline-lg": ["Lora", "serif"],
+                        "headline-md": ["Lora", "serif"],
                         "label-sm": ["Inter", "sans-serif"]
                     },
                     "fontSize": {
@@ -112,52 +112,54 @@
 </div>
 <!-- Header -->
 <div class="mb-stack-md flex flex-col items-center text-center">
-<div class="w-20 h-20 bg-surface-container-highest rounded-full mb-2 flex items-center justify-center overflow-hidden border border-outline-variant">
-<span class="material-symbols-outlined text-4xl text-on-surface-variant">book</span>
-</div>
-<h1 class="font-headline-lg text-headline-lg text-on-surface">WikiDocs</h1>
-<p class="font-caption text-caption text-secondary">Knowledge Archive</p>
+<a href="https://github.com/sonata-ai" target="_blank" rel="noopener noreferrer" class="w-20 h-20 bg-surface-container-highest rounded-full mb-2 flex items-center justify-center overflow-hidden border border-outline-variant hover:bg-surface-container transition-colors group cursor-pointer">
+<svg height="48" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="48" data-view-component="true" class="octicon octicon-mark-github text-on-surface-variant group-hover:text-on-surface transition-colors fill-current">
+    <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
+</svg>
+</a>
+<h1 class="font-display-xl text-display-xl font-bold text-on-surface">WikiDocs</h1>
+<p class="font-body-lg text-body-lg text-secondary">Knowledge Archive</p>
 </div>
 <!-- Main Navigation Tabs -->
 <nav class="flex-1 space-y-1">
-<a class="flex items-center gap-3 px-2 py-1.5 font-caption text-caption text-on-surface font-bold hover:underline transition-all duration-150" href="#">
-<span class="material-symbols-outlined text-[18px]">home</span>
+<a class="flex items-center gap-3 px-2 py-1.5 font-body-lg text-body-lg text-on-surface font-bold hover:underline transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[24px]">home</span>
                 Main page
             </a>
-<a class="flex items-center gap-3 px-2 py-1.5 font-caption text-caption text-secondary hover:underline transition-all duration-150" href="#">
-<span class="material-symbols-outlined text-[18px]">reorder</span>
+<a class="flex items-center gap-3 px-2 py-1.5 font-body-lg text-body-lg text-secondary hover:underline transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[24px]">reorder</span>
                 Projects
             </a>
-<a class="flex items-center gap-3 px-2 py-1.5 font-caption text-caption text-secondary hover:underline transition-all duration-150" href="#">
-<span class="material-symbols-outlined text-[18px]">info</span>
+<a class="flex items-center gap-3 px-2 py-1.5 font-body-lg text-body-lg text-secondary hover:underline transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[24px]">info</span>
                 About
             </a>
-<a class="flex items-center gap-3 px-2 py-1.5 font-caption text-caption text-secondary hover:underline transition-all duration-150" href="#">
-<span class="material-symbols-outlined text-[18px]">code</span>
+<a class="flex items-center gap-3 px-2 py-1.5 font-body-lg text-body-lg text-secondary hover:underline transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[24px]">code</span>
                 Source code
             </a>
-<a class="flex items-center gap-3 px-2 py-1.5 font-caption text-caption text-secondary hover:underline transition-all duration-150" href="#">
-<span class="material-symbols-outlined text-[18px]">history</span>
+<a class="flex items-center gap-3 px-2 py-1.5 font-body-lg text-body-lg text-secondary hover:underline transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[24px]">history</span>
                 Recent changes
             </a>
-<a class="flex items-center gap-3 px-2 py-1.5 font-caption text-caption text-secondary hover:underline transition-all duration-150" href="#">
-<span class="material-symbols-outlined text-[18px]">shuffle</span>
+<a class="flex items-center gap-3 px-2 py-1.5 font-body-lg text-body-lg text-secondary hover:underline transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[24px]">shuffle</span>
                 Random project
             </a>
 </nav>
 <div class="border-t border-outline-variant my-2"></div>
 <!-- Footer Navigation Tabs -->
 <nav class="space-y-1">
-<a class="flex items-center gap-3 px-2 py-1.5 font-caption text-caption text-secondary hover:underline transition-all duration-150" href="#">
-<span class="material-symbols-outlined text-[18px]">settings</span>
+<a class="flex items-center gap-3 px-2 py-1.5 font-body-lg text-body-lg text-secondary hover:underline transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[24px]">settings</span>
                 Tools
             </a>
-<a class="flex items-center gap-3 px-2 py-1.5 font-caption text-caption text-secondary hover:underline transition-all duration-150" href="#">
-<span class="material-symbols-outlined text-[18px]">print</span>
+<a class="flex items-center gap-3 px-2 py-1.5 font-body-lg text-body-lg text-secondary hover:underline transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[24px]">print</span>
                 Print/export
             </a>
-<a class="flex items-center gap-3 px-2 py-1.5 font-caption text-caption text-secondary hover:underline transition-all duration-150" href="#">
-<span class="material-symbols-outlined text-[18px]">language</span>
+<a class="flex items-center gap-3 px-2 py-1.5 font-body-lg text-body-lg text-secondary hover:underline transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[24px]">language</span>
                 In other projects
             </a>
 </nav>
@@ -172,7 +174,7 @@
 <button class="md:hidden text-on-surface p-1 hover:bg-surface-container-highest rounded transition-colors" id="open-sidebar">
 <span class="material-symbols-outlined">menu</span>
 </button>
-<div class="font-headline-md text-headline-md text-on-surface hidden md:block">
+<div class="font-display-xl text-display-xl font-bold text-on-surface hidden md:block">
                         WikiSource
                     </div>
 </div>
@@ -194,7 +196,7 @@
 <div class="w-full h-32 bg-surface-container flex items-center justify-center border border-outline-variant" style="padding: 0.5rem; background-color: var(--bg-color);">
 <img class="object-contain h-full w-full" alt="Project Topology (Abstract Representation) showing layered interconnected nodes." src="assets/topology.svg" style="opacity: 0.8;"/>
 </div>
-<div class="font-caption text-caption text-secondary mt-1">Project Topology (Abstract Representation)</div>
+<div class="font-body-lg text-body-lg text-secondary mt-1">Project Topology (Abstract Representation)</div>
 </td>
 </tr>
 <tr class="border-b border-outline-variant">
@@ -331,10 +333,10 @@ This dossier is not a product launch. It is a technical record of selected resul
 <!-- Footer -->
 <footer class="bg-surface-container-low border-t border-outline-variant w-full py-stack-lg px-gutter mt-stack-lg">
 <div class="max-w-content-max-width mx-auto flex flex-col md:flex-row justify-between items-start gap-6">
-<div class="text-on-surface-variant font-caption text-caption flex-1">
+<div class="text-on-surface-variant font-body-lg text-body-lg flex-1">
 <p class="mb-2">© 2026 Sonata Research Project. This is a public evidence dossier for a closed-source runtime.</p>
 </div>
-<ul class="flex flex-wrap gap-4 list-none pl-0 m-0 font-caption text-caption">
+<ul class="flex flex-wrap gap-4 list-none pl-0 m-0 font-body-lg text-body-lg">
 <li><a class="text-primary underline hover:text-primary transition-colors" href="#">Evidence Index</a></li>
 <li><a class="text-primary underline hover:text-primary transition-colors" href="#">Limitations</a></li>
 <li><a class="text-primary underline hover:text-primary transition-colors" href="#">Return to Portfolio</a></li>
