@@ -260,7 +260,7 @@
         if (aboutNav) {
             aboutNav.addEventListener('click', (e) => {
                 e.preventDefault();
-                loadAndShowMarkdown('README.md', 'About Project');
+                loadAndShowMarkdown('../README.md', 'About Project');
             });
         }
 
@@ -342,6 +342,6 @@
         if (btnAboutQuick) {
             btnAboutQuick.addEventListener('click', (e) => {
                 e.preventDefault();
-                loadAndShowMarkdown('README.md', 'About Project');
+                loadAndShowMarkdown('../README.md', 'About Project');
             });
         }
