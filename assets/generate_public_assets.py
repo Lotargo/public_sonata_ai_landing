@@ -1,546 +1,520 @@
-import os
-import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
-import numpy as np
+from pathlib import Path
+import html
+import math
 
-OUTPUT = os.path.dirname(os.path.abspath(__file__))
-
-plt.rcParams.update({
-    'font.family': 'sans-serif',
-    'font.size': 12,
-    'axes.labelsize': 13,
-    'axes.titlesize': 14,
-    'axes.titleweight': 'bold',
-    'font.weight': 'normal',
-    'figure.dpi': 300,
-    'savefig.dpi': 300,
-    'savefig.bbox': 'tight',
-    'savefig.pad_inches': 0.2,
-    'axes.grid': True,
-    'grid.alpha': 0.25,
-    'grid.linewidth': 0.6,
-    'axes.spines.top': False,
-    'axes.spines.right': False,
-})
+ROOT = Path(__file__).resolve().parent
+OUTPUT = ROOT
 
 COLORS = {
-    'blue': '#3B82F6',
-    'green': '#22C55E',
-    'red': '#EF4444',
-    'orange': '#F59E0B',
-    'purple': '#A855F7',
-    'grey': '#9CA3AF',
-    'light_grey': '#F3F4F6',
-    'dark': '#1F2937',
-    'white': '#FFFFFF',
-    'blue_fill': '#DBEAFE',
-    'green_fill': '#DCFCE7',
-    'red_fill': '#FEE2E2',
-    'orange_fill': '#FEF3C7',
-    'purple_fill': '#F3E8FF',
-    'grey_fill': '#F9FAFB',
+    "bg": "#F8FAFC",
+    "panel": "#FFFFFF",
+    "panel2": "#F1F5F9",
+    "text": "#0F172A",
+    "muted": "#64748B",
+    "line": "#CBD5E1",
+    "line2": "#E2E8F0",
+    "blue": "#2563EB",
+    "blue2": "#DBEAFE",
+    "cyan": "#0891B2",
+    "cyan2": "#CFFAFE",
+    "violet": "#7C3AED",
+    "violet2": "#EDE9FE",
+    "green": "#059669",
+    "green2": "#D1FAE5",
+    "amber": "#D97706",
+    "amber2": "#FEF3C7",
+    "red": "#DC2626",
+    "red2": "#FEE2E2",
+    "slate": "#475569",
+    "slate2": "#E2E8F0",
 }
 
-def save(path, fig=None):
-    if fig is None:
-        fig = plt.gcf()
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-    fig.savefig(path, facecolor='white', edgecolor='none')
-    plt.close(fig)
-    print(f"  Saved: {os.path.relpath(path, OUTPUT)}")
 
-def thumbnail(src_path):
-    thumb_dir = os.path.join(OUTPUT, 'thumbnails')
-    os.makedirs(thumb_dir, exist_ok=True)
-    name = os.path.basename(src_path)
-    thumb_path = os.path.join(thumb_dir, name)
-    from PIL import Image
-    img = Image.open(src_path)
-    img.thumbnail((480, 360), Image.LANCZOS)
-    img.save(thumb_path)
-    print(f"  Thumbnail: {os.path.relpath(thumb_path, OUTPUT)}")
+def esc(value: str) -> str:
+    return html.escape(str(value), quote=True)
 
-# ─── DIAGRAMS ────────────────────────────────────────────────
 
-def diagram_project_boundary():
-    fig, ax = plt.subplots(figsize=(10, 7))
-    ax.set_xlim(0, 12); ax.set_ylim(0, 8.5)
-    ax.axis('off')
+def wrap_text(text: str, max_chars: int = 28) -> list[str]:
+    lines: list[str] = []
+    for paragraph in str(text).split("\n"):
+        words = paragraph.split()
+        line = ""
+        for word in words:
+            if len(line) + len(word) + 1 <= max_chars:
+                line = (line + " " + word).strip()
+            else:
+                if line:
+                    lines.append(line)
+                line = word
+        if line:
+            lines.append(line)
+    return lines
 
-    left = mpatches.FancyBboxPatch((0.4, 0.5), 5.0, 7.2, boxstyle="round,pad=0.2",
-                                     facecolor=COLORS['blue_fill'], edgecolor=COLORS['blue'], linewidth=2.5)
-    ax.add_patch(left)
-    ax.text(2.9, 7.4, 'Sonata IS', ha='center', va='bottom', fontsize=16, fontweight='bold', color=COLORS['blue'])
-    items_is = [
-        'Laboratory research platform',
-        'Custom tensor/autograd/runtime stack',
-        'Heterogeneous CPU/GPU execution',
-        'Training & inference experiments',
-        'INT8 quantization path',
-        'Mamba-style sequence modeling',
-        'Early symbolic-control bridge (Logos)',
-        'Transport/integrity foundations (LTP)',
-        'Closed-source with public evidence',
-    ]
-    for i, item in enumerate(items_is):
-        ax.text(0.7, 6.7 - i*0.65, f'{chr(8226)}  {item}', fontsize=10, va='top', color=COLORS['dark'])
 
-    right = mpatches.FancyBboxPatch((6.6, 0.5), 5.0, 7.2, boxstyle="round,pad=0.2",
-                                      facecolor=COLORS['red_fill'], edgecolor=COLORS['red'], linewidth=2.5)
-    ax.add_patch(right)
-    ax.text(9.1, 7.4, 'Sonata IS NOT', ha='center', va='bottom', fontsize=16, fontweight='bold', color=COLORS['red'])
-    items_not = [
-        'A finished product',
-        'A commercially deployed service',
-        'An open-source project',
-        'A general-purpose AI system',
-        'A mature reasoning platform',
-        'A production-ready security system',
-        'Guaranteed to scale beyond lab',
-        'Ready for near-term deployment',
-    ]
-    for i, item in enumerate(items_not):
-        ax.text(6.9, 6.7 - i*0.75, f'{chr(215)}  {item}', fontsize=10, va='top', color=COLORS['dark'])
+class SVG:
+    def __init__(self, title: str, subtitle: str | None = None, w: int = 1200, h: int = 720):
+        self.w = w
+        self.h = h
+        self.parts: list[str] = []
+        self.defs = [
+            """<filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+  <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#0F172A" flood-opacity="0.10"/>
+</filter>""",
+            """<marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+  <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748B"/>
+</marker>""",
+        ]
+        self.parts.append(f'<rect width="{w}" height="{h}" fill="{COLORS["bg"]}"/>')
+        self.parts.append('<g opacity="0.38">')
+        for x in range(60, w, 60):
+            self.parts.append(f'<line x1="{x}" y1="0" x2="{x}" y2="{h}" stroke="#E2E8F0" stroke-width="1"/>')
+        for y in range(60, h, 60):
+            self.parts.append(f'<line x1="0" y1="{y}" x2="{w}" y2="{y}" stroke="#E2E8F0" stroke-width="1"/>')
+        self.parts.append("</g>")
+        self.title(title, subtitle)
 
-    ax.set_title('Project Boundary', fontsize=18, fontweight='bold', pad=14, color=COLORS['dark'])
-    path = os.path.join(OUTPUT, 'diagrams', 'project_boundary.png')
-    save(path)
+    def title(self, title: str, subtitle: str | None = None) -> None:
+        self.text(56, 58, title, 32, weight=760, color=COLORS["text"])
+        if subtitle:
+            self.text(56, 89, subtitle, 15, color=COLORS["muted"])
+        self.parts.append(
+            f'<line x1="56" y1="114" x2="{self.w - 56}" y2="114" stroke="{COLORS["line2"]}" stroke-width="1.5"/>'
+        )
 
-def diagram_public_private():
-    fig, ax = plt.subplots(figsize=(11, 6.5))
-    ax.set_xlim(0, 14); ax.set_ylim(0, 7.5)
-    ax.axis('off')
+    def text(
+        self,
+        x: float,
+        y: float,
+        text: str,
+        size: int = 16,
+        weight: int = 400,
+        color: str | None = None,
+        anchor: str = "start",
+        opacity: float | None = None,
+        extra: str = "",
+    ) -> None:
+        color = color or COLORS["text"]
+        op = f' opacity="{opacity}"' if opacity is not None else ""
+        self.parts.append(
+            f'<text x="{x}" y="{y}" font-family="Inter, Segoe UI, Arial, sans-serif" '
+            f'font-size="{size}" font-weight="{weight}" fill="{color}" '
+            f'text-anchor="{anchor}"{op} {extra}>{esc(text)}</text>'
+        )
 
-    priv = mpatches.FancyBboxPatch((0.4, 0.4), 5.8, 6.2, boxstyle="round,pad=0.15",
-                                    facecolor=COLORS['red_fill'], edgecolor=COLORS['red'], linewidth=2.5)
-    ax.add_patch(priv)
-    ax.text(3.3, 6.3, 'PRIVATE', ha='center', va='bottom', fontsize=15, fontweight='bold', color=COLORS['red'])
-    ax.text(3.3, 5.9, 'Internal repository only', ha='center', va='bottom', fontsize=10, color=COLORS['grey'])
-    priv_items = [
-        'Full source code (Pascal, ASM, CUDA)',
-        'Exact architectural recipes',
-        'Experimental history & failures',
-        'Raw training logs & checkpoints',
-        'Future roadmap & research directions',
-        'Internal documentation',
-    ]
-    for i, item in enumerate(priv_items):
-        ax.text(0.7, 5.2 - i*0.65, f'{chr(9632)}  {item}', fontsize=10, va='top', color=COLORS['dark'])
+    def multiline(
+        self,
+        x: float,
+        y: float,
+        text: str,
+        size: int = 16,
+        line_h: int = 22,
+        weight: int = 400,
+        color: str | None = None,
+        anchor: str = "start",
+        max_chars: int = 32,
+    ) -> None:
+        for i, line in enumerate(wrap_text(text, max_chars)):
+            self.text(x, y + i * line_h, line, size, weight, color, anchor)
 
-    pub = mpatches.FancyBboxPatch((7.8, 0.4), 5.8, 6.2, boxstyle="round,pad=0.15",
-                                    facecolor=COLORS['green_fill'], edgecolor=COLORS['green'], linewidth=2.5)
-    ax.add_patch(pub)
-    ax.text(10.7, 6.3, 'PUBLIC DOSSIER', ha='center', va='bottom', fontsize=15, fontweight='bold', color=COLORS['green'])
-    ax.text(10.7, 5.9, 'This technical dossier', ha='center', va='bottom', fontsize=10, color=COLORS['grey'])
-    pub_items = [
-        'High-level architecture descriptions',
-        'Selected benchmark metrics',
-        'Verified capability summaries',
-        'Validation test results',
-        'Limitation & failure analyses',
-        'Evidence index with references',
-    ]
-    for i, item in enumerate(pub_items):
-        ax.text(8.1, 5.2 - i*0.65, f'{chr(9632)}  {item}', fontsize=10, va='top', color=COLORS['dark'])
+    def rect(
+        self,
+        x: float,
+        y: float,
+        w: float,
+        h: float,
+        rx: float = 18,
+        fill: str | None = None,
+        stroke: str | None = None,
+        sw: float = 1.5,
+        filter_id: str | None = None,
+        opacity: float | None = None,
+    ) -> None:
+        fill = fill or COLORS["panel"]
+        stroke = stroke or COLORS["line"]
+        fil = f' filter="url(#{filter_id})"' if filter_id else ""
+        op = f' opacity="{opacity}"' if opacity is not None else ""
+        self.parts.append(
+            f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{rx}" '
+            f'fill="{fill}" stroke="{stroke}" stroke-width="{sw}"{fil}{op}/>'
+        )
 
-    ax.annotate('', xy=(7.6, 3.5), xytext=(6.5, 3.5),
-                arrowprops=dict(arrowstyle='->', color=COLORS['grey'], lw=2))
-    ax.text(7.05, 3.9, 'curated\nextract', ha='center', va='bottom', fontsize=9, color=COLORS['grey'], style='italic')
+    def pill(self, x: float, y: float, w: float, h: float, label: str, color: str, fill: str | None = None) -> None:
+        fill = fill or f"{color}22"
+        self.rect(x, y, w, h, rx=h / 2, fill=fill, stroke=color, sw=1.2)
+        self.text(x + w / 2, y + h / 2 + 5, label, 13, 650, color, anchor="middle")
 
-    ax.set_title('Public / Private Disclosure Boundary', fontsize=18, fontweight='bold', pad=14, color=COLORS['dark'])
-    path = os.path.join(OUTPUT, 'diagrams', 'public_private_boundary.png')
-    save(path)
+    def card(
+        self,
+        x: float,
+        y: float,
+        w: float,
+        h: float,
+        title: str,
+        subtitle: str | None = None,
+        accent: str = COLORS["blue"],
+        fill: str = COLORS["panel"],
+    ) -> None:
+        self.rect(x, y, w, h, rx=22, fill=fill, stroke=COLORS["line"], sw=1.2, filter_id="shadow")
+        self.parts.append(f'<rect x="{x}" y="{y}" width="6" height="{h}" rx="3" fill="{accent}"/>')
+        self.text(x + 28, y + 38, title, 20, 740, accent)
+        if subtitle:
+            self.multiline(x + 28, y + 65, subtitle, 13, 18, 400, COLORS["muted"], max_chars=42)
 
-def diagram_layered_architecture():
-    fig, ax = plt.subplots(figsize=(8, 9))
-    ax.set_xlim(0, 8); ax.set_ylim(0, 11)
-    ax.axis('off')
+    def arrow(self, x1: float, y1: float, x2: float, y2: float, color: str = COLORS["muted"], sw: float = 2.0, dash: bool = False) -> None:
+        dash_str = ' stroke-dasharray="8 8"' if dash else ""
+        self.parts.append(
+            f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" '
+            f'stroke="{color}" stroke-width="{sw}" marker-end="url(#arrow)"{dash_str}/>'
+        )
 
+    def circle(self, cx: float, cy: float, r: float, fill: str, stroke: str | None = None, sw: float = 1.2) -> None:
+        stroke = stroke or fill
+        self.parts.append(f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="{fill}" stroke="{stroke}" stroke-width="{sw}"/>')
+
+    def save(self, path: Path) -> None:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        content = f"""<svg xmlns="http://www.w3.org/2000/svg" width="{self.w}" height="{self.h}" viewBox="0 0 {self.w} {self.h}" role="img">
+<title>{esc(path.stem.replace("_", " ").title())}</title>
+<defs>
+{chr(10).join(self.defs)}
+</defs>
+{chr(10).join(self.parts)}
+</svg>
+"""
+        path.write_text(content, encoding="utf-8")
+
+
+def diagram_project_boundary() -> None:
+    s = SVG("Sonata project boundary", "Public dossier framing: what the project claims, and what it explicitly does not claim")
+    s.card(70, 160, 495, 450, "Sonata IS", "laboratory evidence, reproducible artifacts, and public-safe technical summaries", COLORS["blue"])
+    for i, text in enumerate([
+        "Research platform for custom AI systems",
+        "Tensor / autograd / runtime stack",
+        "CPU, assembly and CUDA backend path",
+        "Training and inference experiments",
+        "INT8 quantization validation",
+        "Symbolic-control bridge experiments",
+        "Closed-source core with public evidence",
+    ]):
+        y = 305 + i * 41
+        s.circle(105, y - 5, 5, COLORS["blue"])
+        s.multiline(125, y, text, 16, 21, 500, COLORS["text"], max_chars=44)
+    s.card(635, 160, 495, 450, "Sonata IS NOT", "boundaries stay visible so the portfolio reads as evidence, not hype", COLORS["red"])
+    for i, text in enumerate([
+        "Not a finished commercial product",
+        "Not a general-purpose AGI system",
+        "Not a deployed security product",
+        "Not open-source core code",
+        "Not guaranteed beyond the tested lab context",
+        "Not a claim of production maturity",
+    ]):
+        y = 310 + i * 45
+        s.circle(670, y - 5, 5, COLORS["red"])
+        s.multiline(690, y, text, 16, 21, 500, COLORS["text"], max_chars=42)
+    s.save(OUTPUT / "diagrams/project_boundary.svg")
+
+
+def diagram_public_private() -> None:
+    s = SVG("Disclosure boundary", "Separate public proof materials from private implementation recipes")
+    s.card(70, 170, 455, 400, "Private core", "kept internal to avoid leaking exact implementation paths", COLORS["red"])
+    for i, text in enumerate(["source code and internal branches", "exact architectural recipes", "raw checkpoints and logs", "failure history and roadmap", "unsafe operational details"]):
+        y = 270 + i * 50
+        s.rect(108, y - 22, 24, 24, rx=7, fill=COLORS["red2"], stroke=COLORS["red"])
+        s.text(150, y, text, 16, 520, COLORS["text"])
+    s.card(675, 170, 455, 400, "Public dossier", "portable, portfolio-safe evidence and explanation layer", COLORS["green"])
+    for i, text in enumerate(["architecture summaries", "benchmark plots and limits", "claim/evidence matrices", "validation reports", "screenshots and demos"]):
+        y = 270 + i * 50
+        s.rect(713, y - 22, 24, 24, rx=7, fill=COLORS["green2"], stroke=COLORS["green"])
+        s.text(755, y, text, 16, 520, COLORS["text"])
+    s.arrow(535, 366, 665, 366, sw=2.5)
+    s.text(600, 335, "curated extract", 14, 650, COLORS["muted"], anchor="middle")
+    s.save(OUTPUT / "diagrams/public_private_boundary.svg")
+
+
+def diagram_layered_architecture() -> None:
+    s = SVG("Layered architecture", "A readable stack diagram: high-level public view without implementation leakage")
     layers = [
-        ('Training & Inference\nExperiments', COLORS['purple'], COLORS['purple_fill'], 9.2),
-        ('Symbolic Control\n(Logos Bridge)', COLORS['blue'], COLORS['blue_fill'], 7.7),
-        ('Model & Checkpoint\nSystem', COLORS['green'], COLORS['green_fill'], 6.2),
-        ('Tensor / Autograd\nEngine', COLORS['orange'], COLORS['orange_fill'], 4.7),
-        ('Hardware Abstraction\nLayer (HAL)', COLORS['red'], COLORS['red_fill'], 3.2),
-        ('Runtime\n(Memory, Dispatch, Thread Pool)', COLORS['dark'], COLORS['grey_fill'], 1.7),
+        ("Training & inference experiments", "Visible research behavior and benchmark outputs", COLORS["violet"], COLORS["violet2"]),
+        ("Symbolic control bridge", "Logos-style constraints and validation loop", COLORS["blue"], COLORS["blue2"]),
+        ("Model and checkpoint system", "state, serialization, reproducibility boundaries", COLORS["green"], COLORS["green2"]),
+        ("Tensor / autograd engine", "gradient flow and computation graph layer", COLORS["amber"], COLORS["amber2"]),
+        ("HAL and backend dispatch", "CPU / ASM / CUDA selection boundary", COLORS["cyan"], COLORS["cyan2"]),
+        ("Runtime foundation", "memory, scheduling, pools and safety fuses", COLORS["slate"], COLORS["slate2"]),
     ]
+    x, w = 245, 710
+    y0, h, gap = 150, 70, 18
+    for i, (name, desc, accent, fill) in enumerate(layers):
+        y = y0 + i * (h + gap)
+        s.rect(x, y, w, h, rx=20, fill=fill, stroke=accent, sw=1.8)
+        s.text(x + 28, y + 30, name, 20, 750, accent)
+        s.text(x + 28, y + 53, desc, 14, 400, COLORS["muted"])
+        if i < len(layers) - 1:
+            s.arrow(x + w / 2, y + h + 3, x + w / 2, y + h + gap - 4, sw=1.5)
+    s.text(120, 205, "public layer", 14, 700, COLORS["muted"])
+    s.text(120, 383, "engine layer", 14, 700, COLORS["muted"])
+    s.text(120, 560, "system layer", 14, 700, COLORS["muted"])
+    s.parts.append(f'<path d="M180 175 L180 315" stroke="{COLORS["line"]}" stroke-width="3" stroke-linecap="round"/>')
+    s.parts.append(f'<path d="M180 350 L180 500" stroke="{COLORS["line"]}" stroke-width="3" stroke-linecap="round"/>')
+    s.parts.append(f'<path d="M180 535 L180 645" stroke="{COLORS["line"]}" stroke-width="3" stroke-linecap="round"/>')
+    s.save(OUTPUT / "diagrams/layered_architecture.svg")
 
-    for label, edge_color, fill_color, y in layers:
-        box = mpatches.FancyBboxPatch((1.8, y), 4.4, 1.15, boxstyle="round,pad=0.1",
-                                        facecolor=fill_color, edgecolor=edge_color, linewidth=2)
-        ax.add_patch(box)
-        ax.text(4, y+0.575, label, ha='center', va='center', fontsize=10, color=COLORS['dark'], fontweight='normal')
 
-    ax.text(0.5, 8.7, 'Application', fontsize=9, color=COLORS['grey'], rotation=90, va='center', fontweight='normal')
-    ax.text(0.5, 5.2, 'Core Engine', fontsize=9, color=COLORS['grey'], rotation=90, va='center', fontweight='normal')
-    ax.text(0.5, 2.3, 'System', fontsize=9, color=COLORS['grey'], rotation=90, va='center', fontweight='normal')
-
-    for y_start, y_end in [(9.2, 7.7+1.15), (6.2, 4.7+1.15), (3.2, 1.7+1.15)]:
-        ax.annotate('', xy=(4, y_end+0.05), xytext=(4, y_start-0.05),
-                    arrowprops=dict(arrowstyle='->', color=COLORS['grey'], lw=1.2, connectionstyle='arc3,rad=0'))
-
-    ax.set_title('Layered Architecture', fontsize=18, fontweight='bold', pad=14, color=COLORS['dark'])
-    path = os.path.join(OUTPUT, 'diagrams', 'layered_architecture.png')
-    save(path)
-
-def diagram_backend_ladder():
-    fig, ax = plt.subplots(figsize=(7, 7))
-    ax.set_xlim(0, 7); ax.set_ylim(0, 8)
-    ax.axis('off')
-
-    backends = [
-        ('GPU (CUDA)\ncuBLAS + Custom Kernels', COLORS['green'], COLORS['green_fill'], 6.2),
-        ('Multithreaded CPU\nPascal Thread Pool', COLORS['blue'], COLORS['blue_fill'], 4.5),
-        ('Assembly (x86-64)\nSIMD Optimized Kernels', COLORS['orange'], COLORS['orange_fill'], 2.8),
-        ('Pascal Reference\nUnoptimized Fallback', COLORS['red'], COLORS['red_fill'], 1.1),
+def diagram_backend_ladder() -> None:
+    s = SVG("Backend dispatch chain", "Fallback ladder for heterogeneous execution, presented as capability tiers")
+    tiers = [
+        ("01", "GPU / CUDA", "cuBLAS and custom-kernel route", COLORS["green"], COLORS["green2"]),
+        ("02", "Multithreaded CPU", "Pascal thread pool route", COLORS["blue"], COLORS["blue2"]),
+        ("03", "Assembly kernels", "x86-64 SIMD optimized route", COLORS["amber"], COLORS["amber2"]),
+        ("04", "Pascal reference", "portable fallback and correctness anchor", COLORS["red"], COLORS["red2"]),
     ]
+    x, y = 200, 165
+    for i, (num, title, desc, accent, fill) in enumerate(tiers):
+        yy = y + i * 118
+        s.rect(x, yy, 800, 84, rx=24, fill=COLORS["panel"], stroke=COLORS["line"], filter_id="shadow")
+        s.circle(x + 54, yy + 42, 27, fill, accent, 1.5)
+        s.text(x + 54, yy + 48, num, 17, 800, accent, anchor="middle")
+        s.text(x + 105, yy + 35, title, 22, 780, accent)
+        s.text(x + 105, yy + 62, desc, 15, 400, COLORS["muted"])
+        if i < len(tiers) - 1:
+            s.arrow(x + 400, yy + 88, x + 400, yy + 112, sw=1.6)
+    s.pill(455, 642, 290, 42, "highest viable backend wins", COLORS["slate"], COLORS["slate2"])
+    s.save(OUTPUT / "diagrams/backend_ladder.svg")
 
-    for label, edge_color, fill_color, y in backends:
-        box = mpatches.FancyBboxPatch((1.0, y), 5.0, 1.3, boxstyle="round,pad=0.1",
-                                        facecolor=fill_color, edgecolor=edge_color, linewidth=2)
-        ax.add_patch(box)
-        ax.text(3.5, y+0.65, label, ha='center', va='center', fontsize=10, color=COLORS['dark'], fontweight='normal')
 
-    for y in [5.5, 3.8, 2.1]:
-        ax.annotate('', xy=(3.5, y-0.1), xytext=(3.5, y+0.1),
-                    arrowprops=dict(arrowstyle='->', color=COLORS['grey'], lw=1.5))
+def diagram_logos_control_loop() -> None:
+    s = SVG("Neural / symbolic control loop", "Keep the loop legible: signals move, constraints return")
+    s.card(85, 175, 420, 350, "Neural stack", "training and inference path", COLORS["blue"])
+    for i, text in enumerate(["forward pass", "loss computation", "backward pass", "weight update"]):
+        s.pill(140, 285 + i * 54, 235, 34, text, COLORS["blue"], COLORS["blue2"])
+    s.card(695, 175, 420, 350, "Logos bridge", "symbolic validation and constraint layer", COLORS["green"])
+    for i, text in enumerate(["contradiction checks", "axiom-guided penalties", "guarded evolution", "constraint validation"]):
+        s.pill(750, 285 + i * 54, 250, 34, text, COLORS["green"], COLORS["green2"])
+    s.arrow(518, 320, 680, 320, COLORS["muted"], 2.4)
+    s.arrow(680, 430, 518, 430, COLORS["muted"], 2.4)
+    s.text(600, 298, "outputs / traces", 14, 650, COLORS["muted"], anchor="middle")
+    s.text(600, 468, "penalties / constraints", 14, 650, COLORS["muted"], anchor="middle")
+    s.circle(600, 375, 45, COLORS["panel"], COLORS["line"], 1.5)
+    s.text(600, 368, "review", 16, 700, COLORS["text"], anchor="middle")
+    s.text(600, 390, "gate", 14, 500, COLORS["muted"], anchor="middle")
+    s.save(OUTPUT / "diagrams/logos_control_loop.svg")
 
-    ax.text(0.4, 4.5, 'Priority', fontsize=9, color=COLORS['grey'], rotation=90, va='center', fontweight='normal')
-    ax.set_title('Backend Dispatch Chain', fontsize=18, fontweight='bold', pad=14, color=COLORS['dark'])
-    path = os.path.join(OUTPUT, 'diagrams', 'backend_ladder.png')
-    save(path)
 
-def diagram_logos_control_loop():
-    fig, ax = plt.subplots(figsize=(9, 6.5))
-    ax.set_xlim(0, 12); ax.set_ylim(0, 8)
-    ax.axis('off')
-
-    neural = mpatches.FancyBboxPatch((0.5, 1.2), 4.2, 5.5, boxstyle="round,pad=0.15",
-                                       facecolor=COLORS['blue_fill'], edgecolor=COLORS['blue'], linewidth=2.5)
-    ax.add_patch(neural)
-    ax.text(2.6, 6.4, 'Neural Stack', ha='center', fontsize=14, fontweight='bold', color=COLORS['blue'])
-    ax.text(2.6, 5.9, 'Training / Inference', ha='center', fontsize=10, color=COLORS['grey'])
-    items_n = ['Forward pass', 'Backward pass', 'Loss computation', 'Weight update']
-    for i, item in enumerate(items_n):
-        ax.text(0.9, 5.2 - i*0.7, f'{chr(8226)} {item}', fontsize=10.5, va='top', color=COLORS['dark'])
-
-    logos = mpatches.FancyBboxPatch((7.3, 1.2), 4.2, 5.5, boxstyle="round,pad=0.15",
-                                      facecolor=COLORS['green_fill'], edgecolor=COLORS['green'], linewidth=2.5)
-    ax.add_patch(logos)
-    ax.text(9.4, 6.4, 'Logos', ha='center', fontsize=14, fontweight='bold', color=COLORS['green'])
-    ax.text(9.4, 5.9, 'Symbolic Control', ha='center', fontsize=10, color=COLORS['grey'])
-    items_l = ['Contradiction detection', 'Axiom-guided penalties', 'Guarded evolution', 'Constraint validation']
-    for i, item in enumerate(items_l):
-        ax.text(7.7, 5.2 - i*0.7, f'{chr(8226)} {item}', fontsize=10.5, va='top', color=COLORS['dark'])
-
-    ax.annotate('', xy=(7.15, 4.0), xytext=(4.85, 4.0),
-                arrowprops=dict(arrowstyle='->', color=COLORS['grey'], lw=2))
-    ax.annotate('', xy=(4.85, 2.8), xytext=(7.15, 2.8),
-                arrowprops=dict(arrowstyle='->', color=COLORS['grey'], lw=2))
-    ax.text(6.0, 4.4, 'outputs', ha='center', fontsize=9, color=COLORS['grey'], style='italic')
-    ax.text(6.0, 2.3, 'penalties /\nconstraints', ha='center', fontsize=9, color=COLORS['grey'], style='italic')
-
-    ax.set_title('Logos Neural / Symbolic Control Loop', fontsize=18, fontweight='bold', pad=14, color=COLORS['dark'])
-    path = os.path.join(OUTPUT, 'diagrams', 'logos_control_loop.png')
-    save(path)
-
-def diagram_hardware_constraint():
-    fig, ax = plt.subplots(figsize=(10, 5.5))
-    ax.set_xlim(0, 12); ax.set_ylim(0, 6)
-    ax.axis('off')
-
-    constraints = [
-        ('GPU', 'RTX 2070 Super\n(mobile, 8 GB)', COLORS['red'], COLORS['red_fill']),
-        ('VRAM', '8 GB hard limit\nblocks large batches', COLORS['orange'], COLORS['orange_fill']),
-        ('Thermals', 'Laptop cooling\nlimits sustained compute', COLORS['orange'], COLORS['orange_fill']),
-        ('CPU', 'Intel i7-10750H\n6 cores / 12 threads', COLORS['blue'], COLORS['blue_fill']),
-        ('RAM', '32 GB\nsufficient for lab work', COLORS['green'], COLORS['green_fill']),
+def diagram_hardware_constraint() -> None:
+    s = SVG("Hardware constraint context", "Make limitations look intentional and honest, not like excuses")
+    cards = [
+        ("GPU", "RTX 2070 Super mobile\n8 GB VRAM hard limit", COLORS["red"], COLORS["red2"]),
+        ("VRAM", "batch size and cache ceiling\nshape the benchmark envelope", COLORS["amber"], COLORS["amber2"]),
+        ("Thermals", "laptop cooling constrains\nsustained compute windows", COLORS["amber"], COLORS["amber2"]),
+        ("CPU", "i7-10750H\n6 cores / 12 threads", COLORS["blue"], COLORS["blue2"]),
+        ("RAM", "32 GB\nsufficient for lab workflow", COLORS["green"], COLORS["green2"]),
     ]
+    x0, y, w, gap = 70, 190, 204, 22
+    for i, (title, desc, accent, fill) in enumerate(cards):
+        x = x0 + i * (w + gap)
+        s.rect(x, y, w, 315, rx=24, fill=COLORS["panel"], stroke=COLORS["line"], filter_id="shadow")
+        s.circle(x + w / 2, y + 72, 42, fill, accent, 1.6)
+        s.text(x + w / 2, y + 81, title, 22, 800, accent, anchor="middle")
+        s.multiline(x + w / 2, y + 165, desc, 15, 22, 500, COLORS["text"], anchor="middle", max_chars=23)
+    s.text(600, 575, "Context is part of the evidence: public claims should be scoped to the actual machine.", 17, 500, COLORS["muted"], anchor="middle")
+    s.save(OUTPUT / "diagrams/hardware_constraint_panel.svg")
 
-    box_w = 2.0
-    gap = 0.3
-    start_x = 0.5
-    for i, (label, desc, color, fill) in enumerate(constraints):
-        x = start_x + i * (box_w + gap)
-        box = mpatches.FancyBboxPatch((x, 1.0), box_w, 3.0, boxstyle="round,pad=0.12",
-                                        facecolor=fill, edgecolor=color, linewidth=2.5)
-        ax.add_patch(box)
-        ax.text(x + box_w/2, 3.7, label, ha='center', va='bottom', fontsize=13, fontweight='bold', color=color)
-        ax.text(x + box_w/2, 2.5, desc, ha='center', va='center', fontsize=9.5, color=COLORS['dark'])
 
-    ax.set_title('Hardware Constraint Context', fontsize=18, fontweight='bold', pad=14, color=COLORS['dark'])
-    path = os.path.join(OUTPUT, 'diagrams', 'hardware_constraint_panel.png')
-    save(path)
-
-# ─── PLOTS ────────────────────────────────────────────────────
-
-def plot_stability_throughput():
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5.5))
-
-    stages = ['task-87\nBaseline', 'Phase 20\nPre-fix', 'Phase 20\nPost-fix', 'Phase 20\nAMP v2']
-    throughput = [2000, 7676, 5659, 5753]
-    colors = [COLORS['grey'], COLORS['red'], COLORS['green'], COLORS['green']]
-
-    bars = ax1.bar(stages, throughput, color=colors, width=0.55, edgecolor='white', linewidth=1.2)
-    for bar, val in zip(bars, throughput):
-        ax1.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 150,
-                f'{val}', ha='center', va='bottom', fontsize=9, fontweight='bold', color=COLORS['dark'])
-
-    ax1.set_ylabel('Throughput (tokens/sec)', fontweight='normal')
-    ax1.set_title('Historical: Phase 20 Benchmark Correction', fontsize=11, fontweight='bold', color=COLORS['dark'])
-    ax1.set_ylim(0, 9500)
-    ax1.grid(True, axis='y', alpha=0.25)
-    ax1.annotate('Memory leaks +\nVRAM overflow',
-                xy=(1, 7676), xytext=(1.8, 8800),
-                arrowprops=dict(arrowstyle='->', color=COLORS['red'], lw=1.5),
-                fontsize=9, color=COLORS['red'], ha='center', fontweight='normal')
-
-    stages2 = ['Sustained\n(Batch=8)', 'Peak Micro-benchmark\n(Batch=320)']
-    throughput2 = [6802, 18172]
-    colors2 = [COLORS['green'], COLORS['purple']]
-
-    bars = ax2.bar(stages2, throughput2, color=colors2, width=0.45, edgecolor='white', linewidth=1.2)
-    for bar, val in zip(bars, throughput2):
-        label = f'{val} tok/s\n(overall)' if val < 10000 else f'{val} tok/s\n(4-step peak)'
-        ax2.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 300,
-                label, ha='center', va='bottom', fontsize=9, fontweight='bold', color=COLORS['dark'])
-
-    ax2.set_ylabel('Throughput (tokens/sec)', fontweight='normal')
-    ax2.set_title('Current: TinyStories BPE Training', fontsize=11, fontweight='bold', color=COLORS['dark'])
-    ax2.set_ylim(0, 23000)
-    ax2.grid(True, axis='y', alpha=0.25)
-    ax2.text(0.5, 800, 'Model: 2-layer Mamba LM, 182K params\nSeqLen=128, ActiveVocab=73\nSustained: 30 steps, profile-default',
-             ha='center', fontsize=8.5, color=COLORS['grey'], style='italic')
-
-    fig.suptitle('Training Throughput: Historical Correction and Current Results',
-                 fontsize=15, fontweight='bold', y=1.02, color=COLORS['dark'])
-    fig.tight_layout()
-    path = os.path.join(OUTPUT, 'plots', 'stability_throughput.png')
-    save(path, fig)
-
-def plot_int8_validation():
-    fig, axes = plt.subplots(1, 2, figsize=(11, 5))
-
-    tests = ['MatMul\nCorrectness', 'GPU\nDispatch', 'GPUvsCPU\nParity', 'Serialization\nRound-Trip', 'Large Matrix\nStress']
-    mse_values = [0.000013, 0.000035, 0.000495, 0.000002, 0.000220]
-    thresholds = [0.01, 0.01, 0.001, 0.01, 0.05]
-
-    ax = axes[0]
-    x = np.arange(len(tests))
-    width = 0.32
-    bars1 = ax.bar(x - width/2, mse_values, width, label='Measured MSE', color=COLORS['blue'], edgecolor='white', linewidth=1)
-    bars2 = ax.bar(x + width/2, thresholds, width, label='Threshold', color=COLORS['red'], alpha=0.5, edgecolor='white', linewidth=1)
-    ax.set_ylabel('MSE (lower is better)', fontweight='normal')
-    ax.set_title('INT8 Numerical Fidelity', fontsize=11, fontweight='bold', color=COLORS['dark'])
-    ax.set_xticks(x)
-    ax.set_xticklabels(tests, fontsize=8.5)
-    ax.legend(fontsize=9, framealpha=0.9)
-    ax.grid(True, axis='y', alpha=0.25)
-    ax.set_yscale('log')
-
-    ax = axes[1]
-    categories = ['Weights\nMemory', 'FP32\nBatch=4', 'INT8\nBatch=8']
-    values = [2.1, 5750, 10832]
-    labels = ['2.1x\nsmaller', '5750\ntok/s', '10832\ntok/s']
-    colors = [COLORS['green'], COLORS['orange'], COLORS['blue']]
-
-    bars = ax.bar(categories, values, color=colors, width=0.5, edgecolor='white', linewidth=1.2)
-    for bar, val, label in zip(bars, values, labels):
-        ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 250,
-                label, ha='center', va='bottom', fontsize=9, fontweight='bold', color=COLORS['dark'])
-    ax.set_ylabel('Memory Compression / Throughput', fontweight='normal')
-    ax.set_title('INT8 Memory & Speed Impact', fontsize=11, fontweight='bold', color=COLORS['dark'])
-    ax.grid(True, axis='y', alpha=0.25)
-
-    fig.suptitle('INT8 Quantization Validation', fontsize=15, fontweight='bold', y=1.02, color=COLORS['dark'])
-    fig.tight_layout()
-    path = os.path.join(OUTPUT, 'plots', 'int8_validation.png')
-    save(path, fig)
-
-def plot_throughput_comparison():
-    fig, ax = plt.subplots(figsize=(7, 5))
-
-    configs = ['Sustained\n(Batch=8, 30 steps)', 'Peak Micro-benchmark\n(Batch=320)', 'Phase 20\n(ref, Batch=4)']
-    values = [6802, 18172, 5659]
-    colors = [COLORS['green'], COLORS['purple'], COLORS['orange']]
-
-    bars = ax.bar(configs, values, color=colors, width=0.5, edgecolor='white', linewidth=1.2)
-    for bar, val in zip(bars, values):
-        ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 300,
-                f'{val} tok/s', ha='center', va='bottom', fontsize=10, fontweight='bold', color=COLORS['dark'])
-
-    ax.set_ylabel('Throughput (tokens/sec)', fontweight='normal')
-    ax.set_title('Training Throughput: Sustained vs Peak vs Historical', fontsize=12, fontweight='bold', color=COLORS['dark'])
-    ax.set_ylim(0, 23000)
-    ax.grid(True, axis='y', alpha=0.25)
-
-    ax.text(0.5, 800, 'TinyStories BPE, 2-layer Mamba LM  |  GPU: RTX 2070 Super 8GB',
-             ha='center', fontsize=9, color=COLORS['grey'], style='italic')
-
-    path = os.path.join(OUTPUT, 'plots', 'throughput_comparison.png')
-    save(path)
-
-def plot_vram_usage():
-    fig, ax = plt.subplots(figsize=(8, 5))
-
-    categories = ['Model\nWeights', 'Activations\n& Autograd', 'Cached\nPool', 'Free']
-    values_sustained = [0.05, 1.0, 0.15, 6.8]
-    values_peak = [0.05, 2.95, 4.5, 0.5]
-
-    x = [0, 0.7]
-    bar_width = 0.4
-    colors_vram = [COLORS['green'], COLORS['blue'], COLORS['orange'], COLORS['grey']+'60']
-
-    bottoms = [0]
-    for i, (val, color) in enumerate(zip(values_sustained, colors_vram)):
-        ax.bar(x[0], val, width=bar_width, bottom=sum(values_sustained[:i]),
-               color=color, edgecolor='white', linewidth=0.8, label=categories[i] if i == 0 else '')
-        if val > 0.3:
-            mid = sum(values_sustained[:i]) + val/2
-            ax.text(x[0], mid, f'{val} GB', ha='center', va='center', fontsize=8.5, color='white', fontweight='bold')
-
-    for i, (val, color) in enumerate(zip(values_peak, colors_vram)):
-        ax.bar(x[1], val, width=bar_width, bottom=sum(values_peak[:i]),
-               color=color, edgecolor='white', linewidth=0.8)
-        if val > 0.3:
-            mid = sum(values_peak[:i]) + val/2
-            ax.text(x[1], mid, f'{val} GB', ha='center', va='center', fontsize=8.5, color='white', fontweight='bold')
-
-    ax.set_xticks(x)
-    ax.set_xticklabels(['Sustained\n(Batch=8, 30 steps)', 'Peak\n(Batch=320, 4 steps)'], fontsize=10)
-    ax.set_ylabel('VRAM (GB)', fontweight='normal')
-    ax.set_title('VRAM Usage: Sustained Training vs Peak Micro-Benchmark', fontsize=12, fontweight='bold', color=COLORS['dark'])
-    ax.set_ylim(0, 9.0)
-    ax.axhline(y=8, color=COLORS['red'], linestyle='--', linewidth=1.2, alpha=0.7)
-    ax.text(0.85, 8.15, '8 GB limit', fontsize=9, color=COLORS['red'], va='bottom', fontweight='normal')
-    ax.legend(loc='upper left', fontsize=9, framealpha=0.9)
-    ax.grid(True, axis='y', alpha=0.25)
-
-    path = os.path.join(OUTPUT, 'plots', 'vram_usage.png')
-    save(path)
-
-def plot_h2d_traffic():
-    fig, ax = plt.subplots(figsize=(7, 5))
-
-    stages = ['Baseline\n(task-87)', 'Phase 20\nPost-fix', 'TinyStories\nSustained\n(Batch=8)', 'TinyStories\nPeak\n(Batch=320)']
-    traffic = [2048, 16, 5.2, 407.9]
-    colors_h2d = [COLORS['red'], COLORS['green'], COLORS['blue'], COLORS['purple']]
-
-    bars = ax.bar(stages, traffic, color=colors_h2d, width=0.45, edgecolor='white', linewidth=1.2)
-    for bar, val in zip(bars, traffic):
-        if val > 100:
-            label = f'{int(val)} MB'
-        elif val > 1:
-            label = f'{val} MB'
-        else:
-            label = f'{val} KB'
-        ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() * 1.15,
-                label, ha='center', va='bottom', fontsize=9, fontweight='bold', color=COLORS['dark'])
-
-    ax.set_ylabel('H2D Traffic per Run', fontweight='normal')
-    ax.set_title('Host-to-Device Traffic by Configuration', fontsize=12, fontweight='bold', color=COLORS['dark'])
-    ax.set_yscale('log')
-    ax.grid(True, axis='y', alpha=0.25)
-
-    ax.annotate('Sustained: 124 copies\nPeak: 1228 copies\n(30x more steps)',
-                xy=(3, 407.9), xytext=(2.2, 1200),
-                arrowprops=dict(arrowstyle='->', color=COLORS['purple'], lw=1.5),
-                fontsize=9, color=COLORS['purple'], ha='center',
-                bbox=dict(boxstyle='round,pad=0.4', facecolor='white', edgecolor=COLORS['purple'], alpha=0.9))
-
-    path = os.path.join(OUTPUT, 'plots', 'h2d_traffic_reduction.png')
-    save(path)
-
-def plot_autograd_mamba_flow():
-    fig, ax = plt.subplots(figsize=(11, 4.5))
-    ax.set_xlim(0, 14); ax.set_ylim(0, 5)
-    ax.axis('off')
-
-    boxes = [
-        ('Input\nTokens', 0.5, COLORS['grey'], COLORS['grey_fill']),
-        ('Embedding', 2.7, COLORS['blue'], COLORS['blue_fill']),
-        ('Mamba\nSSM Layer', 5.2, COLORS['purple'], COLORS['purple_fill']),
-        ('Output\nProjection', 7.7, COLORS['orange'], COLORS['orange_fill']),
-        ('Loss\n(Cross-Entropy)', 10.2, COLORS['red'], COLORS['red_fill']),
-        ('Backward\nPass', 12.2, COLORS['green'], COLORS['green_fill']),
+def diagram_autograd_mamba_flow() -> None:
+    s = SVG("Autograd + Mamba training flow", "Forward path, loss, and backward signal in one clean horizontal trace")
+    nodes = [
+        ("Input tokens", 120, COLORS["slate"], COLORS["slate2"]),
+        ("Embedding", 300, COLORS["blue"], COLORS["blue2"]),
+        ("Mamba SSM layer", 500, COLORS["violet"], COLORS["violet2"]),
+        ("Output projection", 720, COLORS["amber"], COLORS["amber2"]),
+        ("Cross-entropy loss", 930, COLORS["red"], COLORS["red2"]),
     ]
+    y, w, h = 330, 150, 82
+    for i, (label, x, accent, fill) in enumerate(nodes):
+        s.rect(x, y, w, h, rx=22, fill=fill, stroke=accent, sw=1.8)
+        s.multiline(x + w / 2, y + 38, label, 16, 20, 720, COLORS["text"], anchor="middle", max_chars=16)
+        if i < len(nodes) - 1:
+            s.arrow(x + w + 12, y + h / 2, nodes[i + 1][1] - 14, y + h / 2, sw=2.1)
+    s.parts.append(f'<path d="M 970 455 C 800 590, 430 590, 310 455" fill="none" stroke="{COLORS["green"]}" stroke-width="2.4" stroke-dasharray="10 8" marker-end="url(#arrow)"/>')
+    s.text(640, 612, "gradient signal returns through the computation graph", 15, 650, COLORS["green"], anchor="middle")
+    s.pill(475, 200, 250, 42, "public-safe training trace", COLORS["violet"], COLORS["violet2"])
+    s.save(OUTPUT / "diagrams/autograd_mamba_flow.svg")
 
-    box_w = 1.8
-    box_h = 1.4
-    box_y = 1.8
-    for label, x, color, fill in boxes:
-        box = mpatches.FancyBboxPatch((x, box_y), box_w, box_h, boxstyle="round,pad=0.08",
-                                        facecolor=fill, edgecolor=color, linewidth=2)
-        ax.add_patch(box)
-        ax.text(x + box_w/2, box_y + box_h/2, label, ha='center', va='center', fontsize=9.5, color=COLORS['dark'], fontweight='normal')
 
-    for x_start in [0.5, 2.7, 5.2, 7.7, 10.2]:
-        ax.annotate('', xy=(x_start + box_w + 0.15, box_y + box_h/2), xytext=(x_start + box_w - 0.15, box_y + box_h/2),
-                    arrowprops=dict(arrowstyle='->', color=COLORS['dark'], lw=1.5))
-
-    ax.annotate('Gradient flow (backward)', xy=(5.0, 1.0), xytext=(5.0, 1.8),
-                arrowprops=dict(arrowstyle='->', color=COLORS['green'], lw=1.5),
-                fontsize=9, color=COLORS['green'], ha='center', fontweight='normal')
-
-    ax.set_title('Training Flow: Autograd + Mamba Integration', fontsize=15, fontweight='bold', pad=14, color=COLORS['dark'])
-    path = os.path.join(OUTPUT, 'diagrams', 'autograd_mamba_flow.png')
-    save(path)
-
-def plot_benchmark_timeline():
-    fig, ax = plt.subplots(figsize=(10, 3.5))
-    ax.set_xlim(0, 12); ax.set_ylim(0, 3)
-    ax.axis('off')
-
+def diagram_benchmark_timeline() -> None:
+    s = SVG("Benchmark correction timeline", "Show the story: baseline → anomaly → diagnosis → stable result")
     events = [
-        (1.0, 'task-87\n~2000 tok/s', COLORS['grey']),
-        (3.2, 'Phase 20\n(pre-fix)\n~7676 tok/s', COLORS['red']),
-        (5.6, 'Memory leak\ndiscovered', COLORS['orange']),
-        (7.8, 'Safety fuse\nimplemented', COLORS['orange']),
-        (10.2, 'Phase 20\n(post-fix)\n~5659 tok/s', COLORS['green']),
+        (130, "task-87", "~2000 tok/s", COLORS["slate"]),
+        (340, "Phase 20 pre-fix", "~7676 tok/s anomaly", COLORS["red"]),
+        (560, "Leak found", "VRAM overflow diagnosis", COLORS["amber"]),
+        (780, "Safety fuse", "guarded execution", COLORS["amber"]),
+        (1010, "Phase 20 post-fix", "~5659 tok/s stable", COLORS["green"]),
     ]
+    y = 360
+    s.parts.append(f'<line x1="130" y1="{y}" x2="1010" y2="{y}" stroke="{COLORS["line"]}" stroke-width="8" stroke-linecap="round"/>')
+    for x, title, desc, color in events:
+        s.circle(x, y, 24, COLORS["panel"], color, 4)
+        s.circle(x, y, 11, color, color, 1)
+        s.text(x, y - 68, title, 18, 760, color, anchor="middle")
+        s.multiline(x, y + 58, desc, 14, 18, 450, COLORS["muted"], anchor="middle", max_chars=20)
+    s.pill(458, 555, 285, 42, "correction is part of credibility", COLORS["blue"], COLORS["blue2"])
+    s.save(OUTPUT / "diagrams/benchmark_timeline.svg")
 
-    ax.plot([1.0, 10.2], [1.8, 1.8], '-', color=COLORS['grey'], lw=2.5, zorder=1)
-    for x, label, color in events:
-        ax.plot(x, 1.8, 'o', color=color, markersize=18, zorder=2, markeredgecolor='white', markeredgewidth=2)
-        ax.text(x, 0.4, label, ha='center', va='top', fontsize=9.5, color=COLORS['dark'], fontweight='normal')
 
-    ax.set_title('Benchmark Timeline: Instability to Stability', fontsize=15, fontweight='bold', pad=14, color=COLORS['dark'])
-    path = os.path.join(OUTPUT, 'diagrams', 'benchmark_timeline.png')
-    save(path)
+def bar_chart(
+    title: str,
+    subtitle: str,
+    filename: str,
+    labels: list[str],
+    values: list[float],
+    colors: list[str],
+    unit: str = "",
+    note: str | None = None,
+    y_max: float | None = None,
+    log: bool = False,
+) -> None:
+    s = SVG(title, subtitle)
+    left, bottom, top, chart_w, chart_h = 130, 590, 160, 900, 390
+    if log:
+        y_min = 0.000001 if max(values) < 0.01 else 1
+        y_max = y_max or max(values) * 1.4
+        ticks = [0.000001, 0.00001, 0.0001, 0.001] if y_min < 0.01 else [1, 10, 100, 1000, 3000]
+        def yscale(v: float) -> float:
+            return bottom - ((math.log10(max(v, y_min)) - math.log10(y_min)) / (math.log10(y_max) - math.log10(y_min)) * chart_h)
+        for tick in ticks:
+            if tick > y_max * 1.001 or tick < y_min:
+                continue
+            yy = yscale(tick)
+            s.parts.append(f'<line x1="{left}" y1="{yy:.1f}" x2="{left + chart_w}" y2="{yy:.1f}" stroke="{COLORS["line2"]}" stroke-width="1"/>')
+            s.text(left - 18, yy + 5, f"{tick:g}{unit}", 12, 500, COLORS["muted"], anchor="end")
+    else:
+        y_max = y_max or max(values) * 1.18
+        def yscale(v: float) -> float:
+            return bottom - (v / y_max * chart_h)
+        for k in range(1, 5):
+            yy = bottom - k * chart_h / 5
+            s.parts.append(f'<line x1="{left}" y1="{yy:.1f}" x2="{left + chart_w}" y2="{yy:.1f}" stroke="{COLORS["line2"]}" stroke-width="1"/>')
+            val = y_max * k / 5
+            label = f"{val:.0f}{unit}" if val >= 10 else f"{val:g}{unit}"
+            s.text(left - 18, yy + 5, label, 12, 500, COLORS["muted"], anchor="end")
 
-# ─── MAIN ─────────────────────────────────────────────────────
+    s.parts.append(f'<line x1="{left}" y1="{top}" x2="{left}" y2="{bottom}" stroke="{COLORS["line"]}" stroke-width="2"/>')
+    s.parts.append(f'<line x1="{left}" y1="{bottom}" x2="{left + chart_w}" y2="{bottom}" stroke="{COLORS["line"]}" stroke-width="2"/>')
 
-def main():
-    print("Generating diagrams...")
+    n = len(values)
+    bar_w = min(105, chart_w / (n * 1.8))
+    for i, (label, value, color) in enumerate(zip(labels, values, colors)):
+        x = left + (i + 0.65) * chart_w / n - bar_w / 2
+        y = yscale(value)
+        h = bottom - y
+        s.rect(x, y, bar_w, h, rx=12, fill=color, stroke=color, sw=0)
+        s.text(x + bar_w / 2, y - 12, f"{value:g}{unit}", 14, 760, COLORS["text"], anchor="middle")
+        s.multiline(x + bar_w / 2, bottom + 34, label, 13, 16, 520, COLORS["muted"], anchor="middle", max_chars=15)
+
+    if note:
+        s.rect(720, 160, 345, 86, rx=18, fill=COLORS["panel"], stroke=COLORS["line"], filter_id="shadow")
+        s.multiline(742, 195, note, 14, 19, 500, COLORS["muted"], max_chars=40)
+
+    s.save(OUTPUT / "plots" / filename)
+
+
+def plot_throughput_comparison() -> None:
+    bar_chart(
+        "Throughput comparison",
+        "Sustained result, peak micro-benchmark, and historical reference",
+        "throughput_comparison.svg",
+        ["Sustained\nBatch 8", "Peak micro\nBatch 320", "Phase 20\npost-fix"],
+        [6802, 18172, 5659],
+        [COLORS["green"], COLORS["violet"], COLORS["amber"]],
+        " tok/s",
+        "TinyStories BPE · 2-layer Mamba LM · RTX 2070 Super 8 GB",
+        y_max=23000,
+    )
+
+
+def plot_h2d_traffic_reduction() -> None:
+    bar_chart(
+        "H2D traffic reduction",
+        "Host-to-device traffic, log-scaled for readable comparison",
+        "h2d_traffic_reduction.svg",
+        ["Baseline\ntask-87", "Phase 20\npost-fix", "TinyStories\nsustained", "TinyStories\npeak"],
+        [2048, 16, 5.2, 407.9],
+        [COLORS["red"], COLORS["green"], COLORS["blue"], COLORS["violet"]],
+        " MB",
+        "The plot emphasizes order-of-magnitude behavior, not decorative drama.",
+        y_max=3000,
+        log=True,
+    )
+
+
+def plot_vram_usage() -> None:
+    bar_chart(
+        "VRAM usage envelope",
+        "Sustained training leaves headroom; peak benchmark consumes the cache envelope",
+        "vram_usage.svg",
+        ["Sustained\nweights", "Sustained\nactive+pool", "Sustained\nfree", "Peak\nactive+pool", "Peak\nfree"],
+        [0.05, 1.15, 6.8, 7.45, 0.5],
+        [COLORS["green"], COLORS["blue"], COLORS["slate"], COLORS["amber"], COLORS["red"]],
+        " GB",
+        "Public framing: 8 GB is a hard experimental constraint.",
+        y_max=8.8,
+    )
+
+
+def plot_int8_validation() -> None:
+    bar_chart(
+        "INT8 validation",
+        "Measured numerical error is plotted against declared tolerances",
+        "int8_validation.svg",
+        ["MatMul", "GPU dispatch", "GPU/CPU parity", "Serialization", "Stress"],
+        [0.000013, 0.000035, 0.000495, 0.000002, 0.000220],
+        [COLORS["blue"], COLORS["blue"], COLORS["amber"], COLORS["green"], COLORS["violet"]],
+        "",
+        "Use source tables nearby; keep the chart as a visual summary.",
+        y_max=0.001,
+        log=True,
+    )
+
+
+def plot_stability_throughput() -> None:
+    s = SVG("Training stability and throughput", "Separate historical correction from current benchmark result")
+    labels = ["task-87\nbaseline", "Phase 20\npre-fix", "Phase 20\npost-fix", "AMP v2", "Sustained\ncurrent", "Peak\nmicro"]
+    values = [2000, 7676, 5659, 5753, 6802, 18172]
+    colors = [COLORS["slate"], COLORS["red"], COLORS["green"], COLORS["green"], COLORS["blue"], COLORS["violet"]]
+    left, bottom, cw, ch, y_max = 120, 590, 940, 370, 21000
+    for k in range(0, 6):
+        yy = bottom - k * ch / 5
+        s.parts.append(f'<line x1="{left}" y1="{yy:.1f}" x2="{left + cw}" y2="{yy:.1f}" stroke="{COLORS["line2"]}" stroke-width="1"/>')
+        if k > 0:
+            s.text(left - 20, yy + 5, f"{int(y_max * k / 5 / 1000)}k", 12, 500, COLORS["muted"], anchor="end")
+    s.parts.append(f'<line x1="{left}" y1="{bottom}" x2="{left + cw}" y2="{bottom}" stroke="{COLORS["line"]}" stroke-width="2"/>')
+    for i, (label, value, color) in enumerate(zip(labels, values, colors)):
+        bw, x = 88, left + 45 + i * 150
+        h = value / y_max * ch
+        y = bottom - h
+        s.rect(x, y, bw, h, rx=12, fill=color, stroke=color, sw=0)
+        s.text(x + bw / 2, y - 10, f"{value}", 13, 760, COLORS["text"], anchor="middle")
+        s.multiline(x + bw / 2, bottom + 34, label, 13, 16, 520, COLORS["muted"], anchor="middle", max_chars=12)
+    s.parts.append(f'<line x1="{left + 620}" y1="170" x2="{left + 620}" y2="640" stroke="{COLORS["line"]}" stroke-width="1.5" stroke-dasharray="8 8"/>')
+    s.text(left + 300, 160, "historical correction", 14, 700, COLORS["muted"], anchor="middle")
+    s.text(left + 770, 160, "current result", 14, 700, COLORS["muted"], anchor="middle")
+    s.save(OUTPUT / "plots/stability_throughput.svg")
+
+
+def main() -> None:
     diagram_project_boundary()
     diagram_public_private()
     diagram_layered_architecture()
     diagram_backend_ladder()
     diagram_logos_control_loop()
     diagram_hardware_constraint()
-    plot_autograd_mamba_flow()
-    plot_benchmark_timeline()
-
-    print("Generating plots...")
-    plot_stability_throughput()
-    plot_int8_validation()
+    diagram_autograd_mamba_flow()
+    diagram_benchmark_timeline()
     plot_throughput_comparison()
+    plot_h2d_traffic_reduction()
     plot_vram_usage()
-    plot_h2d_traffic()
+    plot_int8_validation()
+    plot_stability_throughput()
 
-    print("Generating thumbnails...")
-    for root, dirs, files in os.walk(os.path.join(OUTPUT, 'diagrams')):
-        for f in files:
-            if f.endswith('.png'):
-                thumbnail(os.path.join(root, f))
-    for root, dirs, files in os.walk(os.path.join(OUTPUT, 'plots')):
-        for f in files:
-            if f.endswith('.png'):
-                thumbnail(os.path.join(root, f))
 
-    print("Done. All assets generated.")
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
