@@ -4,7 +4,6 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Sonata AI - WikiSource</title>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
@@ -39,53 +38,53 @@
             theme: {
                 extend: {
                     "colors": {
-                        "error-container": "#ffdad6",
-                        "on-surface-variant": "#434653",
-                        "on-surface": "#151c22",
-                        "primary-container": "#0645ad",
-                        "secondary-fixed": "#d9e2ff",
-                        "tertiary-fixed-dim": "#ffb59a",
-                        "on-tertiary": "#ffffff",
-                        "on-primary": "#ffffff",
-                        "tertiary": "#641e00",
-                        "primary": "#003080",
-                        "secondary-fixed-dim": "#b1c5ff",
-                        "on-secondary-fixed": "#001946",
-                        "background": "#f6f9ff",
-                        "surface-bright": "#f6f9ff",
-                        "surface-container-highest": "#dce3ec",
-                        "inverse-surface": "#2a3138",
-                        "on-secondary-container": "#002d71",
-                        "surface-container": "#e8eef7",
-                        "surface-container-low": "#eef4fd",
-                        "on-primary-fixed": "#001849",
-                        "on-tertiary-fixed-variant": "#802900",
-                        "inverse-on-surface": "#ebf1fa",
-                        "on-tertiary-container": "#ffa887",
-                        "primary-fixed": "#dae2ff",
-                        "on-error-container": "#93000a",
-                        "on-error": "#ffffff",
-                        "tertiary-fixed": "#ffdbcf",
-                        "on-secondary": "#ffffff",
-                        "surface-tint": "#2858c0",
-                        "on-secondary-fixed-variant": "#00419d",
-                        "on-tertiary-fixed": "#380d00",
-                        "surface-dim": "#d4dbe3",
-                        "surface-container-high": "#e2e9f1",
-                        "surface": "#f6f9ff",
-                        "outline-variant": "#c3c6d5",
-                        "secondary-container": "#6795fe",
-                        "primary-fixed-dim": "#b2c5ff",
-                        "outline": "#737684",
-                        "tertiary-container": "#8a2d00",
-                        "on-primary-fixed-variant": "#003fa3",
-                        "surface-variant": "#dce3ec",
-                        "inverse-primary": "#b2c5ff",
-                        "surface-container-lowest": "#ffffff",
-                        "on-background": "#151c22",
-                        "secondary": "#2259bf",
-                        "on-primary-container": "#a5bcff",
-                        "error": "#ba1a1a"
+                        "error-container": "var(--color-error-container)",
+                        "on-surface-variant": "var(--color-on-surface-variant)",
+                        "on-surface": "var(--color-on-surface)",
+                        "primary-container": "var(--color-primary-container)",
+                        "secondary-fixed": "var(--color-secondary-fixed)",
+                        "tertiary-fixed-dim": "var(--color-tertiary-fixed-dim)",
+                        "on-tertiary": "var(--color-on-tertiary)",
+                        "on-primary": "var(--color-on-primary)",
+                        "tertiary": "var(--color-tertiary)",
+                        "primary": "var(--color-primary)",
+                        "secondary-fixed-dim": "var(--color-secondary-fixed-dim)",
+                        "on-secondary-fixed": "var(--color-on-secondary-fixed)",
+                        "background": "var(--color-background)",
+                        "surface-bright": "var(--color-surface-bright)",
+                        "surface-container-highest": "var(--color-surface-container-highest)",
+                        "inverse-surface": "var(--color-inverse-surface)",
+                        "on-secondary-container": "var(--color-on-secondary-container)",
+                        "surface-container": "var(--color-surface-container)",
+                        "surface-container-low": "var(--color-surface-container-low)",
+                        "on-primary-fixed": "var(--color-on-primary-fixed)",
+                        "on-tertiary-fixed-variant": "var(--color-on-tertiary-fixed-variant)",
+                        "inverse-on-surface": "var(--color-inverse-on-surface)",
+                        "on-tertiary-container": "var(--color-on-tertiary-container)",
+                        "primary-fixed": "var(--color-primary-fixed)",
+                        "on-error-container": "var(--color-on-error-container)",
+                        "on-error": "var(--color-on-error)",
+                        "tertiary-fixed": "var(--color-tertiary-fixed)",
+                        "on-secondary": "var(--color-on-secondary)",
+                        "surface-tint": "var(--color-surface-tint)",
+                        "on-secondary-fixed-variant": "var(--color-on-secondary-fixed-variant)",
+                        "on-tertiary-fixed": "var(--color-on-tertiary-fixed)",
+                        "surface-dim": "var(--color-surface-dim)",
+                        "surface-container-high": "var(--color-surface-container-high)",
+                        "surface": "var(--color-surface)",
+                        "outline-variant": "var(--color-outline-variant)",
+                        "secondary-container": "var(--color-secondary-container)",
+                        "primary-fixed-dim": "var(--color-primary-fixed-dim)",
+                        "outline": "var(--color-outline)",
+                        "tertiary-container": "var(--color-tertiary-container)",
+                        "on-primary-fixed-variant": "var(--color-on-primary-fixed-variant)",
+                        "surface-variant": "var(--color-surface-variant)",
+                        "inverse-primary": "var(--color-inverse-primary)",
+                        "surface-container-lowest": "var(--color-surface-container-lowest)",
+                        "on-background": "var(--color-on-background)",
+                        "secondary": "var(--color-secondary)",
+                        "on-primary-container": "var(--color-on-primary-container)",
+                        "error": "var(--color-error)"
                     },
                     "borderRadius": {
                         "DEFAULT": "0.25rem",
@@ -98,7 +97,7 @@
                         "stack-lg": "32px",
                         "gutter": "24px",
                         "stack-sm": "8px",
-                        "sidebar-width": "176px",
+                        "sidebar-width": "220px",
                         "content-max-width": "1280px"
                     },
                     "fontFamily": {
@@ -129,60 +128,120 @@
 <!-- Mobile Menu Overlay -->
 <div class="fixed inset-0 bg-black/50 z-40 hidden md:hidden" id="mobile-menu-overlay"></div>
 <!-- SideNavBar -->
-<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-background border-r border-outline-variant z-50 transform -translate-x-full md:translate-x-0 transition-transform duration-300 overflow-y-auto flex flex-col py-stack-lg px-4 gap-stack-md shadow-none md:shadow-none shadow-[4px_0_24px_rgba(0,0,0,0.1)]" id="sidebar">
+<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-background border-r border-outline-variant z-50 transform -translate-x-full md:translate-x-0 transition-transform duration-300 overflow-y-auto flex flex-col py-stack-lg px-3 gap-stack-md shadow-[4px_0_24px_rgba(0,0,0,0.1)]" id="sidebar">
 <!-- Mobile close button -->
-<div class="md:hidden flex justify-end mb-4">
+<div class="md:hidden flex justify-end mb-2">
 <button class="text-secondary hover:bg-surface-container-highest p-1 rounded transition-colors" id="close-sidebar">
-<span class="material-symbols-outlined">close</span>
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M5 5L15 15"/><path d="M15 5L5 15"/>
+</svg>
 </button>
 </div>
 <!-- Header -->
-<div class="mb-stack-md flex flex-col items-center text-center">
-<a href="https://github.com/sonata-ai" target="_blank" rel="noopener noreferrer" class="w-20 h-20 bg-surface-container-highest rounded-full mb-2 flex items-center justify-center overflow-hidden border border-outline-variant hover:bg-surface-container transition-colors group cursor-pointer">
-<svg height="48" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="48" data-view-component="true" class="octicon octicon-mark-github text-on-surface-variant group-hover:text-on-surface transition-colors fill-current">
-    <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
-</svg>
-</a>
-<h1 class="font-display-xl text-display-xl font-bold text-on-surface">WikiDocs</h1>
-<p class="font-body-lg text-body-lg text-secondary">Knowledge Archive</p>
+<div class="mb-stack-sm flex flex-col items-center text-center">
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface">WikiDocs</h1>
+<p class="font-caption text-caption text-secondary">Knowledge Archive</p>
 </div>
-<!-- Main Navigation Tabs -->
-<nav class="flex-1 flex flex-col space-y-2">
-<a class="flex items-center gap-3 px-3 py-2 rounded-lg font-body-lg text-body-lg text-on-surface font-bold bg-surface-container-highest hover:bg-surface-container-high transition-colors duration-150" href="#">
-<span class="material-symbols-outlined text-[24px]">home</span>
-                Main page
-            </a>
-<a class="flex items-center gap-3 px-3 py-2 rounded-lg font-body-lg text-body-lg text-secondary hover:bg-surface-container-low transition-colors duration-150" href="#">
-<span class="material-symbols-outlined text-[24px]">reorder</span>
-                Projects
-            </a>
-<a id="nav-about" class="flex items-center gap-3 px-3 py-2 rounded-lg font-body-lg text-body-lg text-secondary hover:bg-surface-container-low transition-colors duration-150 cursor-pointer">
-<span class="material-symbols-outlined text-[24px]">info</span>
-                About
-            </a>
+<!-- Main Navigation -->
+<nav class="flex-1 flex flex-col space-y-1">
+<a id="nav-get-started" class="flex items-center gap-3 px-3 py-2 rounded-lg font-body-md text-body-md text-on-surface font-bold bg-surface-container-highest hover:bg-surface-container-high transition-colors duration-150 cursor-pointer">
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0">
+  <path d="M4 2L13 9L4 16"/>
+</svg>
+            Get Started
+        </a>
+<a href="https://github.com/Lotargo/public_sonata_ai_landing" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-3 py-2 rounded-lg font-body-md text-body-md text-secondary hover:bg-surface-container-low transition-colors duration-150">
+<svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor" class="shrink-0">
+  <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/>
+</svg>
+            View on GitHub
+        </a>
+<a href="https://github.com/Lotargo" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-3 py-2 rounded-lg font-body-md text-body-md text-secondary hover:bg-surface-container-low transition-colors duration-150">
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0">
+  <circle cx="9" cy="6" r="3"/>
+  <path d="M3 16c0-3.31 2.69-6 6-6s6 2.69 6 6"/>
+</svg>
+            Lotargo
+        </a>
+<a id="nav-about" class="flex items-center gap-3 px-3 py-2 rounded-lg font-body-md text-body-md text-secondary hover:bg-surface-container-low transition-colors duration-150 cursor-pointer">
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0">
+  <circle cx="9" cy="9" r="7"/>
+  <path d="M9 8V14"/>
+  <circle cx="9" cy="5.5" r="0.5" fill="currentColor" stroke="none"/>
+</svg>
+            About
+        </a>
+
+<div class="border-t border-outline-variant my-3"></div>
+
+<div class="px-3 py-1 text-caption text-caption text-on-surface-variant uppercase tracking-wider font-bold">Sections</div>
+
+<a data-section="publication-map" class="nav-section flex items-center gap-3 px-3 py-1.5 rounded-lg font-body-md text-body-md text-secondary hover:bg-surface-container-low transition-colors duration-150 cursor-pointer">
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0">
+  <path d="M3 1H11L14 4V15H3V1Z"/><path d="M11 1V4H14"/><path d="M6 8H11"/><path d="M6 11H11"/><path d="M6 5H9"/>
+</svg>
+            Publication Map
+        </a>
+<a data-section="evidence-highlights" class="nav-section flex items-center gap-3 px-3 py-1.5 rounded-lg font-body-md text-body-md text-secondary hover:bg-surface-container-low transition-colors duration-150 cursor-pointer">
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0">
+  <path d="M3 13V8"/><path d="M8 13V5"/><path d="M13 13V10"/><path d="M1 13H15"/>
+</svg>
+            Evidence Highlights
+        </a>
+<a data-section="limitations" class="nav-section flex items-center gap-3 px-3 py-1.5 rounded-lg font-body-md text-body-md text-secondary hover:bg-surface-container-low transition-colors duration-150 cursor-pointer">
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0">
+  <path d="M8 1L1 15H15L8 1Z"/><path d="M8 6V10"/><circle cx="8" cy="12" r="0.5" fill="currentColor" stroke="none"/>
+</svg>
+            Limitations
+        </a>
+<a data-section="reading-guide" class="nav-section flex items-center gap-3 px-3 py-1.5 rounded-lg font-body-md text-body-md text-secondary hover:bg-surface-container-low transition-colors duration-150 cursor-pointer">
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0">
+  <path d="M3 2H13V14H3V2Z"/><path d="M8 2V8L6 6.5L4 8V2"/>
+</svg>
+            Reading Guide
+        </a>
+<a data-section="raw-documents" class="nav-section flex items-center gap-3 px-3 py-1.5 rounded-lg font-body-md text-body-md text-secondary hover:bg-surface-container-low transition-colors duration-150 cursor-pointer">
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0">
+  <path d="M1 4H8L10 6H15V14H1V4Z"/>
+</svg>
+            Raw Documents
+        </a>
 </nav>
-<div class="border-t border-outline-variant my-4 mt-auto"></div>
-<!-- Footer Navigation Tabs -->
-<nav class="space-y-2 pb-4">
-<a id="nav-theme" class="flex items-center gap-3 px-3 py-2 rounded-lg font-body-lg text-body-lg text-secondary hover:bg-surface-container-low transition-colors duration-150 cursor-pointer">
-<span class="material-symbols-outlined text-[24px]" id="theme-icon">dark_mode</span>
-                <span id="theme-text">Dark mode</span>
-            </a>
-<a id="nav-print" class="flex items-center gap-3 px-3 py-2 rounded-lg font-body-lg text-body-lg text-secondary hover:bg-surface-container-low transition-colors duration-150 cursor-pointer">
-<span class="material-symbols-outlined text-[24px]">print</span>
-                Print/export
-            </a>
+<div class="border-t border-outline-variant my-3 mt-auto"></div>
+<!-- Footer Navigation -->
+<nav class="space-y-1 pb-3">
+<a id="nav-theme" class="flex items-center gap-3 px-3 py-2 rounded-lg font-body-md text-body-md text-secondary hover:bg-surface-container-low transition-colors duration-150 cursor-pointer">
+<span id="theme-icon-sun">
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0">
+  <circle cx="9" cy="9" r="3"/><path d="M9 1V3"/><path d="M9 15V17"/><path d="M2 9H4"/><path d="M14 9H16"/><path d="M4.5 4.5L6 6"/><path d="M12 12L13.5 13.5"/><path d="M4.5 13.5L6 12"/><path d="M12 6L13.5 4.5"/>
+</svg>
+</span>
+<span id="theme-icon-moon" class="hidden">
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0">
+  <path d="M14 10.5A6 6 0 0 1 7.5 4a6 6 0 1 0 6.5 6.5z"/>
+</svg>
+</span>
+            <span id="theme-text">Dark mode</span>
+        </a>
+<a id="nav-print" class="flex items-center gap-3 px-3 py-2 rounded-lg font-body-md text-body-md text-secondary hover:bg-surface-container-low transition-colors duration-150 cursor-pointer">
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0">
+  <path d="M5 6V2H13V6"/><path d="M5 12H3V7C3 6.5 3.5 6 4 6H14C14.5 6 15 6.5 15 7V12H13"/><path d="M6 16H12V11H6V16Z"/><path d="M6 11H12"/>
+</svg>
+            Print/export
+        </a>
 </nav>
 </aside>
 <!-- Main Content Area -->
-<div class="flex-1 flex flex-col md:ml-[176px] min-h-screen">
+<div class="flex-1 flex flex-col md:ml-sidebar-width min-h-screen">
 <!-- TopNavBar -->
 <header class="bg-background w-full top-0 border-b border-outline-variant z-30 sticky">
 <div class="flex justify-between items-center px-gutter py-2 w-full max-w-content-max-width mx-auto">
 <!-- Left side: Mobile Menu Toggle & Brand (hidden on desktop as sidebar handles brand) -->
 <div class="flex items-center gap-4">
 <button class="md:hidden text-on-surface p-1 hover:bg-surface-container-highest rounded transition-colors" id="open-sidebar">
-<span class="material-symbols-outlined">menu</span>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+  <path d="M4 6H20"/><path d="M4 12H20"/><path d="M4 18H20"/>
+</svg>
 </button>
 <div class="font-display-xl text-display-xl font-bold text-on-surface hidden md:block">
                         WikiSource
@@ -260,61 +319,95 @@ This dossier is not a product launch. It is a technical record of selected resul
 <li><a class="wiki-link" href="#evidence-highlights"><span class="text-secondary mr-2">2</span> Evidence Highlights</a></li>
 <li><a class="wiki-link" href="#limitations"><span class="text-secondary mr-2">3</span> Limitations</a></li>
 <li><a class="wiki-link" href="#reading-guide"><span class="text-secondary mr-2">4</span> How to Read this Dossier</a></li>
+<li><a class="wiki-link" href="#raw-documents"><span class="text-secondary mr-2">5</span> Raw Documents</a></li>
 </ul>
 </div>
 
 <!-- Sections -->
+<div id="section-get-started" class="bg-primary-container/10 border border-primary/20 rounded-xl p-6 mb-6">
+    <h2 class="font-headline-md text-headline-md font-bold mb-3 flex items-center gap-2 text-primary">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 3L16 12L5 21"/>
+        </svg>
+        Getting Started
+    </h2>
+    <p class="mb-3">
+        Welcome to the Sonata AI public evidence dossier. This is a technical record of selected results from a private, closed-source, low-level AI research platform.
+    </p>
+    <p class="mb-4 text-on-surface-variant">
+        Browse the sections below for curated summaries, or jump straight to the <a class="wiki-link font-medium" href="#raw-documents">Raw Documents</a> to read the full technical dossiers.
+    </p>
+    <div class="flex flex-wrap gap-3">
+        <a id="btn-about-quick" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-on-primary hover:bg-surface-tint transition-colors cursor-pointer text-sm font-medium">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0">
+              <circle cx="8" cy="8" r="6"/><path d="M8 7V12"/><circle cx="8" cy="5" r="0.5" fill="currentColor" stroke="none"/>
+            </svg>
+            About the Project
+        </a>
+        <a href="https://github.com/Lotargo/public_sonata_ai_landing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-outline-variant text-on-surface hover:bg-surface-container-low transition-colors text-sm font-medium">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" class="shrink-0">
+              <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/>
+            </svg>
+            View on GitHub
+        </a>
+    </div>
+</div>
+
 <h2 class="font-headline-lg text-headline-lg wiki-section-header" id="publication-map">1. Publication Map</h2>
 <p class="mb-4">
-    The public documentation is assembled as a structured technical journal. Each document below is part of the portable evidence dossier:
+    This dossier is organized as a technical journal. Each chapter documents a validated subsystem — from architecture and training to quantization and symbolic control. Below is a summary of key findings; the full documents are available in the <a class="wiki-link font-medium" href="#raw-documents">Raw Documents</a> section.
 </p>
-<ul class="list-none pl-0 mb-6 space-y-2">
-    <li class="border border-outline-variant p-3 bg-surface-container-lowest">
-        <a class="wiki-link font-bold text-lg" href="docs/00_front_matter.html">00. Front Matter</a>
-        <p class="text-sm mt-1 text-on-surface-variant">Scope, hardware context, and limitation statement. Start here.</p>
-    </li>
-    <li class="border border-outline-variant p-3 bg-surface-container-lowest">
-        <a class="wiki-link font-bold text-lg" href="docs/01_architecture_overview.html">01. Architecture Overview</a>
-        <p class="text-sm mt-1 text-on-surface-variant">High-level system layers, runtime, and project boundaries.</p>
-    </li>
-    <li class="border border-outline-variant p-3 bg-surface-container-lowest">
-        <a class="wiki-link font-bold text-lg" href="docs/02_autograd_mamba_integration.html">02. Autograd + Mamba Integration</a>
-        <p class="text-sm mt-1 text-on-surface-variant">Training path integration and stability constraints for state-space models.</p>
-    </li>
-    <li class="border border-outline-variant p-3 bg-surface-container-lowest">
-        <a class="wiki-link font-bold text-lg" href="docs/03_training_laboratory_results.html">03. Training Laboratory Results</a>
-        <p class="text-sm mt-1 text-on-surface-variant">Throughput, hardware constraints, and measured loss behavior.</p>
-    </li>
-    <li class="border border-outline-variant p-3 bg-surface-container-lowest">
-        <a class="wiki-link font-bold text-lg" href="docs/04_benchmark_correction_stability.html">04. Benchmark Correction and Stability</a>
-        <p class="text-sm mt-1 text-on-surface-variant">Why stable execution was chosen over inflated, memory-unsafe throughput.</p>
-    </li>
-    <li class="border border-outline-variant p-3 bg-surface-container-lowest">
-        <a class="wiki-link font-bold text-lg" href="docs/05_gpu_heterogeneous_execution.html">05. GPU and Heterogeneous Execution Evidence</a>
-        <p class="text-sm mt-1 text-on-surface-variant">Validation of the CUDA C++ backend and CPU/GPU split.</p>
-    </li>
-    <li class="border border-outline-variant p-3 bg-surface-container-lowest">
-        <a class="wiki-link font-bold text-lg" href="docs/06_quantization_evidence.html">06. Quantization Evidence</a>
-        <p class="text-sm mt-1 text-on-surface-variant">INT8 correctness, memory parity, and future INT4 direction.</p>
-    </li>
-    <li class="border border-outline-variant p-3 bg-surface-container-lowest">
-        <a class="wiki-link font-bold text-lg" href="docs/07_logos_symbolic_control.html">07. Logos / Symbolic-Control Bridge</a>
-        <p class="text-sm mt-1 text-on-surface-variant">Early experiments in contradiction checking and axiom-guided penalties.</p>
-    </li>
-    <li class="border border-outline-variant p-3 bg-surface-container-lowest">
-        <a class="wiki-link font-bold text-lg" href="docs/08_ltp_transport_foundations.html">08. LTP / Transport Foundations</a>
-        <p class="text-sm mt-1 text-on-surface-variant">Handshakes, serialization, and CRC mismatch detection.</p>
-    </li>
-    <li class="border border-outline-variant p-3 bg-surface-container-lowest">
-        <a class="wiki-link font-bold text-lg" href="docs/09_limitations_open_problems.html">09. Limitations and Open Problems</a>
-        <p class="text-sm mt-1 text-on-surface-variant">Constraints, missing layers, and incomplete experiments.</p>
-    </li>
-    <li class="border border-outline-variant p-3 bg-surface-container-lowest">
-        <a class="wiki-link font-bold text-lg" href="docs/10_evidence_index.html">10. Evidence Index</a>
-        <p class="text-sm mt-1 text-on-surface-variant">Central registry of logs, tables, screenshots, and diagrams.</p>
-    </li>
-</ul>
+
+<div class="space-y-3 mb-6">
+    <div class="border border-outline-variant p-4 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+        <h3 class="font-bold text-headline-md">00. Front Matter</h3>
+        <p class="text-sm mt-1 text-on-surface-variant">Sets the scope, hardware context (i7-10750H, RTX 2070 Super, 8GB VRAM), and limitation statement for the entire dossier. Start here to understand evaluation boundaries.</p>
+    </div>
+    <div class="border border-outline-variant p-4 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+        <h3 class="font-bold text-headline-md">01. Architecture Overview</h3>
+        <p class="text-sm mt-1 text-on-surface-variant">Complete system architecture — tensor runtime, autograd engine, GPU backend, and how layers interact at the low-level. Covers the full project boundary from Pascal host code to inline assembly kernels.</p>
+    </div>
+    <div class="border border-outline-variant p-4 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+        <h3 class="font-bold text-headline-md">02. Autograd + Mamba Integration</h3>
+        <p class="text-sm mt-1 text-on-surface-variant">Integration of state-space sequence models (Mamba-style) with the custom autograd engine. Documents stability constraints, gradient flow, and training path correctness for hybrid architectures.</p>
+    </div>
+    <div class="border border-outline-variant p-4 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+        <h3 class="font-bold text-headline-md">03. Training Laboratory Results</h3>
+        <p class="text-sm mt-1 text-on-surface-variant">Measured training throughput (~5,600 tok/s sustained), hardware constraints, and loss behavior for a 182K parameter Mamba-style model trained entirely on mobile RTX 2070 Super hardware.</p>
+    </div>
+    <div class="border border-outline-variant p-4 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+        <h3 class="font-bold text-headline-md">04. Benchmark Correction and Stability</h3>
+        <p class="text-sm mt-1 text-on-surface-variant">Transparent documentation of the rollback from ~7,600 tok/s to a stable ~5,600 tok/s after identifying memory leak artifacts in initial benchmarks. Integrity over inflated numbers.</p>
+    </div>
+    <div class="border border-outline-variant p-4 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+        <h3 class="font-bold text-headline-md">05. GPU and Heterogeneous Execution Evidence</h3>
+        <p class="text-sm mt-1 text-on-surface-variant">Validation of the CUDA C++ backend with MatMul and Conv2D operations. Demonstrates correct CPU/GPU workload splitting without raw CPU fallback in target paths.</p>
+    </div>
+    <div class="border border-outline-variant p-4 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+        <h3 class="font-bold text-headline-md">06. Quantization Evidence</h3>
+        <p class="text-sm mt-1 text-on-surface-variant">INT8 quantization results with MSE of 0.000013 and 2.1x memory compression over FP32 baselines. Includes memory parity validation and future INT4 direction.</p>
+    </div>
+    <div class="border border-outline-variant p-4 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+        <h3 class="font-bold text-headline-md">07. Logos / Symbolic-Control Bridge</h3>
+        <p class="text-sm mt-1 text-on-surface-variant">Early experiments in contradiction checking and axiom-guided penalty signals. A symbolic reasoning bridge between formal logic and neural gradient descent.</p>
+    </div>
+    <div class="border border-outline-variant p-4 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+        <h3 class="font-bold text-headline-md">08. LTP / Transport Foundations</h3>
+        <p class="text-sm mt-1 text-on-surface-variant">Handshake protocols, serialization formats, and CRC-based mismatch detection for low-level transport between CPU and GPU memory domains.</p>
+    </div>
+    <div class="border border-outline-variant p-4 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+        <h3 class="font-bold text-headline-md">09. Limitations and Open Problems</h3>
+        <p class="text-sm mt-1 text-on-surface-variant">Known constraints, missing layers, incomplete experiments, and directions for future work. Essential reading for understanding what this platform does and does not do.</p>
+    </div>
+    <div class="border border-outline-variant p-4 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+        <h3 class="font-bold text-headline-md">10. Evidence Index</h3>
+        <p class="text-sm mt-1 text-on-surface-variant">Central registry of all logs, tables, screenshots, and diagrams referenced across the dossier. Use this to verify claims or locate specific experimental results.</p>
+    </div>
+</div>
 <h2 class="font-headline-lg text-headline-lg wiki-section-header" id="evidence-highlights">2. Evidence Highlights</h2>
+<p class="mb-4">
+    The following results represent the strongest validated claims in this dossier. Each metric has been reproduced and cross-checked within the constraints of the available hardware. Together, they demonstrate that a ground-up, low-level AI runtime can achieve competitive results on consumer hardware — no frameworks, no wrappers, no shortcuts.
+</p>
 <ul class="list-square pl-8 mb-6 space-y-2 marker:text-outline">
 <li><b>GPU Execution:</b> Validation of MatMul, Conv2D, and heterogeneous CPU/GPU split without raw CPU fallback in target paths.</li>
 <li><b>Training Path:</b> A 182K parameter Mamba-style model trained at ~5,600 tok/s sustained, entirely GPU-resident on mobile hardware.</li>
@@ -325,7 +418,7 @@ This dossier is not a product launch. It is a technical record of selected resul
 
 <h2 class="font-headline-lg text-headline-lg wiki-section-header" id="limitations">3. Limitations</h2>
 <p class="mb-4">
-    The following limits apply to all results in this dossier:
+    Scientific integrity requires documenting what the platform does not yet do. The following constraints apply to all results in this dossier and should be weighed alongside every claim. None of these limitations invalidate the evidence — they define its boundaries.
 </p>
 <ul class="list-square pl-8 mb-6 space-y-2 marker:text-outline text-on-surface-variant">
 <li><b>Hardware Constrained:</b> Developed and tested on a laptop (Core i7-10750H, RTX 2070 Super Mobile, 8GB VRAM).</li>
@@ -336,8 +429,83 @@ This dossier is not a product launch. It is a technical record of selected resul
 
 <h2 class="font-headline-lg text-headline-lg wiki-section-header" id="reading-guide">4. How to Read this Dossier</h2>
 <p class="mb-4">
-    This documentation is intended for technically competent readers—engineers, researchers, and serious collaborators. It assumes familiarity with tensor runtimes, memory management, and sequence modeling. It is intentionally <b>not optimized</b> for casual readers expecting hype or production-ready product claims.
+    This dossier is written for engineers, researchers, and technically minded collaborators. It assumes familiarity with tensor runtimes, memory management, and sequence modeling. The claims here are technical, measured, and documented together with their limitations. If you are looking for hype or production-ready product claims, you will not find them here — only evidence, context, and honest assessment.
 </p>
+
+<h2 class="font-headline-lg text-headline-lg wiki-section-header" id="raw-documents">5. Raw Documents</h2>
+<p class="mb-4">
+    Each of the following documents contains the full technical narrative — architecture details, benchmark tables, mathematical derivations, and experimental logs. They are rendered in the built-in viewer with LaTeX math and Mermaid diagrams. This is where the depth lives.
+</p>
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-4 mb-6">
+    <div class="grid gap-1">
+        <a class="doc-link flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-container-highest transition-colors" href="docs/00_front_matter.html">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-secondary">
+  <path d="M3 1H11L14 4V15H3V1Z"/><path d="M11 1V4H14"/><path d="M5 8H12"/><path d="M5 11H12"/><path d="M5 5H8"/>
+</svg>
+            <span class="font-medium">00. Front Matter</span>
+        </a>
+        <a class="doc-link flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-container-highest transition-colors" href="docs/01_architecture_overview.html">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-secondary">
+  <path d="M3 1H11L14 4V15H3V1Z"/><path d="M11 1V4H14"/><path d="M5 8H12"/><path d="M5 11H12"/><path d="M5 5H8"/>
+</svg>
+            <span class="font-medium">01. Architecture Overview</span>
+        </a>
+        <a class="doc-link flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-container-highest transition-colors" href="docs/02_autograd_mamba_integration.html">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-secondary">
+  <path d="M3 1H11L14 4V15H3V1Z"/><path d="M11 1V4H14"/><path d="M5 8H12"/><path d="M5 11H12"/><path d="M5 5H8"/>
+</svg>
+            <span class="font-medium">02. Autograd + Mamba Integration</span>
+        </a>
+        <a class="doc-link flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-container-highest transition-colors" href="docs/03_training_laboratory_results.html">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-secondary">
+  <path d="M3 1H11L14 4V15H3V1Z"/><path d="M11 1V4H14"/><path d="M5 8H12"/><path d="M5 11H12"/><path d="M5 5H8"/>
+</svg>
+            <span class="font-medium">03. Training Laboratory Results</span>
+        </a>
+        <a class="doc-link flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-container-highest transition-colors" href="docs/04_benchmark_correction_stability.html">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-secondary">
+  <path d="M3 1H11L14 4V15H3V1Z"/><path d="M11 1V4H14"/><path d="M5 8H12"/><path d="M5 11H12"/><path d="M5 5H8"/>
+</svg>
+            <span class="font-medium">04. Benchmark Correction and Stability</span>
+        </a>
+        <a class="doc-link flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-container-highest transition-colors" href="docs/05_gpu_heterogeneous_execution.html">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-secondary">
+  <path d="M3 1H11L14 4V15H3V1Z"/><path d="M11 1V4H14"/><path d="M5 8H12"/><path d="M5 11H12"/><path d="M5 5H8"/>
+</svg>
+            <span class="font-medium">05. GPU and Heterogeneous Execution Evidence</span>
+        </a>
+        <a class="doc-link flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-container-highest transition-colors" href="docs/06_quantization_evidence.html">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-secondary">
+  <path d="M3 1H11L14 4V15H3V1Z"/><path d="M11 1V4H14"/><path d="M5 8H12"/><path d="M5 11H12"/><path d="M5 5H8"/>
+</svg>
+            <span class="font-medium">06. Quantization Evidence</span>
+        </a>
+        <a class="doc-link flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-container-highest transition-colors" href="docs/07_logos_symbolic_control.html">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-secondary">
+  <path d="M3 1H11L14 4V15H3V1Z"/><path d="M11 1V4H14"/><path d="M5 8H12"/><path d="M5 11H12"/><path d="M5 5H8"/>
+</svg>
+            <span class="font-medium">07. Logos / Symbolic-Control Bridge</span>
+        </a>
+        <a class="doc-link flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-container-highest transition-colors" href="docs/08_ltp_transport_foundations.html">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-secondary">
+  <path d="M3 1H11L14 4V15H3V1Z"/><path d="M11 1V4H14"/><path d="M5 8H12"/><path d="M5 11H12"/><path d="M5 5H8"/>
+</svg>
+            <span class="font-medium">08. LTP / Transport Foundations</span>
+        </a>
+        <a class="doc-link flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-container-highest transition-colors" href="docs/09_limitations_open_problems.html">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-secondary">
+  <path d="M3 1H11L14 4V15H3V1Z"/><path d="M11 1V4H14"/><path d="M5 8H12"/><path d="M5 11H12"/><path d="M5 5H8"/>
+</svg>
+            <span class="font-medium">09. Limitations and Open Problems</span>
+        </a>
+        <a class="doc-link flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-container-highest transition-colors" href="docs/10_evidence_index.html">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-secondary">
+  <path d="M3 1H11L14 4V15H3V1Z"/><path d="M11 1V4H14"/><path d="M5 8H12"/><path d="M5 11H12"/><path d="M5 5H8"/>
+</svg>
+            <span class="font-medium">10. Evidence Index</span>
+        </a>
+    </div>
+</div>
 
 </main>
 <!-- Footer -->
@@ -361,7 +529,9 @@ This dossier is not a product launch. It is a technical record of selected resul
         <div class="flex items-center justify-between px-6 py-4 border-b border-outline-variant bg-surface-container-low shrink-0">
             <h2 class="font-headline-md text-headline-md font-bold text-on-surface truncate pr-4">Print/Export Documents</h2>
             <button id="close-print-modal" class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest p-2 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary">
-                <span class="material-symbols-outlined">close</span>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 5L15 15"/><path d="M15 5L5 15"/>
+                </svg>
             </button>
         </div>
         <!-- Modal Body -->
@@ -374,7 +544,9 @@ This dossier is not a product launch. It is a technical record of selected resul
                 <div class="flex justify-end gap-3 pt-4 border-t border-outline-variant">
                     <button type="button" id="cancel-print-btn" class="px-4 py-2 rounded font-bold text-primary hover:bg-primary-container hover:text-on-primary-container transition-colors">Cancel</button>
                     <button type="submit" id="submit-print-btn" class="px-4 py-2 rounded font-bold bg-primary text-on-primary hover:bg-surface-tint transition-colors flex items-center gap-2">
-                        <span class="material-symbols-outlined text-[20px]">print</span> Print Selected
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0">
+                          <path d="M5 6V2H13V6"/><path d="M5 12H3V7C3 6.5 3.5 6 4 6H14C14.5 6 15 6.5 15 7V12H13"/><path d="M6 16H12V11H6V16Z"/><path d="M6 11H12"/>
+                        </svg> Print Selected
                     </button>
                 </div>
             </form>
@@ -392,7 +564,9 @@ This dossier is not a product launch. It is a technical record of selected resul
         <div class="flex items-center justify-between px-6 py-4 border-b border-outline-variant bg-surface-container-low shrink-0">
             <h2 id="doc-modal-title" class="font-headline-md text-headline-md font-bold text-on-surface truncate pr-4">Loading Document...</h2>
             <button id="close-doc-modal" class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest p-2 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary">
-                <span class="material-symbols-outlined">close</span>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 5L15 15"/><path d="M15 5L5 15"/>
+                </svg>
             </button>
         </div>
         <!-- Modal Body -->

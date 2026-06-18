@@ -1,10 +1,76 @@
+/* Prevent scrollbar width jump when modals open */
+html {
+    scrollbar-gutter: stable;
+}
+
 :root {
-  /* Light theme (default wiki/dossier) */
-  --bg-color: #f8f9fa; /* Warm off-white / light gray */
-  --text-color: #1a1b1e; /* Graphite / near-black */
-  --panel-bg: #ffffff;
-  --panel-border: #dce3ec;
-  --accent-color: #0d8a8a; /* Muted teal/blue-green */
+  /* Core surfaces */
+  --color-background: #f6f9ff;
+  --color-surface: #f6f9ff;
+  --color-surface-bright: #f6f9ff;
+  --color-surface-dim: #d4dbe3;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #eef4fd;
+  --color-surface-container: #e8eef7;
+  --color-surface-container-high: #e2e9f1;
+  --color-surface-container-highest: #dce3ec;
+  --color-surface-variant: #dce3ec;
+  --color-surface-tint: #2858c0;
+
+  /* Primary */
+  --color-primary: #003080;
+  --color-primary-container: #0645ad;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #a5bcff;
+  --color-primary-fixed: #dae2ff;
+  --color-primary-fixed-dim: #b2c5ff;
+  --color-on-primary-fixed: #001849;
+  --color-on-primary-fixed-variant: #003fa3;
+  --color-inverse-primary: #b2c5ff;
+
+  /* Secondary */
+  --color-secondary: #2259bf;
+  --color-secondary-container: #6795fe;
+  --color-on-secondary: #ffffff;
+  --color-on-secondary-container: #002d71;
+  --color-secondary-fixed: #d9e2ff;
+  --color-secondary-fixed-dim: #b1c5ff;
+  --color-on-secondary-fixed: #001946;
+  --color-on-secondary-fixed-variant: #00419d;
+
+  /* Tertiary */
+  --color-tertiary: #641e00;
+  --color-tertiary-container: #8a2d00;
+  --color-on-tertiary: #ffffff;
+  --color-on-tertiary-container: #ffa887;
+  --color-tertiary-fixed: #ffdbcf;
+  --color-tertiary-fixed-dim: #ffb59a;
+  --color-on-tertiary-fixed: #380d00;
+  --color-on-tertiary-fixed-variant: #802900;
+
+  /* Error */
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+  --color-on-error: #ffffff;
+  --color-on-error-container: #93000a;
+
+  /* Text / content */
+  --color-on-surface: #151c22;
+  --color-on-surface-variant: #434653;
+  --color-on-background: #151c22;
+  --color-inverse-surface: #2a3138;
+  --color-inverse-on-surface: #ebf1fa;
+
+  /* Outlines */
+  --color-outline: #737684;
+  --color-outline-variant: #c3c6d5;
+
+  /* Legacy aliases for custom CSS (infobox, toc, markdown-body) */
+  --bg-color: var(--color-background);
+  --text-color: var(--color-on-surface);
+  --panel-bg: var(--color-surface-container-lowest);
+  --panel-border: var(--color-outline-variant);
+  --accent-color: #0d8a8a;
   --accent-hover: #0a6b6b;
   --link-color: #0645ad;
   --warning-bg: #fff3cd;
@@ -12,16 +78,82 @@
 }
 
 .dark {
-  /* Dark theme (engineering archive) */
-  --bg-color: #0f1115; /* Near-black navy / charcoal */
-  --text-color: #e5e7eb; /* Soft white / pale gray */
-  --panel-bg: #1a1d24; /* Dark slate */
-  --panel-border: #2a3138; /* Thin low-contrast blue-gray */
-  --accent-color: #2dd4bf; /* Restrained cyan/teal */
+  /* Core surfaces */
+  --color-background: #0f1115;
+  --color-surface: #111318;
+  --color-surface-bright: #37393e;
+  --color-surface-dim: #111318;
+  --color-surface-container-lowest: #0c0e13;
+  --color-surface-container-low: #191c21;
+  --color-surface-container: #1d2025;
+  --color-surface-container-high: #282a30;
+  --color-surface-container-highest: #33353b;
+  --color-surface-variant: #43474e;
+  --color-surface-tint: #a8c8ff;
+
+  /* Primary */
+  --color-primary: #a8c8ff;
+  --color-primary-container: #004a99;
+  --color-on-primary: #003080;
+  --color-on-primary-container: #c2daff;
+  --color-primary-fixed: #dae2ff;
+  --color-primary-fixed-dim: #b2c5ff;
+  --color-on-primary-fixed: #001849;
+  --color-on-primary-fixed-variant: #004699;
+  --color-inverse-primary: #003080;
+
+  /* Secondary */
+  --color-secondary: #adc6ff;
+  --color-secondary-container: #3a67bf;
+  --color-on-secondary: #002d71;
+  --color-on-secondary-container: #d9e2ff;
+  --color-secondary-fixed: #d9e2ff;
+  --color-secondary-fixed-dim: #b1c5ff;
+  --color-on-secondary-fixed: #001946;
+  --color-on-secondary-fixed-variant: #1a4ea0;
+
+  /* Tertiary */
+  --color-tertiary: #ffb59a;
+  --color-tertiary-container: #8a2d00;
+  --color-on-tertiary: #5a1500;
+  --color-on-tertiary-container: #ffdbcf;
+  --color-tertiary-fixed: #ffdbcf;
+  --color-tertiary-fixed-dim: #ffb59a;
+  --color-on-tertiary-fixed: #380d00;
+  --color-on-tertiary-fixed-variant: #802900;
+
+  /* Error */
+  --color-error: #ffb4ab;
+  --color-error-container: #93000a;
+  --color-on-error: #690005;
+  --color-on-error-container: #ffdad6;
+
+  /* Text / content */
+  --color-on-surface: #e2e3e8;
+  --color-on-surface-variant: #c3c6cf;
+  --color-on-background: #e2e3e8;
+  --color-inverse-surface: #e2e3e8;
+  --color-inverse-on-surface: #2f3036;
+
+  /* Outlines */
+  --color-outline: #8d9199;
+  --color-outline-variant: #43474e;
+
+  /* Legacy aliases */
+  --bg-color: var(--color-background);
+  --text-color: var(--color-on-surface);
+  --panel-bg: var(--color-surface-container);
+  --panel-border: var(--color-outline-variant);
+  --accent-color: #2dd4bf;
   --accent-hover: #14b8a6;
   --link-color: #60a5fa;
-  --warning-bg: #3f3f46; /* Muted gray for warning */
+  --warning-bg: #3f3f46;
   --warning-text: #d4d4d8;
+}
+
+/* Topology SVG theme adaptation */
+.dark .infobox img {
+    filter: invert(1) hue-rotate(180deg);
 }
 
 /* Encylopedic text link style */
@@ -165,4 +297,16 @@
     .markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body p, .markdown-body li {
         color: black !important;
     }
+}
+
+/* Smooth theme transitions (applied temporarily during theme toggle) */
+html.smooth-theme-transition,
+html.smooth-theme-transition *,
+html.smooth-theme-transition *::before,
+html.smooth-theme-transition *::after {
+    transition: background-color 0.3s ease,
+                color 0.3s ease,
+                border-color 0.3s ease,
+                fill 0.3s ease,
+                stroke 0.3s ease !important;
 }

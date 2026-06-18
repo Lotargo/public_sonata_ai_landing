@@ -266,25 +266,82 @@
 
         // Theme Switcher Logic
         const themeNav = document.getElementById('nav-theme');
-        const themeIcon = document.getElementById('theme-icon');
+        const themeIconSun = document.getElementById('theme-icon-sun');
+        const themeIconMoon = document.getElementById('theme-icon-moon');
         const themeText = document.getElementById('theme-text');
         const htmlElement = document.documentElement;
+        const THEME_STORAGE_KEY = 'sonata-theme';
+
+        function applyTheme(theme) {
+            htmlElement.classList.remove('light', 'dark');
+            htmlElement.classList.add(theme);
+            if (theme === 'dark') {
+                if (themeIconSun) themeIconSun.classList.add('hidden');
+                if (themeIconMoon) themeIconMoon.classList.remove('hidden');
+                if (themeText) themeText.textContent = 'Light mode';
+            } else {
+                if (themeIconSun) themeIconSun.classList.remove('hidden');
+                if (themeIconMoon) themeIconMoon.classList.add('hidden');
+                if (themeText) themeText.textContent = 'Dark mode';
+            }
+            localStorage.setItem(THEME_STORAGE_KEY, theme);
+        }
+
+        // Load saved theme on page load
+        const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+        if (savedTheme === 'dark') {
+            applyTheme('dark');
+        }
 
         if (themeNav) {
             themeNav.addEventListener('click', (e) => {
                 e.preventDefault();
+                // Enable smooth transitions temporarily
+                htmlElement.classList.add('smooth-theme-transition');
                 const isDark = htmlElement.classList.contains('dark');
+                applyTheme(isDark ? 'light' : 'dark');
+                // Remove transition class after animation completes
+                setTimeout(() => {
+                    htmlElement.classList.remove('smooth-theme-transition');
+                }, 400);
+            });
+        }
 
-                if (isDark) {
-                    htmlElement.classList.remove('dark');
-                    htmlElement.classList.add('light');
-                    if (themeIcon) themeIcon.textContent = 'dark_mode';
-                    if (themeText) themeText.textContent = 'Dark mode';
-                } else {
-                    htmlElement.classList.remove('light');
-                    htmlElement.classList.add('dark');
-                    if (themeIcon) themeIcon.textContent = 'light_mode';
-                    if (themeText) themeText.textContent = 'Light mode';
+        // Section Navigation (smooth scroll)
+        document.querySelectorAll('.nav-section').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('data-section');
+                const target = document.getElementById(targetId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Close sidebar on mobile
+                    if (sidebar) {
+                        sidebar.classList.add('-translate-x-full');
+                        overlay.classList.add('hidden');
+                    }
                 }
+            });
+        });
+
+        // Get Started nav handler
+        const getStartedNav = document.getElementById('nav-get-started');
+        if (getStartedNav) {
+            getStartedNav.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                if (sidebar) {
+                    sidebar.classList.add('-translate-x-full');
+                    overlay.classList.add('hidden');
+                }
+            });
+        }
+
+        // Quick "About the Project" button in Get Started section
+        const btnAboutQuick = document.getElementById('btn-about-quick');
+        if (btnAboutQuick) {
+            btnAboutQuick.addEventListener('click', (e) => {
+                e.preventDefault();
+                loadAndShowMarkdown('README.md', 'About Project');
             });
         }
