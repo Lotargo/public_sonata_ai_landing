@@ -69,7 +69,7 @@
             // Populate checkboxes based on current document links on the page
             printCheckboxesContainer.innerHTML = '';
 
-            const docLinks = document.querySelectorAll('a[href^="docs/"]');
+            const docLinks = document.querySelectorAll('.doc-link[href]');
 
             if (docLinks.length === 0) {
                  printCheckboxesContainer.innerHTML = '<p class="text-sm text-secondary">No documents found to print.</p>';
@@ -240,12 +240,11 @@
         }
 
         // Intercept document links
-        document.querySelectorAll('a[href^="docs/"]').forEach(link => {
+        document.querySelectorAll('.doc-link[href]').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 const href = link.getAttribute('href');
 
-                // Assuming links are like docs/filename.html but actual files are docs/filename.md
                 let mdFile = href;
                 if (mdFile.endsWith('.html')) {
                     mdFile = mdFile.substring(0, mdFile.length - 5) + '.md';
@@ -346,52 +345,185 @@
             });
         }
 
-        // Gallery Modal Logic
-        const galleryModal = document.getElementById('gallery-modal');
-        const galleryModalContent = document.getElementById('gallery-modal-content');
-        const galleryModalTitle = document.getElementById('gallery-modal-title');
-        const galleryModalImg = document.getElementById('gallery-modal-img');
-        const closeGalleryModalBtn = document.getElementById('close-gallery-modal');
+// Gallery Data
+const galleryItems = [
+    { src: 'assets/diagrams/project_boundary.svg', title: 'Project Boundary', category: 'Architecture' },
+    { src: 'assets/diagrams/public_private_boundary.svg', title: 'Disclosure Boundary', category: 'Front Matter' },
+    { src: 'assets/diagrams/layered_architecture.svg', title: 'Layered Architecture', category: 'Architecture' },
+    { src: 'assets/diagrams/backend_ladder.svg', title: 'Backend Dispatch Chain', category: 'GPU Execution' },
+    { src: 'assets/diagrams/autograd_mamba_flow.svg', title: 'Autograd + Mamba Flow', category: 'Integration' },
+    { src: 'assets/diagrams/logos_control_loop.svg', title: 'Symbolic Control Loop', category: 'Logos' },
+    { src: 'assets/diagrams/benchmark_timeline.svg', title: 'Benchmark Timeline', category: 'Benchmark Correction' },
+    { src: 'assets/diagrams/hardware_constraint_panel.svg', title: 'Hardware Constraints', category: 'Limitations' },
+    { src: 'assets/plots/throughput_comparison.svg', title: 'Throughput Comparison', category: 'Training Results' },
+    { src: 'assets/plots/vram_usage.svg', title: 'VRAM Usage', category: 'Training Results' },
+    { src: 'assets/plots/h2d_traffic_reduction.svg', title: 'H2D Traffic', category: 'GPU Execution' },
+    { src: 'assets/plots/int8_validation.svg', title: 'INT8 Validation', category: 'Quantization' },
+    { src: 'assets/plots/stability_throughput.svg', title: 'Stability & Throughput', category: 'Benchmark Correction' },
+];
 
-        function openGalleryModal(src, title) {
-            galleryModalImg.src = src;
-            galleryModalImg.alt = title;
-            galleryModalTitle.textContent = title;
-            galleryModal.classList.remove('hidden');
-            galleryModal.classList.add('flex');
-            void galleryModal.offsetWidth;
-            galleryModal.classList.remove('opacity-0');
-            galleryModalContent.classList.remove('scale-95');
-            document.body.style.overflow = 'hidden';
-        }
+// Gallery State
+let galleryIndex = 0;
+let galleryMode = 'carousel';
 
-        function closeGalleryModal() {
-            galleryModal.classList.add('opacity-0');
-            galleryModalContent.classList.add('scale-95');
-            setTimeout(() => {
-                galleryModal.classList.remove('flex');
-                galleryModal.classList.add('hidden');
-                galleryModalImg.src = '';
-                document.body.style.overflow = '';
-            }, 300);
-        }
+// Gallery DOM
+const galleryModal = document.getElementById('gallery-modal');
+const galleryMainImg = document.getElementById('gallery-main-img');
+const gallerySideLeft = document.getElementById('gallery-side-left');
+const gallerySideRight = document.getElementById('gallery-side-right');
+const galleryCaption = document.getElementById('gallery-caption');
+const galleryCarousel = document.getElementById('gallery-carousel');
+const galleryGrid = document.getElementById('gallery-grid');
+const galleryModeBtn = document.getElementById('gallery-mode-btn');
+const galleryModeText = document.getElementById('gallery-mode-text');
+const galleryModeDropdown = document.getElementById('gallery-mode-dropdown');
+const galleryPrev = document.getElementById('gallery-prev');
+const galleryNext = document.getElementById('gallery-next');
+const galleryClose = document.getElementById('gallery-close');
+const openGalleryBtn = document.getElementById('open-gallery');
 
-        if (closeGalleryModalBtn) {
-            closeGalleryModalBtn.addEventListener('click', closeGalleryModal);
-        }
+function renderGallery() {
+    const item = galleryItems[galleryIndex];
+    galleryMainImg.src = item.src;
+    galleryMainImg.alt = item.title;
+    galleryCaption.textContent = `${galleryIndex + 1} / ${galleryItems.length} — ${item.title}`;
+    const leftIdx = galleryIndex > 0 ? galleryIndex - 1 : galleryItems.length - 1;
+    const rightIdx = galleryIndex < galleryItems.length - 1 ? galleryIndex + 1 : 0;
+    gallerySideLeft.querySelector('img').src = galleryItems[leftIdx].src;
+    gallerySideLeft.querySelector('img').alt = galleryItems[leftIdx].title;
+    gallerySideRight.querySelector('img').src = galleryItems[rightIdx].src;
+    gallerySideRight.querySelector('img').alt = galleryItems[rightIdx].title;
+    galleryPrev.style.display = galleryItems.length <= 1 ? 'none' : '';
+    galleryNext.style.display = galleryItems.length <= 1 ? 'none' : '';
+    document.querySelectorAll('.gallery-grid-thumb').forEach((thumb, i) => {
+        thumb.classList.toggle('active', i === galleryIndex);
+    });
+}
 
-        if (galleryModal) {
-            galleryModal.addEventListener('click', (e) => {
-                if (e.target === galleryModal) {
-                    closeGalleryModal();
-                }
-            });
-        }
-
-        document.querySelectorAll('.gallery-item').forEach(item => {
-            item.addEventListener('click', () => {
-                const src = item.getAttribute('data-src');
-                const title = item.getAttribute('data-title');
-                openGalleryModal(src, title);
-            });
+function buildGrid() {
+    const container = galleryGrid.querySelector('.grid');
+    container.innerHTML = '';
+    galleryItems.forEach((item, i) => {
+        const div = document.createElement('div');
+        div.className = 'gallery-grid-thumb';
+        div.innerHTML = `<img src="${item.src}" alt="${item.title}"/>`;
+        div.addEventListener('click', () => {
+            galleryIndex = i;
+            setMode('carousel');
         });
+        container.appendChild(div);
+    });
+}
+
+function setMode(mode) {
+    galleryMode = mode;
+    if (mode === 'carousel') {
+        galleryCarousel.classList.remove('hidden');
+        galleryGrid.classList.add('hidden');
+        galleryModeText.textContent = 'Grid';
+        document.getElementById('gallery-mode-icon').innerHTML = '<rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/>';
+    } else {
+        galleryCarousel.classList.add('hidden');
+        galleryGrid.classList.remove('hidden');
+        galleryModeText.textContent = 'Carousel';
+        document.getElementById('gallery-mode-icon').innerHTML = '<rect x="1" y="3" width="14" height="10" rx="2"/><circle cx="8" cy="8" r="2"/>';
+    }
+    galleryModeDropdown.classList.add('hidden');
+    renderGallery();
+}
+
+function openGallery(startIndex) {
+    galleryIndex = startIndex || 0;
+    setMode('carousel');
+    galleryModal.classList.remove('hidden');
+    void galleryModal.offsetWidth;
+    galleryModal.classList.remove('opacity-0');
+    document.body.style.overflow = 'hidden';
+    renderGallery();
+}
+
+function closeGallery() {
+    galleryModal.classList.add('opacity-0');
+    setTimeout(() => {
+        galleryModal.classList.add('hidden');
+        document.body.style.overflow = '';
+    }, 300);
+}
+
+if (openGalleryBtn) {
+    openGalleryBtn.addEventListener('click', () => openGallery(0));
+}
+
+if (galleryClose) {
+    galleryClose.addEventListener('click', closeGallery);
+}
+
+if (galleryModal) {
+    galleryModal.addEventListener('click', (e) => {
+        if (e.target === galleryModal) closeGallery();
+    });
+}
+
+if (galleryPrev) {
+    galleryPrev.addEventListener('click', () => {
+        galleryIndex = galleryIndex > 0 ? galleryIndex - 1 : galleryItems.length - 1;
+        renderGallery();
+    });
+}
+
+if (galleryNext) {
+    galleryNext.addEventListener('click', () => {
+        galleryIndex = galleryIndex < galleryItems.length - 1 ? galleryIndex + 1 : 0;
+        renderGallery();
+    });
+}
+
+if (gallerySideLeft) {
+    gallerySideLeft.addEventListener('click', () => {
+        galleryIndex = galleryIndex > 0 ? galleryIndex - 1 : galleryItems.length - 1;
+        renderGallery();
+    });
+}
+
+if (gallerySideRight) {
+    gallerySideRight.addEventListener('click', () => {
+        galleryIndex = galleryIndex < galleryItems.length - 1 ? galleryIndex + 1 : 0;
+        renderGallery();
+    });
+}
+
+if (galleryModeBtn) {
+    galleryModeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        galleryModeDropdown.classList.toggle('hidden');
+    });
+}
+
+document.querySelectorAll('.gallery-mode-option').forEach(option => {
+    option.addEventListener('click', () => {
+        setMode(option.getAttribute('data-mode'));
+    });
+});
+
+document.addEventListener('click', (e) => {
+    if (!galleryModeBtn.contains(e.target) && !galleryModeDropdown.contains(e.target)) {
+        galleryModeDropdown.classList.add('hidden');
+    }
+});
+
+document.addEventListener('keydown', (e) => {
+    if (galleryModal.classList.contains('hidden')) return;
+    if (e.key === 'Escape') closeGallery();
+    if (galleryMode === 'carousel') {
+        if (e.key === 'ArrowLeft') {
+            galleryIndex = galleryIndex > 0 ? galleryIndex - 1 : galleryItems.length - 1;
+            renderGallery();
+        }
+        if (e.key === 'ArrowRight') {
+            galleryIndex = galleryIndex < galleryItems.length - 1 ? galleryIndex + 1 : 0;
+            renderGallery();
+        }
+    }
+});
+
+buildGrid();
