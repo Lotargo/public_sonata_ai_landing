@@ -97,60 +97,7 @@
             }
         }
     </script>
-<style>
-        /* Encylopedic text link style */
-        .wiki-link {
-            color: theme('colors.primary-container');
-            text-decoration: none;
-        }
-        .wiki-link:hover {
-            text-decoration: underline;
-        }
-        
-        /* Infobox styling */
-        .infobox {
-            float: right;
-            clear: right;
-            margin-left: 1rem;
-            margin-bottom: 1rem;
-            border: 1px solid theme('colors.outline-variant');
-            background-color: theme('colors.surface-container-low');
-            width: 300px;
-            font-size: 0.9em;
-        }
-        .infobox th {
-            text-align: left;
-            padding: 0.25rem 0.5rem;
-            vertical-align: top;
-            width: 40%;
-        }
-        .infobox td {
-            padding: 0.25rem 0.5rem;
-        }
-        .infobox .infobox-header {
-            background-color: theme('colors.surface-container-high');
-            text-align: center;
-            font-weight: bold;
-            padding: 0.5rem;
-        }
-
-        /* Wiki Section Header */
-        .wiki-section-header {
-            border-bottom: 1px solid theme('colors.outline-variant');
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
-            padding-bottom: 0.25rem;
-        }
-        
-        /* Table of Contents */
-        .toc {
-            border: 1px solid theme('colors.outline-variant');
-            background-color: theme('colors.surface-container-low');
-            display: inline-block;
-            padding: 1rem;
-            margin-bottom: 1rem;
-        }
-    </style>
+<link href="styles/main.css" rel="stylesheet"/>
 </head>
 <body class="bg-background text-on-surface font-body-md flex min-h-screen relative">
 <!-- Mobile Menu Overlay -->
@@ -236,6 +183,7 @@
 <!-- Page Title -->
 <h1 class="font-display-xl text-display-xl mb-2">Sonata AI</h1>
 <div class="border-b border-outline-variant mb-6"></div>
+
 <!-- Infobox -->
 <table class="infobox">
 <tbody><tr>
@@ -243,128 +191,156 @@
 </tr>
 <tr>
 <td class="text-center p-2 border-b border-outline-variant" colspan="2">
-<div class="w-full h-32 bg-surface-container flex items-center justify-center border border-outline-variant">
-<img class="object-contain h-full w-full" data-alt="A minimalist, scalable vector graphic style logo for an open-source software project. The design features interconnected geometric nodes in shades of deep blue and pristine white, set against a light grey background. It evokes a sense of modern technological architecture and structured data flow, fitting a professional and academic software library context. The lighting is flat and illustrative." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFKTxnSqjnvTMqdXH4pLnnaARScQiNeBxUYDmUQDTQYb3WTEukCQXS6GK_9YK6YtDpe7S8YVIzl8tQEC0Y-PROXGqWdPJ9XbFeJp2Cmm-e8DtP9s5XIuOATXbypSQ9lK6YKyq7K5yDpr3JGgLIephuL64ckY3Jcv_E39uABzBuQpGAvJXakYe-2y7mh07WkLMry5g2dXrZnSml37fxLviscC_jUZRmLlv3u_LWFsCTg4GS_HKoe7o9Xy0R85o2OEDSsZk87LOX82j3"/>
+<div class="w-full h-32 bg-surface-container flex items-center justify-center border border-outline-variant" style="padding: 0.5rem; background-color: var(--bg-color);">
+<img class="object-contain h-full w-full" alt="Project Topology (Abstract Representation) showing layered interconnected nodes." src="assets/topology.svg" style="opacity: 0.8;"/>
 </div>
-<div class="font-caption text-caption text-secondary mt-1">Official Logo</div>
+<div class="font-caption text-caption text-secondary mt-1">Project Topology (Abstract Representation)</div>
 </td>
 </tr>
 <tr class="border-b border-outline-variant">
-<th class="font-bold">Original author(s)</th>
-<td><a class="wiki-link" href="#">Jane Doe</a></td>
+<th class="font-bold">Project Status</th>
+<td>Private Research Project</td>
 </tr>
 <tr class="border-b border-outline-variant">
-<th class="font-bold">Repository</th>
-<td><a class="wiki-link" href="#">github.com/myorg/sonata-ai</a></td>
+<th class="font-bold">Source Code</th>
+<td>Closed / Unreleased</td>
 </tr>
 <tr class="border-b border-outline-variant">
-<th class="font-bold">Written in</th>
-<td><a class="wiki-link" href="#">JavaScript</a>, <a class="wiki-link" href="#">Python</a></td>
+<th class="font-bold">Primary Backend</th>
+<td><a class="wiki-link" href="#">Free Pascal</a>, <a class="wiki-link" href="#">x86-64 ASM</a>, <a class="wiki-link" href="#">CUDA C++</a></td>
 </tr>
 <tr class="border-b border-outline-variant">
-<th class="font-bold">Operating system</th>
-<td>Cross-platform</td>
+<th class="font-bold">Primary Environment</th>
+<td>Intel Core i7-10750H, RTX 2070 Super Mobile</td>
 </tr>
 <tr class="border-b border-outline-variant">
 <th class="font-bold">Type</th>
-<td><a class="wiki-link" href="#">Software framework</a></td>
-</tr>
-<tr class="border-b border-outline-variant">
-<th class="font-bold">License</th>
-<td><a class="wiki-link" href="#">MIT License</a></td>
+<td>Low-level AI research platform</td>
 </tr>
 <tr>
-<th class="font-bold">Website</th>
-<td><a class="wiki-link" href="#">sonata-ai.org</a></td>
+<th class="font-bold">Evidence Level</th>
+<td>Public Dossier (L4)</td>
 </tr>
 </tbody></table>
+
 <!-- Lead Paragraph -->
 <p class="mb-4">
-<b>Sonata AI</b> (often abbreviated as <b>Sonata</b>) is an open-source software framework designed to facilitate rapid development of scalable web applications. Initially released in 2023, it combines the flexibility of modern JavaScript for front-end rendering with the robust data-processing capabilities of Python on the back-end. The project is maintained by a core team of volunteers and is supported by the <a class="wiki-link" href="#">Open Software Foundation</a>.
-            </p>
-<p class="mb-6">
-                The framework is noted for its "Encyclopedic Precision" design system, which prioritizes high information density and academic rigor over decorative elements, making it particularly popular for documentation-heavy sites, archival platforms, and institutional intranets.
-            </p>
+<b>Sonata AI</b> (often abbreviated as <b>Sonata</b>) is a private, closed-source, low-level AI research platform. It implements a complete tensor computation, automatic differentiation, and neural network training runtime entirely from scratch. Built in Free Pascal and accelerated with x86-64 Assembly and a CUDA C++ GPU backend, it functions as a ground-up system rather than a wrapper around existing frameworks.
+</p>
+<p class="mb-4">
+This dossier is not a product launch. It is a technical record of selected results from the research platform, providing public-safe evidence of validated subsystems, including heterogeneous execution, sequence modeling integration, and hardware-aware optimization.
+</p>
+<div class="bg-surface-container-low border border-outline-variant p-4 mb-6 text-sm">
+    <h3 class="font-bold mb-2">What is public / what remains private</h3>
+    <ul class="list-disc pl-5 mb-0 space-y-1">
+        <li><b>Public:</b> High-level architecture descriptions, selected benchmark results, validation metrics, capability summaries, limitation notes, and failure analyses.</li>
+        <li><b>Private:</b> Source code, exact implementation recipes, experimental history, internal architectures, and raw experimental data.</li>
+    </ul>
+</div>
 <!-- Table of Contents -->
 <div class="toc">
 <div class="font-bold mb-2 flex items-center justify-between">
                     Contents
-                    <button class="text-secondary text-sm hover:underline font-normal ml-4">[hide]</button>
+                    <button class="text-secondary text-sm hover:underline font-normal ml-4" onclick="this.parentElement.nextElementSibling.classList.toggle('hidden'); this.textContent = this.textContent === '[hide]' ? '[show]' : '[hide]';">[hide]</button>
 </div>
 <ul class="list-none pl-0 space-y-1 font-body-md text-body-md">
-<li><a class="wiki-link" href="#features"><span class="text-secondary mr-2">1</span> Features</a></li>
-<li><a class="wiki-link" href="#installation"><span class="text-secondary mr-2">2</span> Installation</a></li>
-<li><a class="wiki-link" href="#quick-start"><span class="text-secondary mr-2">3</span> Quick Start</a></li>
-<li><a class="wiki-link" href="#community"><span class="text-secondary mr-2">4</span> Community</a></li>
+<li><a class="wiki-link" href="#publication-map"><span class="text-secondary mr-2">1</span> Publication Map</a></li>
+<li><a class="wiki-link" href="#evidence-highlights"><span class="text-secondary mr-2">2</span> Evidence Highlights</a></li>
+<li><a class="wiki-link" href="#limitations"><span class="text-secondary mr-2">3</span> Limitations</a></li>
+<li><a class="wiki-link" href="#reading-guide"><span class="text-secondary mr-2">4</span> How to Read this Dossier</a></li>
 </ul>
 </div>
-<!-- Sections -->
-<h2 class="font-headline-lg text-headline-lg wiki-section-header" id="features">Features</h2>
-<p class="mb-4">
-                Sonata AI provides a comprehensive suite of tools intended to reduce boilerplate code. Key features include:
-            </p>
-<ul class="list-square pl-8 mb-6 space-y-2 marker:text-outline">
-<li><b>Fixed-Fluid Layout Engine:</b> Automatically manages sidebar constraints and reading-width maximums to prevent reader fatigue.</li>
-<li><b>Tonal Depth Mapping:</b> Utilizes low-contrast outlines and subtle background color shifts (e.g., `#F8F9FA`) to denote hierarchy without relying on heavy drop shadows.</li>
-<li><b>Bento Grid Components:</b> Built-in support for asymmetric, high-density data display.</li>
-</ul>
-<h2 class="font-headline-lg text-headline-lg wiki-section-header" id="installation">Installation</h2>
-<p class="mb-4">
-                The project can be installed via standard package managers. It requires Node.js v18+ and Python 3.10+.
-            </p>
-<div class="bg-surface-container-low border border-outline-variant p-4 mb-6 font-mono text-sm overflow-x-auto">
-<pre><code># Install via npm
-npm install sonata-ai
 
-# Install python dependencies
-pip install sonata-core</code></pre>
-</div>
-<h2 class="font-headline-lg text-headline-lg wiki-section-header" id="quick-start">Quick Start</h2>
+<!-- Sections -->
+<h2 class="font-headline-lg text-headline-lg wiki-section-header" id="publication-map">1. Publication Map</h2>
 <p class="mb-4">
-                To initialize a new project, use the command line interface provided by the package. This will generate a scaffolded directory structure adhering to the recommended architecure.
-            </p>
-<div class="bg-surface-container-low border border-outline-variant p-4 mb-6 font-mono text-sm overflow-x-auto">
-<pre><code>sonata init my-new-app
-cd my-new-app
-sonata run dev</code></pre>
-</div>
-<h2 class="font-headline-lg text-headline-lg wiki-section-header" id="community">Community</h2>
+    The public documentation is assembled as a structured technical journal. Each document below is part of the portable evidence dossier:
+</p>
+<ul class="list-none pl-0 mb-6 space-y-2">
+    <li class="border border-outline-variant p-3 bg-surface-container-lowest">
+        <a class="wiki-link font-bold text-lg" href="docs/00_front_matter.html">00. Front Matter</a>
+        <p class="text-sm mt-1 text-on-surface-variant">Scope, hardware context, and limitation statement. Start here.</p>
+    </li>
+    <li class="border border-outline-variant p-3 bg-surface-container-lowest">
+        <a class="wiki-link font-bold text-lg" href="docs/01_architecture_overview.html">01. Architecture Overview</a>
+        <p class="text-sm mt-1 text-on-surface-variant">High-level system layers, runtime, and project boundaries.</p>
+    </li>
+    <li class="border border-outline-variant p-3 bg-surface-container-lowest">
+        <a class="wiki-link font-bold text-lg" href="docs/02_autograd_mamba_integration.html">02. Autograd + Mamba Integration</a>
+        <p class="text-sm mt-1 text-on-surface-variant">Training path integration and stability constraints for state-space models.</p>
+    </li>
+    <li class="border border-outline-variant p-3 bg-surface-container-lowest">
+        <a class="wiki-link font-bold text-lg" href="docs/03_training_laboratory_results.html">03. Training Laboratory Results</a>
+        <p class="text-sm mt-1 text-on-surface-variant">Throughput, hardware constraints, and measured loss behavior.</p>
+    </li>
+    <li class="border border-outline-variant p-3 bg-surface-container-lowest">
+        <a class="wiki-link font-bold text-lg" href="docs/04_benchmark_correction_stability.html">04. Benchmark Correction and Stability</a>
+        <p class="text-sm mt-1 text-on-surface-variant">Why stable execution was chosen over inflated, memory-unsafe throughput.</p>
+    </li>
+    <li class="border border-outline-variant p-3 bg-surface-container-lowest">
+        <a class="wiki-link font-bold text-lg" href="docs/05_gpu_heterogeneous_execution.html">05. GPU and Heterogeneous Execution Evidence</a>
+        <p class="text-sm mt-1 text-on-surface-variant">Validation of the CUDA C++ backend and CPU/GPU split.</p>
+    </li>
+    <li class="border border-outline-variant p-3 bg-surface-container-lowest">
+        <a class="wiki-link font-bold text-lg" href="docs/06_quantization_evidence.html">06. Quantization Evidence</a>
+        <p class="text-sm mt-1 text-on-surface-variant">INT8 correctness, memory parity, and future INT4 direction.</p>
+    </li>
+    <li class="border border-outline-variant p-3 bg-surface-container-lowest">
+        <a class="wiki-link font-bold text-lg" href="docs/07_logos_symbolic_control.html">07. Logos / Symbolic-Control Bridge</a>
+        <p class="text-sm mt-1 text-on-surface-variant">Early experiments in contradiction checking and axiom-guided penalties.</p>
+    </li>
+    <li class="border border-outline-variant p-3 bg-surface-container-lowest">
+        <a class="wiki-link font-bold text-lg" href="docs/08_ltp_transport_foundations.html">08. LTP / Transport Foundations</a>
+        <p class="text-sm mt-1 text-on-surface-variant">Handshakes, serialization, and CRC mismatch detection.</p>
+    </li>
+    <li class="border border-outline-variant p-3 bg-surface-container-lowest">
+        <a class="wiki-link font-bold text-lg" href="docs/09_limitations_open_problems.html">09. Limitations and Open Problems</a>
+        <p class="text-sm mt-1 text-on-surface-variant">Constraints, missing layers, and incomplete experiments.</p>
+    </li>
+    <li class="border border-outline-variant p-3 bg-surface-container-lowest">
+        <a class="wiki-link font-bold text-lg" href="docs/10_evidence_index.html">10. Evidence Index</a>
+        <p class="text-sm mt-1 text-on-surface-variant">Central registry of logs, tables, screenshots, and diagrams.</p>
+    </li>
+</ul>
+<h2 class="font-headline-lg text-headline-lg wiki-section-header" id="evidence-highlights">2. Evidence Highlights</h2>
+<ul class="list-square pl-8 mb-6 space-y-2 marker:text-outline">
+<li><b>GPU Execution:</b> Validation of MatMul, Conv2D, and heterogeneous CPU/GPU split without raw CPU fallback in target paths.</li>
+<li><b>Training Path:</b> A 182K parameter Mamba-style model trained at ~5,600 tok/s sustained, entirely GPU-resident on mobile hardware.</li>
+<li><b>Benchmark Correction:</b> Transparent rollback from ~7,600 tok/s to a stable ~5,600 tok/s after analyzing memory leak artifacts.</li>
+<li><b>Quantization:</b> INT8 MSE of 0.000013 and 2.1x memory compression over FP32 baselines.</li>
+<li><b>Symbolic-Control Bridge:</b> Early contradiction checking and axiom-guided penalties via Logos.</li>
+</ul>
+
+<h2 class="font-headline-lg text-headline-lg wiki-section-header" id="limitations">3. Limitations</h2>
 <p class="mb-4">
-                Development occurs transparently on GitHub. The community operates under a strict <a class="wiki-link" href="#">Code of Conduct</a> that emphasizes professionalism and constructive feedback. Regular community meetings are held virtually on the first Tuesday of every month.
-            </p>
+    The following limits apply to all results in this dossier:
+</p>
+<ul class="list-square pl-8 mb-6 space-y-2 marker:text-outline text-on-surface-variant">
+<li><b>Hardware Constrained:</b> Developed and tested on a laptop (Core i7-10750H, RTX 2070 Super Mobile, 8GB VRAM).</li>
+<li><b>Time and Scale Constraints:</b> Training duration and model scale are physically limited by the hardware environment.</li>
+<li><b>Experimental Subsystems:</b> Several components are validated in narrow tests but are not hardened for production.</li>
+<li><b>Incomplete Stacks:</b> Security, trust, and advanced distributed operations remain largely incomplete.</li>
+</ul>
+
+<h2 class="font-headline-lg text-headline-lg wiki-section-header" id="reading-guide">4. How to Read this Dossier</h2>
+<p class="mb-4">
+    This documentation is intended for technically competent readers—engineers, researchers, and serious collaborators. It assumes familiarity with tensor runtimes, memory management, and sequence modeling. It is intentionally <b>not optimized</b> for casual readers expecting hype or production-ready product claims.
+</p>
+
 </main>
 <!-- Footer -->
 <footer class="bg-surface-container-low border-t border-outline-variant w-full py-stack-lg px-gutter mt-stack-lg">
 <div class="max-w-content-max-width mx-auto flex flex-col md:flex-row justify-between items-start gap-6">
 <div class="text-on-surface-variant font-caption text-caption flex-1">
-<p class="mb-2">© 2024 Archive Project. Text is available under the Creative Commons Attribution-ShareAlike License.</p>
+<p class="mb-2">© 2026 Sonata Research Project. This is a public evidence dossier for a closed-source runtime.</p>
 </div>
 <ul class="flex flex-wrap gap-4 list-none pl-0 m-0 font-caption text-caption">
-<li><a class="text-primary underline hover:text-primary transition-colors" href="#">Privacy policy</a></li>
-<li><a class="text-primary underline hover:text-primary transition-colors" href="#">About WikiDocs</a></li>
-<li><a class="text-primary underline hover:text-primary transition-colors" href="#">Disclaimers</a></li>
-<li><a class="text-primary underline hover:text-primary transition-colors" href="#">Terms of Use</a></li>
-<li><a class="text-primary underline hover:text-primary transition-colors" href="#">Contact</a></li>
+<li><a class="text-primary underline hover:text-primary transition-colors" href="#">Evidence Index</a></li>
+<li><a class="text-primary underline hover:text-primary transition-colors" href="#">Limitations</a></li>
+<li><a class="text-primary underline hover:text-primary transition-colors" href="#">Return to Portfolio</a></li>
 </ul>
 </div>
 </footer>
 </div>
-<script>
-        // Simple mobile menu toggle
-        const openBtn = document.getElementById('open-sidebar');
-        const closeBtn = document.getElementById('close-sidebar');
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('mobile-menu-overlay');
-
-        function toggleMenu() {
-            sidebar.classList.toggle('-translate-x-full');
-            overlay.classList.toggle('hidden');
-        }
-
-        if(openBtn && closeBtn && sidebar && overlay) {
-            openBtn.addEventListener('click', toggleMenu);
-            closeBtn.addEventListener('click', toggleMenu);
-            overlay.addEventListener('click', toggleMenu);
-        }
-    </script>
+<script src="scripts/main.js"></script>
 </body></html>
