@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img">
+<title>H2D Traffic Reduction</title>
+<defs>
+<filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+  <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#0F172A" flood-opacity="0.10"/>
+</filter>
+<marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+  <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748B"/>
+</marker>
+</defs>
+<rect width="1200" height="720" fill="#F8FAFC"/>
+<g opacity="0.38">
+<line x1="60" y1="0" x2="60" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="120" y1="0" x2="120" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="180" y1="0" x2="180" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="240" y1="0" x2="240" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="300" y1="0" x2="300" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="360" y1="0" x2="360" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="420" y1="0" x2="420" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="480" y1="0" x2="480" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="540" y1="0" x2="540" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="600" y1="0" x2="600" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="660" y1="0" x2="660" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="720" y1="0" x2="720" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="780" y1="0" x2="780" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="840" y1="0" x2="840" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="900" y1="0" x2="900" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="960" y1="0" x2="960" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="1020" y1="0" x2="1020" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="1080" y1="0" x2="1080" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="1140" y1="0" x2="1140" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="60" x2="1200" y2="60" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="120" x2="1200" y2="120" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="180" x2="1200" y2="180" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="240" x2="1200" y2="240" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="300" x2="1200" y2="300" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="360" x2="1200" y2="360" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="420" x2="1200" y2="420" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="480" x2="1200" y2="480" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="540" x2="1200" y2="540" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="600" x2="1200" y2="600" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="660" x2="1200" y2="660" stroke="#E2E8F0" stroke-width="1"/>
+</g>
+<text x="56" y="58" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="760" fill="#0F172A" text-anchor="start" >H2D traffic reduction</text>
+<text x="56" y="89" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="400" fill="#64748B" text-anchor="start" >Host-to-device traffic, log-scaled for readable comparison</text>
+<line x1="56" y1="114" x2="1144" y2="114" stroke="#E2E8F0" stroke-width="1.5"/>
+<line x1="130" y1="590.0" x2="1030" y2="590.0" stroke="#E2E8F0" stroke-width="1"/>
+<text x="112" y="595.0" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="500" fill="#64748B" text-anchor="end" >1 MB</text>
+<line x1="130" y1="477.8" x2="1030" y2="477.8" stroke="#E2E8F0" stroke-width="1"/>
+<text x="112" y="482.83825140678243" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="500" fill="#64748B" text-anchor="end" >10 MB</text>
+<line x1="130" y1="365.7" x2="1030" y2="365.7" stroke="#E2E8F0" stroke-width="1"/>
+<text x="112" y="370.67650281356487" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="500" fill="#64748B" text-anchor="end" >100 MB</text>
+<line x1="130" y1="253.5" x2="1030" y2="253.5" stroke="#E2E8F0" stroke-width="1"/>
+<text x="112" y="258.51475422034736" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="500" fill="#64748B" text-anchor="end" >1000 MB</text>
+<line x1="130" y1="200.0" x2="1030" y2="200.0" stroke="#E2E8F0" stroke-width="1"/>
+<text x="112" y="205.0" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="500" fill="#64748B" text-anchor="end" >3000 MB</text>
+<line x1="130" y1="160" x2="130" y2="590" stroke="#CBD5E1" stroke-width="2"/>
+<line x1="130" y1="590" x2="1030" y2="590" stroke="#CBD5E1" stroke-width="2"/>
+<rect x="223.75" y="218.5954423805108" width="105" height="371.4045576194892" rx="12" fill="#DC2626" stroke="#DC2626" stroke-width="0"/>
+<text x="276.25" y="206.5954423805108" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="760" fill="#0F172A" text-anchor="middle" >2048 MB</text>
+<text x="276.25" y="624" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="520" fill="#64748B" text-anchor="middle" >Baseline</text>
+<text x="276.25" y="640" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="520" fill="#64748B" text-anchor="middle" >task-87</text>
+<rect x="448.75" y="454.9437972292767" width="105" height="135.0562027707233" rx="12" fill="#059669" stroke="#059669" stroke-width="0"/>
+<text x="501.25" y="442.9437972292767" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="760" fill="#0F172A" text-anchor="middle" >16 MB</text>
+<text x="501.25" y="624" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="520" fill="#64748B" text-anchor="middle" >Phase 20</text>
+<text x="501.25" y="640" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="520" fill="#64748B" text-anchor="middle" >post-fix</text>
+<rect x="673.75" y="509.6918129793305" width="105" height="80.3081870206695" rx="12" fill="#2563EB" stroke="#2563EB" stroke-width="0"/>
+<text x="726.25" y="497.6918129793305" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="760" fill="#0F172A" text-anchor="middle" >5.2 MB</text>
+<text x="726.25" y="624" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="520" fill="#64748B" text-anchor="middle" >TinyStories</text>
+<text x="726.25" y="640" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="520" fill="#64748B" text-anchor="middle" >sustained</text>
+<rect x="898.75" y="297.19573161513154" width="105" height="292.80426838486846" rx="12" fill="#7C3AED" stroke="#7C3AED" stroke-width="0"/>
+<text x="951.25" y="285.19573161513154" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="760" fill="#0F172A" text-anchor="middle" >407.9 MB</text>
+<text x="951.25" y="624" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="520" fill="#64748B" text-anchor="middle" >TinyStories</text>
+<text x="951.25" y="640" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="520" fill="#64748B" text-anchor="middle" >peak</text>
+<rect x="720" y="120" width="345" height="86" rx="18" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="742" y="155" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="500" fill="#64748B" text-anchor="start" >The plot emphasizes order-of-magnitude</text>
+<text x="742" y="174" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="500" fill="#64748B" text-anchor="start" >behavior, not decorative drama.</text>
+</svg>
