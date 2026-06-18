@@ -345,3 +345,42 @@ html.smooth-theme-transition *::after {
                 fill 0.3s ease,
                 stroke 0.3s ease !important;
 }
+
+/* Sonata branding patch
+   The HTML originated from a wiki-style template. These rules replace the visible
+   inherited template labels without touching the landing page logic, gallery, or
+   document viewer scripts. */
+#sidebar > div.mb-stack-sm h1,
+#sidebar > div.mb-stack-sm p,
+header .font-display-xl {
+    font-size: 0 !important;
+    line-height: 0 !important;
+}
+
+#sidebar > div.mb-stack-sm h1::after {
+    content: "Sonata AI";
+    display: block;
+    font-size: 22px;
+    line-height: 1.4;
+    font-weight: 700;
+    color: var(--color-on-surface);
+}
+
+#sidebar > div.mb-stack-sm p::after {
+    content: "Public Evidence Dossier";
+    display: block;
+    font-size: 13px;
+    line-height: 1.4;
+    font-weight: 400;
+    color: var(--color-secondary);
+}
+
+header .font-display-xl::after {
+    content: "Sonata Dossier";
+    display: block;
+    font-size: 32px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+    color: var(--color-on-surface);
+}
