@@ -18,6 +18,8 @@ CUDA initialization succeeded with correct device identification, driver version
 
 GPU memory allocation, deallocation, and host-to-device / device-to-host transfer operations passed validation. Memory pressure handling was tested with emergency allocator guard behavior confirmed at the VRAM ceiling boundary.
 
+![H2D traffic reduction — host-to-device transfer comparison](assets/plots/h2d_traffic_reduction.svg)
+
 ## MatMul evidence
 
 Matrix multiplication on GPU was validated against CPU reference results:
@@ -47,6 +49,8 @@ GPU (CUDA) → Multithreaded CPU → Assembly SIMD → Pascal Reference
 ```
 
 If the GPU driver is unavailable, a specific operation is unsupported, or memory pressure requires fallback, execution moves down the chain automatically. Fallback behavior was validated with zero execution errors or memory leaks during transition tests.
+
+![Backend dispatch chain — fallback ladder](assets/diagrams/backend_ladder.svg)
 
 ## Current limitations
 

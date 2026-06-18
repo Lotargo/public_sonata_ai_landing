@@ -22,6 +22,8 @@ Integrating a sequence module into a custom autograd engine requires:
 
 This is substantially harder than running a standalone forward pass. The module participates in the full training loop — gradient computation, optimizer updates, checkpointing, and stability management.
 
+![Autograd + Mamba training flow](assets/diagrams/autograd_mamba_flow.svg)
+
 ## Where instability appeared
 
 During stacked Mamba-style scaling experiments with direct parameterization of the state transition, training diverged within approximately 100 steps under higher learning rates. The divergence manifested as activation explosion to NaN values.

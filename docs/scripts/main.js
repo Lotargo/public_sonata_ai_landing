@@ -345,3 +345,53 @@
                 loadAndShowMarkdown('../README.md', 'About Project');
             });
         }
+
+        // Gallery Modal Logic
+        const galleryModal = document.getElementById('gallery-modal');
+        const galleryModalContent = document.getElementById('gallery-modal-content');
+        const galleryModalTitle = document.getElementById('gallery-modal-title');
+        const galleryModalImg = document.getElementById('gallery-modal-img');
+        const closeGalleryModalBtn = document.getElementById('close-gallery-modal');
+
+        function openGalleryModal(src, title) {
+            galleryModalImg.src = src;
+            galleryModalImg.alt = title;
+            galleryModalTitle.textContent = title;
+            galleryModal.classList.remove('hidden');
+            galleryModal.classList.add('flex');
+            void galleryModal.offsetWidth;
+            galleryModal.classList.remove('opacity-0');
+            galleryModalContent.classList.remove('scale-95');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeGalleryModal() {
+            galleryModal.classList.add('opacity-0');
+            galleryModalContent.classList.add('scale-95');
+            setTimeout(() => {
+                galleryModal.classList.remove('flex');
+                galleryModal.classList.add('hidden');
+                galleryModalImg.src = '';
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        if (closeGalleryModalBtn) {
+            closeGalleryModalBtn.addEventListener('click', closeGalleryModal);
+        }
+
+        if (galleryModal) {
+            galleryModal.addEventListener('click', (e) => {
+                if (e.target === galleryModal) {
+                    closeGalleryModal();
+                }
+            });
+        }
+
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const src = item.getAttribute('data-src');
+                const title = item.getAttribute('data-title');
+                openGalleryModal(src, title);
+            });
+        });

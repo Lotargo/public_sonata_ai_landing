@@ -12,7 +12,11 @@ Sonata is a low-level AI research stack. Unlike high-level frameworks that orche
 
 The system is not a wrapper around existing frameworks. It is a self-contained runtime with its own compilation, dispatch, and execution pipeline.
 
+![Project boundary — what Sonata covers](assets/diagrams/project_boundary.svg)
+
 ## System layers
+
+![Layered architecture — system stack overview](assets/diagrams/layered_architecture.svg)
 
 ### Runtime layer
 

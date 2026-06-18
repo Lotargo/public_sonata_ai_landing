@@ -266,6 +266,14 @@ html {
     margin: 2em 0;
 }
 
+/* Gallery dark mode adaptation */
+.dark .gallery-item img {
+    filter: invert(1) hue-rotate(180deg);
+}
+.dark #gallery-modal-body img {
+    filter: invert(1) hue-rotate(180deg);
+}
+
 /* Print Styles */
 @media print {
     body > :not(#print-area) {

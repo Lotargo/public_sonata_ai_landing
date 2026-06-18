@@ -23,6 +23,8 @@ All INT8 validation tests passed with high numerical fidelity:
 | Large matrix stress test (512x1024) | MSE: 0.000220, Cosine: 0.999985 | MSE ≤ 0.05, Cosine ≥ 0.98 | PASS |
 | Autograd with frozen weights | Weight grad = 0.0, Bias grad = 0.23 | Weight grad = 0.0, Bias > 0.0 | PASS |
 
+![INT8 validation — measured numerical error vs tolerances](assets/plots/int8_validation.svg)
+
 ## Memory footprint
 
 INT8 weights measured at **2.1x smaller** than the FP32 baseline. The raw data compression is 4x (1 byte vs 4 bytes per weight), but total model-level savings include quantization scale overhead and internal bookkeeping, resulting in the measured 2.1x reduction.

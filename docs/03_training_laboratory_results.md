@@ -46,6 +46,9 @@ This hardware context is central to interpreting the results. Training is constr
 | Host offload | 0 B | 0 B |
 
 Model: 2-layer Mamba LM, 182K parameters, EmbedDim=96, StateDim=16, SeqLen=128.
+
+![Throughput comparison — sustained, peak, and historical](assets/plots/throughput_comparison.svg)
+
 Dataset: TinyStories BPE (o200k_base vocabulary, active vocab 73 tokens).
 
 The sustained figure reflects real training with the autotuner active. The autotuner profiles the GPU at multiple batch sizes before training begins and selects the configuration that maximizes throughput within profile constraints. In the sustained run, the autotuner profiled batch sizes 1–32, selected batch 12 as optimal (20,480 tok/s during profiling), but the final batch was capped at 8 by the profile's MaxMicroBatch limit, with gradient accumulation of 2 giving an effective batch size of 16.
@@ -67,6 +70,8 @@ Model: Embedding(50257,768) + Mamba(768,16) + Linear(768,50257), 2.2M parameters
 The current TinyStories sustained throughput (~7,000-8,500 tok/s) reflects real training with profile-default batch size (Batch=8, effective 16 with gradient accumulation). The lower batch size keeps VRAM usage at 1.2 GB, well within the 8 GB ceiling. A peak micro-benchmark with Batch=320 achieved ~18,000 tok/s but is not representative of normal training — it bypasses profile limits and operates the model at maximum VRAM capacity.
 
 The older Phase 20 benchmark used a full-vocabulary model (50,257 tokens) with a large output projection that dominated the compute budget. Results across different model configurations are not directly comparable; neither should be read as a universal throughput claim.
+
+![VRAM usage envelope — sustained vs peak](assets/plots/vram_usage.svg)
 
 ## CPU fallback discipline
 

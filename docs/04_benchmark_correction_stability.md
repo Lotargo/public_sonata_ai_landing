@@ -31,6 +31,8 @@ After implementing memory discipline fixes (correct activation freeing, VRAM eme
 | Reproducibility | Non-reproducible | Reproducible |
 | Memory safety | Leaks, overflow | Clean |
 
+![Benchmark correction timeline — baseline to stable result](assets/diagrams/benchmark_timeline.svg)
+
 ## Why lower stable throughput is more valuable
 
 The regression of approximately 26% in raw throughput is not a bug — it is a fix. The post-fix numbers reflect actual system performance under safe, reproducible conditions:
@@ -40,6 +42,8 @@ The regression of approximately 26% in raw throughput is not a bug — it is a f
 - The safety fuse (emergency allocator guard) prevents the system from exceeding physical VRAM and swapping to host memory, which would catastrophically slow training under larger configurations.
 
 ## Lessons for future benchmarks
+
+![Training stability and throughput — historical correction context](assets/plots/stability_throughput.svg)
 
 1. **Always measure memory safety alongside throughput.** A fast result that leaks memory or overflows VRAM is not a valid benchmark.
 2. **Stability before optimization.** The project's decision to fix memory discipline before chasing higher numbers is an engineering priority that should continue.

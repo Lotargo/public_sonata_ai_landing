@@ -16,6 +16,8 @@ Logos is an early symbolic-control bridge integrated with Sonata's neural stack.
 
 It is not a mature reasoning platform. It is an experimental bridge between learned representations and symbolic constraints, implemented at a prototype level.
 
+![Neural / symbolic control loop — Logos integration](assets/diagrams/logos_control_loop.svg)
+
 ## Contradiction traces
 
 In reflection-mode tests, Logos successfully detected contradictions in generated outputs. When the neural module produced results that violated symbolic constraints, Logos flagged the contradiction and provided trace information.

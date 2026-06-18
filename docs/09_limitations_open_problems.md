@@ -13,6 +13,8 @@ This document exists to make limitations a first-class part of the public dossie
 - Results may not generalize to different hardware configurations
 - No access to workstation, cluster, or cloud GPU environments for cross-validation
 
+![Hardware constraint context — laptop-class environment](assets/diagrams/hardware_constraint_panel.svg)
+
 ## Mobile GPU limits
 
 - GPU is an NVIDIA RTX 2070 Super (mobile variant)

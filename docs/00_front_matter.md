@@ -37,6 +37,8 @@ This dossier contains:
 
 No raw source code, implementation recipes, or private experimental data are included.
 
+![Disclosure boundary — what is public vs private](assets/diagrams/public_private_boundary.svg)
+
 ## How to read this dossier
 
 The dossier is structured as a technical journal issue. Each document is self-contained but cross-references others where relevant. The recommended reading order is:
