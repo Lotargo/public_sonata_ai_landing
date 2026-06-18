@@ -218,12 +218,12 @@ def diagram_public_private() -> None:
     s = SVG("Disclosure boundary", "Separate public proof materials from private implementation recipes")
     s.card(70, 170, 455, 400, "Private core", "kept internal to avoid leaking exact implementation paths", COLORS["red"])
     for i, text in enumerate(["source code and internal branches", "exact architectural recipes", "raw checkpoints and logs", "failure history and roadmap", "unsafe operational details"]):
-        y = 270 + i * 50
+        y = 295 + i * 50
         s.rect(108, y - 22, 24, 24, rx=7, fill=COLORS["red2"], stroke=COLORS["red"])
         s.text(150, y, text, 16, 520, COLORS["text"])
     s.card(675, 170, 455, 400, "Public dossier", "portable, portfolio-safe evidence and explanation layer", COLORS["green"])
     for i, text in enumerate(["architecture summaries", "benchmark plots and limits", "claim/evidence matrices", "validation reports", "screenshots and demos"]):
-        y = 270 + i * 50
+        y = 295 + i * 50
         s.rect(713, y - 22, 24, 24, rx=7, fill=COLORS["green2"], stroke=COLORS["green"])
         s.text(755, y, text, 16, 520, COLORS["text"])
     s.arrow(535, 366, 665, 366, sw=2.5)
@@ -250,12 +250,11 @@ def diagram_layered_architecture() -> None:
         s.text(x + 28, y + 53, desc, 14, 400, COLORS["muted"])
         if i < len(layers) - 1:
             s.arrow(x + w / 2, y + h + 3, x + w / 2, y + h + gap - 4, sw=1.5)
-    s.text(120, 205, "public layer", 14, 700, COLORS["muted"])
-    s.text(120, 383, "engine layer", 14, 700, COLORS["muted"])
-    s.text(120, 560, "system layer", 14, 700, COLORS["muted"])
-    s.parts.append(f'<path d="M180 175 L180 315" stroke="{COLORS["line"]}" stroke-width="3" stroke-linecap="round"/>')
-    s.parts.append(f'<path d="M180 350 L180 500" stroke="{COLORS["line"]}" stroke-width="3" stroke-linecap="round"/>')
-    s.parts.append(f'<path d="M180 535 L180 645" stroke="{COLORS["line"]}" stroke-width="3" stroke-linecap="round"/>')
+    brackets = [(175, 315), (350, 500), (535, 645)]
+    layer_names = ["public layer", "engine layer", "system layer"]
+    for (by1, by2), name in zip(brackets, layer_names):
+        s.parts.append(f'<path d="M180 {by1} L180 {by2}" stroke="{COLORS["line"]}" stroke-width="3" stroke-linecap="round"/>')
+        s.text(120, (by1 + by2) / 2 + 5, name, 14, 700, COLORS["muted"])
     s.save(OUTPUT / "diagrams/layered_architecture.svg")
 
 
@@ -312,7 +311,7 @@ def diagram_hardware_constraint() -> None:
     for i, (title, desc, accent, fill) in enumerate(cards):
         x = x0 + i * (w + gap)
         s.rect(x, y, w, 315, rx=24, fill=COLORS["panel"], stroke=COLORS["line"], filter_id="shadow")
-        s.circle(x + w / 2, y + 72, 42, fill, accent, 1.6)
+        s.circle(x + w / 2, y + 72, 50, fill, accent, 1.6)
         s.text(x + w / 2, y + 81, title, 22, 800, accent, anchor="middle")
         s.multiline(x + w / 2, y + 165, desc, 15, 22, 500, COLORS["text"], anchor="middle", max_chars=23)
     s.text(600, 575, "Context is part of the evidence: public claims should be scoped to the actual machine.", 17, 500, COLORS["muted"], anchor="middle")
@@ -411,8 +410,8 @@ def bar_chart(
         s.multiline(x + bar_w / 2, bottom + 34, label, 13, 16, 520, COLORS["muted"], anchor="middle", max_chars=15)
 
     if note:
-        s.rect(720, 160, 345, 86, rx=18, fill=COLORS["panel"], stroke=COLORS["line"], filter_id="shadow")
-        s.multiline(742, 195, note, 14, 19, 500, COLORS["muted"], max_chars=40)
+        s.rect(720, 120, 345, 86, rx=18, fill=COLORS["panel"], stroke=COLORS["line"], filter_id="shadow")
+        s.multiline(742, 155, note, 14, 19, 500, COLORS["muted"], max_chars=40)
 
     s.save(OUTPUT / "plots" / filename)
 

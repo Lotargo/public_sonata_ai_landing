@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img">
+<title>Hardware Constraint Panel</title>
+<defs>
+<filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+  <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#0F172A" flood-opacity="0.10"/>
+</filter>
+<marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+  <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748B"/>
+</marker>
+</defs>
+<rect width="1200" height="720" fill="#F8FAFC"/>
+<g opacity="0.38">
+<line x1="60" y1="0" x2="60" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="120" y1="0" x2="120" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="180" y1="0" x2="180" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="240" y1="0" x2="240" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="300" y1="0" x2="300" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="360" y1="0" x2="360" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="420" y1="0" x2="420" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="480" y1="0" x2="480" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="540" y1="0" x2="540" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="600" y1="0" x2="600" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="660" y1="0" x2="660" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="720" y1="0" x2="720" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="780" y1="0" x2="780" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="840" y1="0" x2="840" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="900" y1="0" x2="900" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="960" y1="0" x2="960" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="1020" y1="0" x2="1020" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="1080" y1="0" x2="1080" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="1140" y1="0" x2="1140" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="60" x2="1200" y2="60" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="120" x2="1200" y2="120" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="180" x2="1200" y2="180" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="240" x2="1200" y2="240" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="300" x2="1200" y2="300" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="360" x2="1200" y2="360" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="420" x2="1200" y2="420" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="480" x2="1200" y2="480" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="540" x2="1200" y2="540" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="600" x2="1200" y2="600" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="660" x2="1200" y2="660" stroke="#E2E8F0" stroke-width="1"/>
+</g>
+<text x="56" y="58" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="760" fill="#0F172A" text-anchor="start" >Hardware constraint context</text>
+<text x="56" y="89" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="400" fill="#64748B" text-anchor="start" >Make limitations look intentional and honest, not like excuses</text>
+<line x1="56" y1="114" x2="1144" y2="114" stroke="#E2E8F0" stroke-width="1.5"/>
+<rect x="70" y="190" width="204" height="315" rx="24" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" filter="url(#shadow)"/>
+<circle cx="172.0" cy="262" r="50" fill="#FEE2E2" stroke="#DC2626" stroke-width="1.6"/>
+<text x="172.0" y="271" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="800" fill="#DC2626" text-anchor="middle" >GPU</text>
+<text x="172.0" y="355" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="500" fill="#0F172A" text-anchor="middle" >RTX 2070 Super mobile</text>
+<text x="172.0" y="377" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="500" fill="#0F172A" text-anchor="middle" >8 GB VRAM hard limit</text>
+<rect x="296" y="190" width="204" height="315" rx="24" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" filter="url(#shadow)"/>
+<circle cx="398.0" cy="262" r="50" fill="#FEF3C7" stroke="#D97706" stroke-width="1.6"/>
+<text x="398.0" y="271" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="800" fill="#D97706" text-anchor="middle" >VRAM</text>
+<text x="398.0" y="355" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="500" fill="#0F172A" text-anchor="middle" >batch size and cache</text>
+<text x="398.0" y="377" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="500" fill="#0F172A" text-anchor="middle" >ceiling</text>
+<text x="398.0" y="399" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="500" fill="#0F172A" text-anchor="middle" >shape the benchmark</text>
+<text x="398.0" y="421" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="500" fill="#0F172A" text-anchor="middle" >envelope</text>
+<rect x="522" y="190" width="204" height="315" rx="24" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" filter="url(#shadow)"/>
+<circle cx="624.0" cy="262" r="50" fill="#FEF3C7" stroke="#D97706" stroke-width="1.6"/>
+<text x="624.0" y="271" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="800" fill="#D97706" text-anchor="middle" >Thermals</text>
+<text x="624.0" y="355" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="500" fill="#0F172A" text-anchor="middle" >laptop cooling</text>
+<text x="624.0" y="377" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="500" fill="#0F172A" text-anchor="middle" >constrains</text>
+<text x="624.0" y="399" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="500" fill="#0F172A" text-anchor="middle" >sustained compute</text>
+<text x="624.0" y="421" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="500" fill="#0F172A" text-anchor="middle" >windows</text>
+<rect x="748" y="190" width="204" height="315" rx="24" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" filter="url(#shadow)"/>
+<circle cx="850.0" cy="262" r="50" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.6"/>
+<text x="850.0" y="271" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="800" fill="#2563EB" text-anchor="middle" >CPU</text>
+<text x="850.0" y="355" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="500" fill="#0F172A" text-anchor="middle" >i7-10750H</text>
+<text x="850.0" y="377" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="500" fill="#0F172A" text-anchor="middle" >6 cores / 12 threads</text>
+<rect x="974" y="190" width="204" height="315" rx="24" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" filter="url(#shadow)"/>
+<circle cx="1076.0" cy="262" r="50" fill="#D1FAE5" stroke="#059669" stroke-width="1.6"/>
+<text x="1076.0" y="271" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="800" fill="#059669" text-anchor="middle" >RAM</text>
+<text x="1076.0" y="355" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="500" fill="#0F172A" text-anchor="middle" >32 GB</text>
+<text x="1076.0" y="377" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="500" fill="#0F172A" text-anchor="middle" >sufficient for lab</text>
+<text x="1076.0" y="399" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="500" fill="#0F172A" text-anchor="middle" >workflow</text>
+<text x="600" y="575" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#64748B" text-anchor="middle" >Context is part of the evidence: public claims should be scoped to the actual machine.</text>
+</svg>

@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img">
+<title>Public Private Boundary</title>
+<defs>
+<filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+  <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#0F172A" flood-opacity="0.10"/>
+</filter>
+<marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+  <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748B"/>
+</marker>
+</defs>
+<rect width="1200" height="720" fill="#F8FAFC"/>
+<g opacity="0.38">
+<line x1="60" y1="0" x2="60" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="120" y1="0" x2="120" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="180" y1="0" x2="180" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="240" y1="0" x2="240" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="300" y1="0" x2="300" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="360" y1="0" x2="360" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="420" y1="0" x2="420" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="480" y1="0" x2="480" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="540" y1="0" x2="540" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="600" y1="0" x2="600" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="660" y1="0" x2="660" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="720" y1="0" x2="720" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="780" y1="0" x2="780" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="840" y1="0" x2="840" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="900" y1="0" x2="900" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="960" y1="0" x2="960" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="1020" y1="0" x2="1020" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="1080" y1="0" x2="1080" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="1140" y1="0" x2="1140" y2="720" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="60" x2="1200" y2="60" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="120" x2="1200" y2="120" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="180" x2="1200" y2="180" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="240" x2="1200" y2="240" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="300" x2="1200" y2="300" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="360" x2="1200" y2="360" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="420" x2="1200" y2="420" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="480" x2="1200" y2="480" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="540" x2="1200" y2="540" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="600" x2="1200" y2="600" stroke="#E2E8F0" stroke-width="1"/>
+<line x1="0" y1="660" x2="1200" y2="660" stroke="#E2E8F0" stroke-width="1"/>
+</g>
+<text x="56" y="58" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="760" fill="#0F172A" text-anchor="start" >Disclosure boundary</text>
+<text x="56" y="89" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="400" fill="#64748B" text-anchor="start" >Separate public proof materials from private implementation recipes</text>
+<line x1="56" y1="114" x2="1144" y2="114" stroke="#E2E8F0" stroke-width="1.5"/>
+<rect x="70" y="170" width="455" height="400" rx="22" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2" filter="url(#shadow)"/>
+<rect x="70" y="170" width="6" height="400" rx="3" fill="#DC2626"/>
+<text x="98" y="208" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="20" font-weight="740" fill="#DC2626" text-anchor="start" >Private core</text>
+<text x="98" y="235" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#64748B" text-anchor="start" >kept internal to avoid leaking exact</text>
+<text x="98" y="253" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#64748B" text-anchor="start" >implementation paths</text>
+<rect x="108" y="273" width="24" height="24" rx="7" fill="#FEE2E2" stroke="#DC2626" stroke-width="1.5"/>
+<text x="150" y="295" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="520" fill="#0F172A" text-anchor="start" >source code and internal branches</text>
+<rect x="108" y="323" width="24" height="24" rx="7" fill="#FEE2E2" stroke="#DC2626" stroke-width="1.5"/>
+<text x="150" y="345" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="520" fill="#0F172A" text-anchor="start" >exact architectural recipes</text>
+<rect x="108" y="373" width="24" height="24" rx="7" fill="#FEE2E2" stroke="#DC2626" stroke-width="1.5"/>
+<text x="150" y="395" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="520" fill="#0F172A" text-anchor="start" >raw checkpoints and logs</text>
+<rect x="108" y="423" width="24" height="24" rx="7" fill="#FEE2E2" stroke="#DC2626" stroke-width="1.5"/>
+<text x="150" y="445" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="520" fill="#0F172A" text-anchor="start" >failure history and roadmap</text>
+<rect x="108" y="473" width="24" height="24" rx="7" fill="#FEE2E2" stroke="#DC2626" stroke-width="1.5"/>
+<text x="150" y="495" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="520" fill="#0F172A" text-anchor="start" >unsafe operational details</text>
+<rect x="675" y="170" width="455" height="400" rx="22" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2" filter="url(#shadow)"/>
+<rect x="675" y="170" width="6" height="400" rx="3" fill="#059669"/>
+<text x="703" y="208" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="20" font-weight="740" fill="#059669" text-anchor="start" >Public dossier</text>
+<text x="703" y="235" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#64748B" text-anchor="start" >portable, portfolio-safe evidence and</text>
+<text x="703" y="253" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#64748B" text-anchor="start" >explanation layer</text>
+<rect x="713" y="273" width="24" height="24" rx="7" fill="#D1FAE5" stroke="#059669" stroke-width="1.5"/>
+<text x="755" y="295" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="520" fill="#0F172A" text-anchor="start" >architecture summaries</text>
+<rect x="713" y="323" width="24" height="24" rx="7" fill="#D1FAE5" stroke="#059669" stroke-width="1.5"/>
+<text x="755" y="345" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="520" fill="#0F172A" text-anchor="start" >benchmark plots and limits</text>
+<rect x="713" y="373" width="24" height="24" rx="7" fill="#D1FAE5" stroke="#059669" stroke-width="1.5"/>
+<text x="755" y="395" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="520" fill="#0F172A" text-anchor="start" >claim/evidence matrices</text>
+<rect x="713" y="423" width="24" height="24" rx="7" fill="#D1FAE5" stroke="#059669" stroke-width="1.5"/>
+<text x="755" y="445" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="520" fill="#0F172A" text-anchor="start" >validation reports</text>
+<rect x="713" y="473" width="24" height="24" rx="7" fill="#D1FAE5" stroke="#059669" stroke-width="1.5"/>
+<text x="755" y="495" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="520" fill="#0F172A" text-anchor="start" >screenshots and demos</text>
+<line x1="535" y1="366" x2="665" y2="366" stroke="#64748B" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="600" y="335" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="650" fill="#64748B" text-anchor="middle" >curated extract</text>
+</svg>
