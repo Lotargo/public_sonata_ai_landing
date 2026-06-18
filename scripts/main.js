@@ -24,6 +24,7 @@
 
         function openDocModal() {
             docModal.classList.remove('hidden');
+            docModal.classList.add('flex');
             // Trigger reflow
             void docModal.offsetWidth;
             docModal.classList.remove('opacity-0');
@@ -35,6 +36,7 @@
             docModal.classList.add('opacity-0');
             docModalContent.classList.add('scale-95');
             setTimeout(() => {
+                docModal.classList.remove('flex');
                 docModal.classList.add('hidden');
                 document.body.style.overflow = '';
             }, 300); // match duration-300
