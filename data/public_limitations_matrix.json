@@ -1,0 +1,105 @@
+{
+  "schema": "public_limitations_matrix_v2",
+  "generated": "2026-06-18",
+  "limitations": [
+    {
+      "id": "L01",
+      "category": "hardware",
+      "description": "Laptop-class development environment",
+      "impact": "Results may not generalize to other hardware; no workstation/cluster validation",
+      "mitigation": "Architecture is designed for constrained environments by intent"
+    },
+    {
+      "id": "L02",
+      "category": "hardware",
+      "description": "Mobile GPU with 8 GB VRAM",
+      "impact": "Limits batch size, sequence length, model scale; no multi-GPU",
+      "mitigation": "INT8 quantization partially mitigates; INT4 planned"
+    },
+    {
+      "id": "L03",
+      "category": "hardware",
+      "description": "Thermal constraints of laptop cooling",
+      "impact": "Sustained GPU compute may throttle; benchmark results may degrade under prolonged runs",
+      "mitigation": "Not systematically documented"
+    },
+    {
+      "id": "L04",
+      "category": "training",
+      "description": "Limited training scale",
+      "impact": "No downstream task evaluation; no published perplexity or standard benchmarks",
+      "mitigation": "Training path and infrastructure validated; scale is a resource question"
+    },
+    {
+      "id": "L05",
+      "category": "training",
+      "description": "Stability constraint is implementation-specific",
+      "impact": "Mamba-style stability fix proven in one configuration; not a universal result",
+      "mitigation": "Documented as engineering finding, not theoretical claim"
+    },
+    {
+      "id": "L06",
+      "category": "quantization",
+      "description": "INT8 performance not production-trustworthy for all configurations",
+      "impact": "Small matrix speed benchmark below threshold; real benefit from batch size increase, not raw INT8 speed",
+      "mitigation": "Correctness is strong; performance gap is documented and tracked"
+    },
+    {
+      "id": "L07",
+      "category": "security",
+      "description": "No authentication or authorization layer",
+      "impact": "Cannot support multi-user or regulated operations",
+      "mitigation": "Acknowledged as missing; CRC integrity exists as foundation"
+    },
+    {
+      "id": "L08",
+      "category": "security",
+      "description": "No encrypted transport",
+      "impact": "Distributed communication is plaintext; not suitable for sensitive data",
+      "mitigation": "LTP provides transport/integrity only; security layer is future work"
+    },
+    {
+      "id": "L09",
+      "category": "security",
+      "description": "No artifact provenance or audit trail",
+      "impact": "Cannot meet regulated or defense-grade operational requirements",
+      "mitigation": "Checkpoint integrity exists at the storage level"
+    },
+    {
+      "id": "L10",
+      "category": "maturity",
+      "description": "Logos symbolic bridge is partially fragile",
+      "impact": "Full daemon setup not turnkey; one sub-check soft-fails; not hardened for arbitrary use",
+      "mitigation": "Validated in narrow scenarios; packaging is a known gap"
+    },
+    {
+      "id": "L11",
+      "category": "maturity",
+      "description": "AMD GPU support is experimental",
+      "impact": "Vulkan backend not validated at same level as CUDA",
+      "mitigation": "CPU path works on all hardware; GPU is additive"
+    },
+    {
+      "id": "L12",
+      "category": "project",
+      "description": "No near-term public product readiness",
+      "impact": "No release date, beta timeline, or deployment schedule",
+      "mitigation": "Project is framed as research platform, not product"
+    },
+    {
+      "id": "L13",
+      "category": "project",
+      "description": "Time and resource constraints",
+      "impact": "Some subsystems exercised only in narrow tests; no long-duration CI",
+      "mitigation": "Documented honestly alongside achievements"
+    },
+    {
+      "id": "L14",
+      "category": "evidence",
+      "description": "All evidence is self-reported from private repository",
+      "impact": "No independent third-party verification",
+      "mitigation": "Evidence is reproducible in principle on equivalent hardware"
+    }
+  ],
+  "summary": "Sonata is a laboratory research platform with validated subsystems but significant hardware, security, and maturity limitations. These limitations are published alongside achievements as a credibility measure."
+}

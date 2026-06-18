@@ -1,0 +1,97 @@
+{
+  "schema": "public_benchmark_summary_v3",
+  "generated": "2026-06-18",
+  "hardware_context": {
+    "cpu": "Intel Core i7-10750H",
+    "gpu": "NVIDIA GeForce RTX 2070 Super (mobile, 8 GB VRAM)",
+    "ram_gb": 32,
+    "os": "Windows"
+  },
+  "benchmarks": [
+    {
+      "id": "B01",
+      "name": "TinyStories BPE sustained training",
+      "configuration": "Mixed precision, Batch=8 (effective 16 with grad accum), Seq=128, 2-layer Mamba LM (182K params), 30 steps",
+      "throughput_tok_per_sec_sustained": 6802,
+      "throughput_tok_per_sec_steady_state": "7000-8500",
+      "vram_gb": 1.2,
+      "cpu_fallbacks": 0,
+      "host_offload": "0 B",
+      "status": "stable",
+      "notes": "Real training with autotuner; profile caps MaxMicroBatch=8. Step 1 shows lower throughput (~2600 tok/s) due to GPU warmup."
+    },
+    {
+      "id": "B02",
+      "name": "TinyStories BPE peak micro-benchmark",
+      "configuration": "Mixed precision, Batch=320 (FixedBatchOverride), Seq=128, 2-layer Mamba LM (185K params), 4 steps",
+      "throughput_tok_per_sec": 18172,
+      "vram_gb": 7.5,
+      "cpu_fallbacks": 0,
+      "host_offload": "0 B",
+      "status": "peak",
+      "notes": "Profile limits bypassed via FixedBatchOverride; maximum achievable throughput in micro-benchmark, not representative of sustained training"
+    },
+    {
+      "id": "B03",
+      "name": "TinyStories BPE INT8 training",
+      "configuration": "INT8, Batch=320 (FixedBatchOverride), Seq=128, 2-layer Mamba LM (185K params), 4 steps",
+      "throughput_tok_per_sec": 17803,
+      "vram_gb": 7.5,
+      "cpu_fallbacks": 0,
+      "host_offload": "0 B",
+      "status": "peak",
+      "notes": "INT8 weights on Mamba projections; LM head stays FP32. Throughput near-identical to FP32 at this model scale."
+    },
+    {
+      "id": "B04",
+      "name": "GPU MatMul latency (256x256x256)",
+      "configuration": "CUDA cuBLAS",
+      "latency_ms": 9,
+      "comparison_cpu_ms": 63,
+      "status": "stable"
+    },
+    {
+      "id": "B05",
+      "name": "GPU Conv2D latency (4x8x16x16)",
+      "configuration": "Custom CUDA kernel",
+      "latency_ms": 1,
+      "comparison_cpu_ms": 33,
+      "status": "stable"
+    },
+    {
+      "id": "B06",
+      "name": "Phase 20 synthetic FP32 (historical reference)",
+      "configuration": "FP32, Batch=4, Seq=256, Embedding(50257,768)+Mamba(768,16)+Linear(768,50257)",
+      "throughput_tok_per_sec": 5659,
+      "h2d_bytes_per_step": 16388,
+      "vram_gb": 4.2,
+      "cpu_fallbacks": 0,
+      "status": "stable"
+    },
+    {
+      "id": "B07",
+      "name": "Phase 20 synthetic INT8 (historical reference)",
+      "configuration": "INT8, Batch=8, Seq=256, Embedding(50257,768)+Mamba(768,16)+Linear(768,50257)",
+      "throughput_tok_per_sec": 10832,
+      "h2d_bytes_per_step": 32768,
+      "vram_gb": 6.9,
+      "cpu_fallbacks": 0,
+      "status": "stable"
+    },
+    {
+      "id": "B08",
+      "name": "Phase 20 pre-fix unstable (historical reference)",
+      "configuration": "FP32, Batch=7, Seq=256",
+      "throughput_tok_per_sec": 7676,
+      "vram_gb": 6.9,
+      "status": "unstable"
+    }
+  ],
+  "limitations": [
+    "All results from single laptop environment with mobile GPU",
+    "No multi-GPU or cluster testing performed",
+    "Small model sizes limit Tensor Core utilization",
+    "Peak micro-benchmarks (Batch=320) not representative of sustained training throughput",
+    "Sustained training throughput ~7,000-8,500 tok/s with profile-default batch sizes"
+  ]
+}

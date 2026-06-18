@@ -1,0 +1,150 @@
+{
+  "schema": "public_claims_matrix_v2",
+  "generated": "2026-06-18",
+  "claims": [
+    {
+      "id": "C01",
+      "claim": "Sonata has a working low-level research stack with multiple validated subsystems",
+      "strength": "high",
+      "evidence": [
+        "Test runner passes for tensor/autograd/backend/model/Mamba/MoE tests",
+        "Checkpoint round-trip and training resume validated",
+        "Capability Map 2026-06-02"
+      ],
+      "limitations": [
+        "Single hardware environment",
+        "Some subsystems are validated in narrow tests only"
+      ],
+      "publication_status": "published"
+    },
+    {
+      "id": "C02",
+      "claim": "GPU execution is real and validated in narrow tests",
+      "strength": "high",
+      "evidence": [
+        "CUDA initialization success",
+        "MatMul 9ms vs CPU 63ms (256x256x256)",
+        "Conv2D 1ms vs CPU 33ms (4x8x16x16)",
+        "Zero CPU fallback in benchmark runs"
+      ],
+      "limitations": [
+        "NVIDIA-only; AMD Vulkan backend experimental",
+        "8 GB VRAM ceiling",
+        "Small matrices do not benefit from Tensor Cores"
+      ],
+      "publication_status": "published"
+    },
+    {
+      "id": "C03",
+      "claim": "Training path runs end-to-end through custom autograd engine",
+      "strength": "high",
+      "evidence": [
+        "TinyStories BPE sustained training: ~6,800 tok/s (30 steps)",
+        "TinyStories BPE peak micro-benchmark: ~18,000 tok/s (Batch=320, 4 steps)",
+        "Zero CPU fallback across all precision modes",
+        "GPU-only checkpoint pass"
+      ],
+      "limitations": [
+        "Laboratory results on laptop hardware",
+        "No downstream task evaluation",
+        "Limited training scale",
+        "Sustained throughput ~7K tok/s; 18K is peak micro-benchmark only"
+      ],
+      "publication_status": "published"
+    },
+    {
+      "id": "C04",
+      "claim": "Benchmark correction demonstrates stability-first engineering discipline",
+      "strength": "very high",
+      "evidence": [
+        "Documented regression: 7,676 → 5,659 tok/s",
+        "Root cause analysis: memory leaks + VRAM overflow",
+        "Fix: memory discipline + safety fuse"
+      ],
+      "limitations": [
+        "Single documented case",
+        "Requires continued discipline in future phases"
+      ],
+      "publication_status": "published"
+    },
+    {
+      "id": "C05",
+      "claim": "INT8 quantization path has correctness, parity, and memory evidence",
+      "strength": "high",
+      "evidence": [
+        "MatMul correctness MSE 0.000013, Cosine 0.999984",
+        "GPU vs CPU parity MSE 0.000495",
+        "Memory footprint 2.1x smaller than FP32",
+        "INT8 training at Batch=320: 17,803 tok/s (micro-benchmark)"
+      ],
+      "limitations": [
+        "INT8 vs FP32 throughput identical on small models",
+        "Real sustained throughput ~7K tok/s with profile-default batch sizes",
+        "Validated on specific configurations only"
+      ],
+      "publication_status": "published"
+    },
+    {
+      "id": "C06",
+      "claim": "Mamba-style sequence layer integrated into custom autograd and training path",
+      "strength": "medium",
+      "evidence": [
+        "Mamba-related tests pass",
+        "Training runs with Mamba module in loop",
+        "Stability constraint identified and applied"
+      ],
+      "limitations": [
+        "Stability constraint is implementation-specific",
+        "Not tested at diverse model scales",
+        "Additional evidence collection in progress"
+      ],
+      "publication_status": "published"
+    },
+    {
+      "id": "C07",
+      "claim": "Logos symbolic-control bridge exists and participates in experiments",
+      "strength": "medium",
+      "evidence": [
+        "Contradiction detection in reflection mode",
+        "Axiom-guided penalties operational",
+        "Guarded evolution completed"
+      ],
+      "limitations": [
+        "Partially fragile — full daemon setup not turnkey",
+        "One APL sub-check soft-skipped/failed",
+        "Not hardened into mature symbolic platform"
+      ],
+      "publication_status": "published"
+    },
+    {
+      "id": "C08",
+      "claim": "LTP transport/integrity foundations exist",
+      "strength": "medium",
+      "evidence": [
+        "All message type serialization tests pass",
+        "CRC mismatch detection passed",
+        "Binary chunk benchmark: 1 MiB at near-zero ms"
+      ],
+      "limitations": [
+        "Transport/integrity only — no security layer",
+        "No encryption, authentication, or authorization"
+      ],
+      "publication_status": "published"
+    },
+    {
+      "id": "C09",
+      "claim": "Hardware limits materially constrain training scale",
+      "strength": "very high",
+      "evidence": [
+        "Documented 8 GB VRAM ceiling",
+        "Thermal and time constraints acknowledged",
+        "Benchmark ceiling analysis: ~6,000 tok/s stable on current hardware"
+      ],
+      "limitations": [
+        "These limitations are themselves evidence of honesty",
+        "Sustained throughput ~7K tok/s on tiny model; larger models will be slower"
+      ],
+      "publication_status": "published"
+    }
+  ]
+}

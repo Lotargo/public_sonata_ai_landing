@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sonata AI - WikiSource</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Libre+Franklin:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#434653",
+                        "on-surface": "#151c22",
+                        "primary-container": "#0645ad",
+                        "secondary-fixed": "#d9e2ff",
+                        "tertiary-fixed-dim": "#ffb59a",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "tertiary": "#641e00",
+                        "primary": "#003080",
+                        "secondary-fixed-dim": "#b1c5ff",
+                        "on-secondary-fixed": "#001946",
+                        "background": "#f6f9ff",
+                        "surface-bright": "#f6f9ff",
+                        "surface-container-highest": "#dce3ec",
+                        "inverse-surface": "#2a3138",
+                        "on-secondary-container": "#002d71",
+                        "surface-container": "#e8eef7",
+                        "surface-container-low": "#eef4fd",
+                        "on-primary-fixed": "#001849",
+                        "on-tertiary-fixed-variant": "#802900",
+                        "inverse-on-surface": "#ebf1fa",
+                        "on-tertiary-container": "#ffa887",
+                        "primary-fixed": "#dae2ff",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#ffdbcf",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#2858c0",
+                        "on-secondary-fixed-variant": "#00419d",
+                        "on-tertiary-fixed": "#380d00",
+                        "surface-dim": "#d4dbe3",
+                        "surface-container-high": "#e2e9f1",
+                        "surface": "#f6f9ff",
+                        "outline-variant": "#c3c6d5",
+                        "secondary-container": "#6795fe",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "outline": "#737684",
+                        "tertiary-container": "#8a2d00",
+                        "on-primary-fixed-variant": "#003fa3",
+                        "surface-variant": "#dce3ec",
+                        "inverse-primary": "#b2c5ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#151c22",
+                        "secondary": "#2259bf",
+                        "on-primary-container": "#a5bcff",
+                        "error": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "stack-lg": "32px",
+                        "gutter": "24px",
+                        "stack-sm": "8px",
+                        "sidebar-width": "176px",
+                        "content-max-width": "960px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Libre Franklin", "sans-serif"],
+                        "display-xl": ["Playfair Display", "serif"],
+                        "body-lg": ["Libre Franklin", "sans-serif"],
+                        "caption": ["Libre Franklin", "sans-serif"],
+                        "headline-lg": ["Playfair Display", "serif"],
+                        "headline-md": ["Playfair Display", "serif"],
+                        "label-sm": ["Inter", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "display-xl": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "caption": ["13px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "headline-lg": ["28px", { "lineHeight": "1.3", "fontWeight": "400" }],
+                        "headline-md": ["22px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1.2", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Encylopedic text link style */
+        .wiki-link {
+            color: theme('colors.primary-container');
+            text-decoration: none;
+        }
+        .wiki-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Infobox styling */
+        .infobox {
+            float: right;
+            clear: right;
+            margin-left: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid theme('colors.outline-variant');
+            background-color: theme('colors.surface-container-low');
+            width: 300px;
+            font-size: 0.9em;
+        }
+        .infobox th {
+            text-align: left;
+            padding: 0.25rem 0.5rem;
+            vertical-align: top;
+            width: 40%;
+        }
+        .infobox td {
+            padding: 0.25rem 0.5rem;
+        }
+        .infobox .infobox-header {
+            background-color: theme('colors.surface-container-high');
+            text-align: center;
+            font-weight: bold;
+            padding: 0.5rem;
+        }
+
+        /* Wiki Section Header */
+        .wiki-section-header {
+            border-bottom: 1px solid theme('colors.outline-variant');
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.25rem;
+        }
+        
+        /* Table of Contents */
+        .toc {
+            border: 1px solid theme('colors.outline-variant');
+            background-color: theme('colors.surface-container-low');
+            display: inline-block;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md flex min-h-screen relative">
+<!-- Mobile Menu Overlay -->
+<div class="fixed inset-0 bg-black/50 z-40 hidden md:hidden" id="mobile-menu-overlay"></div>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-background border-r border-outline-variant z-50 transform -translate-x-full md:translate-x-0 transition-transform duration-300 overflow-y-auto flex flex-col py-stack-lg px-4 gap-stack-md shadow-none md:shadow-none shadow-[4px_0_24px_rgba(0,0,0,0.1)]" id="sidebar">
+<!-- Mobile close button -->
+<div class="md:hidden flex justify-end mb-4">
+<button class="text-secondary hover:bg-surface-container-highest p-1 rounded transition-colors" id="close-sidebar">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Header -->
+<div class="mb-stack-md flex flex-col items-center text-center">
+<div class="w-20 h-20 bg-surface-container-highest rounded-full mb-2 flex items-center justify-center overflow-hidden border border-outline-variant">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant">book</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">WikiDocs</h1>
+<p class="font-caption text-caption text-secondary">Knowledge Archive</p>
+</div>
+<!-- Main Navigation Tabs -->
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-2 py-1.5 font-caption text-caption text-on-surface font-bold hover:underline transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[18px]">home</span>
+                Main page
+            </a>
+<a class="flex items-center gap-3 px-2 py-1.5 font-caption text-caption text-secondary hover:underline transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[18px]">reorder</span>
+                Projects
+            </a>
+<a class="flex items-center gap-3 px-2 py-1.5 font-caption text-caption text-secondary hover:underline transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[18px]">info</span>
+                About
+            </a>
+<a class="flex items-center gap-3 px-2 py-1.5 font-caption text-caption text-secondary hover:underline transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[18px]">code</span>
+                Source code
+            </a>
+<a class="flex items-center gap-3 px-2 py-1.5 font-caption text-caption text-secondary hover:underline transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[18px]">history</span>
+                Recent changes
+            </a>
+<a class="flex items-center gap-3 px-2 py-1.5 font-caption text-caption text-secondary hover:underline transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[18px]">shuffle</span>
+                Random project
+            </a>
+</nav>
+<div class="border-t border-outline-variant my-2"></div>
+<!-- Footer Navigation Tabs -->
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-2 py-1.5 font-caption text-caption text-secondary hover:underline transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[18px]">settings</span>
+                Tools
+            </a>
+<a class="flex items-center gap-3 px-2 py-1.5 font-caption text-caption text-secondary hover:underline transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[18px]">print</span>
+                Print/export
+            </a>
+<a class="flex items-center gap-3 px-2 py-1.5 font-caption text-caption text-secondary hover:underline transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[18px]">language</span>
+                In other projects
+            </a>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col md:ml-[176px] min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-background w-full top-0 border-b border-outline-variant z-30 sticky">
+<div class="flex justify-between items-center px-gutter py-2 w-full max-w-content-max-width mx-auto">
+<!-- Left side: Mobile Menu Toggle & Brand (hidden on desktop as sidebar handles brand) -->
+<div class="flex items-center gap-4">
+<button class="md:hidden text-on-surface p-1 hover:bg-surface-container-highest rounded transition-colors" id="open-sidebar">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="font-headline-md text-headline-md text-on-surface hidden md:block">
+                        WikiSource
+                    </div>
+</div>
+</div>
+</header>
+<!-- Article Canvas -->
+<main class="flex-1 p-gutter w-full max-w-content-max-width mx-auto font-body-lg text-body-lg text-on-surface leading-relaxed">
+<!-- Page Title -->
+<h1 class="font-display-xl text-display-xl mb-2">Sonata AI</h1>
+<div class="border-b border-outline-variant mb-6"></div>
+<!-- Infobox -->
+<table class="infobox">
+<tbody><tr>
+<td class="infobox-header font-headline-md text-headline-md" colspan="2">Sonata AI</td>
+</tr>
+<tr>
+<td class="text-center p-2 border-b border-outline-variant" colspan="2">
+<div class="w-full h-32 bg-surface-container flex items-center justify-center border border-outline-variant">
+<img class="object-contain h-full w-full" data-alt="A minimalist, scalable vector graphic style logo for an open-source software project. The design features interconnected geometric nodes in shades of deep blue and pristine white, set against a light grey background. It evokes a sense of modern technological architecture and structured data flow, fitting a professional and academic software library context. The lighting is flat and illustrative." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFKTxnSqjnvTMqdXH4pLnnaARScQiNeBxUYDmUQDTQYb3WTEukCQXS6GK_9YK6YtDpe7S8YVIzl8tQEC0Y-PROXGqWdPJ9XbFeJp2Cmm-e8DtP9s5XIuOATXbypSQ9lK6YKyq7K5yDpr3JGgLIephuL64ckY3Jcv_E39uABzBuQpGAvJXakYe-2y7mh07WkLMry5g2dXrZnSml37fxLviscC_jUZRmLlv3u_LWFsCTg4GS_HKoe7o9Xy0R85o2OEDSsZk87LOX82j3"/>
+</div>
+<div class="font-caption text-caption text-secondary mt-1">Official Logo</div>
+</td>
+</tr>
+<tr class="border-b border-outline-variant">
+<th class="font-bold">Original author(s)</th>
+<td><a class="wiki-link" href="#">Jane Doe</a></td>
+</tr>
+<tr class="border-b border-outline-variant">
+<th class="font-bold">Repository</th>
+<td><a class="wiki-link" href="#">github.com/myorg/sonata-ai</a></td>
+</tr>
+<tr class="border-b border-outline-variant">
+<th class="font-bold">Written in</th>
+<td><a class="wiki-link" href="#">JavaScript</a>, <a class="wiki-link" href="#">Python</a></td>
+</tr>
+<tr class="border-b border-outline-variant">
+<th class="font-bold">Operating system</th>
+<td>Cross-platform</td>
+</tr>
+<tr class="border-b border-outline-variant">
+<th class="font-bold">Type</th>
+<td><a class="wiki-link" href="#">Software framework</a></td>
+</tr>
+<tr class="border-b border-outline-variant">
+<th class="font-bold">License</th>
+<td><a class="wiki-link" href="#">MIT License</a></td>
+</tr>
+<tr>
+<th class="font-bold">Website</th>
+<td><a class="wiki-link" href="#">sonata-ai.org</a></td>
+</tr>
+</tbody></table>
+<!-- Lead Paragraph -->
+<p class="mb-4">
+<b>Sonata AI</b> (often abbreviated as <b>Sonata</b>) is an open-source software framework designed to facilitate rapid development of scalable web applications. Initially released in 2023, it combines the flexibility of modern JavaScript for front-end rendering with the robust data-processing capabilities of Python on the back-end. The project is maintained by a core team of volunteers and is supported by the <a class="wiki-link" href="#">Open Software Foundation</a>.
+            </p>
+<p class="mb-6">
+                The framework is noted for its "Encyclopedic Precision" design system, which prioritizes high information density and academic rigor over decorative elements, making it particularly popular for documentation-heavy sites, archival platforms, and institutional intranets.
+            </p>
+<!-- Table of Contents -->
+<div class="toc">
+<div class="font-bold mb-2 flex items-center justify-between">
+                    Contents
+                    <button class="text-secondary text-sm hover:underline font-normal ml-4">[hide]</button>
+</div>
+<ul class="list-none pl-0 space-y-1 font-body-md text-body-md">
+<li><a class="wiki-link" href="#features"><span class="text-secondary mr-2">1</span> Features</a></li>
+<li><a class="wiki-link" href="#installation"><span class="text-secondary mr-2">2</span> Installation</a></li>
+<li><a class="wiki-link" href="#quick-start"><span class="text-secondary mr-2">3</span> Quick Start</a></li>
+<li><a class="wiki-link" href="#community"><span class="text-secondary mr-2">4</span> Community</a></li>
+</ul>
+</div>
+<!-- Sections -->
+<h2 class="font-headline-lg text-headline-lg wiki-section-header" id="features">Features</h2>
+<p class="mb-4">
+                Sonata AI provides a comprehensive suite of tools intended to reduce boilerplate code. Key features include:
+            </p>
+<ul class="list-square pl-8 mb-6 space-y-2 marker:text-outline">
+<li><b>Fixed-Fluid Layout Engine:</b> Automatically manages sidebar constraints and reading-width maximums to prevent reader fatigue.</li>
+<li><b>Tonal Depth Mapping:</b> Utilizes low-contrast outlines and subtle background color shifts (e.g., `#F8F9FA`) to denote hierarchy without relying on heavy drop shadows.</li>
+<li><b>Bento Grid Components:</b> Built-in support for asymmetric, high-density data display.</li>
+</ul>
+<h2 class="font-headline-lg text-headline-lg wiki-section-header" id="installation">Installation</h2>
+<p class="mb-4">
+                The project can be installed via standard package managers. It requires Node.js v18+ and Python 3.10+.
+            </p>
+<div class="bg-surface-container-low border border-outline-variant p-4 mb-6 font-mono text-sm overflow-x-auto">
+<pre><code># Install via npm
+npm install sonata-ai
+
+# Install python dependencies
+pip install sonata-core</code></pre>
+</div>
+<h2 class="font-headline-lg text-headline-lg wiki-section-header" id="quick-start">Quick Start</h2>
+<p class="mb-4">
+                To initialize a new project, use the command line interface provided by the package. This will generate a scaffolded directory structure adhering to the recommended architecure.
+            </p>
+<div class="bg-surface-container-low border border-outline-variant p-4 mb-6 font-mono text-sm overflow-x-auto">
+<pre><code>sonata init my-new-app
+cd my-new-app
+sonata run dev</code></pre>
+</div>
+<h2 class="font-headline-lg text-headline-lg wiki-section-header" id="community">Community</h2>
+<p class="mb-4">
+                Development occurs transparently on GitHub. The community operates under a strict <a class="wiki-link" href="#">Code of Conduct</a> that emphasizes professionalism and constructive feedback. Regular community meetings are held virtually on the first Tuesday of every month.
+            </p>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low border-t border-outline-variant w-full py-stack-lg px-gutter mt-stack-lg">
+<div class="max-w-content-max-width mx-auto flex flex-col md:flex-row justify-between items-start gap-6">
+<div class="text-on-surface-variant font-caption text-caption flex-1">
+<p class="mb-2">© 2024 Archive Project. Text is available under the Creative Commons Attribution-ShareAlike License.</p>
+</div>
+<ul class="flex flex-wrap gap-4 list-none pl-0 m-0 font-caption text-caption">
+<li><a class="text-primary underline hover:text-primary transition-colors" href="#">Privacy policy</a></li>
+<li><a class="text-primary underline hover:text-primary transition-colors" href="#">About WikiDocs</a></li>
+<li><a class="text-primary underline hover:text-primary transition-colors" href="#">Disclaimers</a></li>
+<li><a class="text-primary underline hover:text-primary transition-colors" href="#">Terms of Use</a></li>
+<li><a class="text-primary underline hover:text-primary transition-colors" href="#">Contact</a></li>
+</ul>
+</div>
+</footer>
+</div>
+<script>
+        // Simple mobile menu toggle
+        const openBtn = document.getElementById('open-sidebar');
+        const closeBtn = document.getElementById('close-sidebar');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('mobile-menu-overlay');
+
+        function toggleMenu() {
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        }
+
+        if(openBtn && closeBtn && sidebar && overlay) {
+            openBtn.addEventListener('click', toggleMenu);
+            closeBtn.addEventListener('click', toggleMenu);
+            overlay.addEventListener('click', toggleMenu);
+        }
+    </script>
+</body></html>
