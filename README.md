@@ -14,23 +14,25 @@ This dossier is structured for technically competent readers — engineers and r
 
 ```
 docs/
-├── 00_front_matter.md              Scope, hardware context, and limitation statement
-├── 01_architecture_overview.md     System-level design and layered architecture
-├── 02_autograd_mamba_integration.md  Custom autograd engine and SSM integration
+├── 00_front_matter.md                 Scope, hardware context, and limitation statement
+├── 01_architecture_overview.md        System-level design and layered architecture
+├── 02_autograd_mamba_integration.md   Custom autograd engine and SSM integration
 ├── 03_training_laboratory_results.md  End-to-end training benchmarks
 ├── 04_benchmark_correction_stability.md  Benchmark correction: inflated result, diagnosis, fix
-├── 05_gpu_heterogeneous_execution.md   GPU kernel dispatch and heterogeneous compute
-├── 06_quantization_evidence.md     INT8 quantization validation
-├── 07_logos_symbolic_control.md    Symbolic-control bridge experiments
-├── 09_limitations_open_problems.md  Known limitations and open research questions
-├── assets/                         SVG diagrams and plots
-│   ├── diagrams/                   Architecture, boundary, and flow diagrams
-│   └── plots/                      Throughput, VRAM, and validation plots
-├── data/                           Machine-readable evidence matrices
-│   ├── public_claims_matrix.json   9 claims with evidence and limitations
+├── 05_gpu_heterogeneous_execution.md  GPU kernel dispatch and heterogeneous compute
+├── 06_quantization_evidence.md        INT8 quantization validation
+├── 07_logos_symbolic_control.md       Symbolic-control bridge experiments
+├── 08_ltp_transport_foundations.md    Transport framing and integrity foundations
+├── 09_limitations_open_problems.md    Known limitations and open research questions
+├── 10_evidence_index.md               Claim-to-evidence index
+├── assets/                            SVG diagrams and plots
+│   ├── diagrams/                      Architecture, boundary, and flow diagrams
+│   └── plots/                         Throughput, VRAM, and validation plots
+├── data/                              Machine-readable evidence matrices
+│   ├── public_claims_matrix.json      9 claims with evidence and limitations
 │   ├── public_benchmark_summary.json  8 benchmarks with configurations
 │   └── public_limitations_matrix.json 14 limitations across 6 categories
-└── index.html                      This landing page
+└── index.html                         Public landing page
 ```
 
 ## Key Subsystems
@@ -45,15 +47,17 @@ docs/
 
 **Logos (Symbolic Control)** — Experimental bridge between symbolic logic and tensor computation. Validated in narrow experiments: contradiction detection, axiom-guided penalty terms, and guarded evolutionary mutation.
 
-**LTP (Transport Protocol)** — Message serialisation, CRC-based integrity verification, and chunked transfer for distributed node communication.
+**LTP (Transport Framing & Integrity)** — Binary message serialization, CRC-based corruption detection, and chunked transfer for distributed node communication experiments. LTP is not presented as a secure networking layer.
 
 ## Navigating the Dossier
 
-1. **Start with** [`00_front_matter.md`](00_front_matter.md) — defines scope, hardware context, and explicit limitation statement.
-2. **Architecture** → [`01_architecture_overview.md`](01_architecture_overview.md) — layered design and subsystem relationships.
-3. **Key results** → [`03_training_laboratory_results.md`](03_training_laboratory_results.md) and [`05_gpu_heterogeneous_execution.md`](05_gpu_heterogeneous_execution.md).
-4. **Trust artifact** → [`04_benchmark_correction_stability.md`](04_benchmark_correction_stability.md) — an earlier inflated result was identified, diagnosed, fixed, and documented. The correction itself is evidence of methodology.
-5. **Machine-readable data** → [`data/public_claims_matrix.json`](data/public_claims_matrix.json) and [`data/public_limitations_matrix.json`](data/public_limitations_matrix.json).
+1. **Start with** [`docs/00_front_matter.md`](docs/00_front_matter.md) — defines scope, hardware context, and explicit limitation statement.
+2. **Architecture** → [`docs/01_architecture_overview.md`](docs/01_architecture_overview.md) — layered design and subsystem relationships.
+3. **Key results** → [`docs/03_training_laboratory_results.md`](docs/03_training_laboratory_results.md) and [`docs/05_gpu_heterogeneous_execution.md`](docs/05_gpu_heterogeneous_execution.md).
+4. **Trust artifact** → [`docs/04_benchmark_correction_stability.md`](docs/04_benchmark_correction_stability.md) — an earlier inflated result was identified, diagnosed, fixed, and documented. The correction itself is evidence of methodology.
+5. **Transport foundations** → [`docs/08_ltp_transport_foundations.md`](docs/08_ltp_transport_foundations.md) — documents LTP as framing and integrity infrastructure, not a secure distributed protocol.
+6. **Evidence index** → [`docs/10_evidence_index.md`](docs/10_evidence_index.md) — maps claims to public evidence artifacts and limitations.
+7. **Machine-readable data** → [`docs/data/public_claims_matrix.json`](docs/data/public_claims_matrix.json) and [`docs/data/public_limitations_matrix.json`](docs/data/public_limitations_matrix.json).
 
 ## What This Repository Is Not
 
