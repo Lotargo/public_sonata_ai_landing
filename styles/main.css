@@ -1,0 +1,79 @@
+:root {
+  /* Light theme (default wiki/dossier) */
+  --bg-color: #f8f9fa; /* Warm off-white / light gray */
+  --text-color: #1a1b1e; /* Graphite / near-black */
+  --panel-bg: #ffffff;
+  --panel-border: #dce3ec;
+  --accent-color: #0d8a8a; /* Muted teal/blue-green */
+  --accent-hover: #0a6b6b;
+  --link-color: #0645ad;
+  --warning-bg: #fff3cd;
+  --warning-text: #856404;
+}
+
+.dark {
+  /* Dark theme (engineering archive) */
+  --bg-color: #0f1115; /* Near-black navy / charcoal */
+  --text-color: #e5e7eb; /* Soft white / pale gray */
+  --panel-bg: #1a1d24; /* Dark slate */
+  --panel-border: #2a3138; /* Thin low-contrast blue-gray */
+  --accent-color: #2dd4bf; /* Restrained cyan/teal */
+  --accent-hover: #14b8a6;
+  --link-color: #60a5fa;
+  --warning-bg: #3f3f46; /* Muted gray for warning */
+  --warning-text: #d4d4d8;
+}
+
+/* Encylopedic text link style */
+.wiki-link {
+    color: var(--link-color);
+    text-decoration: none;
+}
+.wiki-link:hover {
+    text-decoration: underline;
+}
+
+/* Infobox styling */
+.infobox {
+    float: right;
+    clear: right;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--panel-border);
+    background-color: var(--panel-bg);
+    width: 300px;
+    font-size: 0.9em;
+}
+.infobox th {
+    text-align: left;
+    padding: 0.25rem 0.5rem;
+    vertical-align: top;
+    width: 40%;
+}
+.infobox td {
+    padding: 0.25rem 0.5rem;
+}
+.infobox .infobox-header {
+    background-color: var(--bg-color);
+    border-bottom: 1px solid var(--panel-border);
+    text-align: center;
+    font-weight: bold;
+    padding: 0.5rem;
+}
+
+/* Wiki Section Header */
+.wiki-section-header {
+    border-bottom: 1px solid var(--panel-border);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.25rem;
+}
+
+/* Table of Contents */
+.toc {
+    border: 1px solid var(--panel-border);
+    background-color: var(--panel-bg);
+    display: inline-block;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
